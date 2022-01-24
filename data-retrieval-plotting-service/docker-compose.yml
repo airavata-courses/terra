@@ -1,0 +1,22 @@
+version: "3.2"
+services:
+  backend:
+      build: 
+        context: .
+        dockerfile: Dockerfile
+      command: 'python manage.py runserver 0.0.0.0:8000'
+      ports:
+        - 8000:8000
+        - 5673:5672
+      volumes:
+        - .:/app
+
+networks:
+    default:
+        external:
+            name: myapp_net
+
+# Docker commands to start the rabbitmq server in the same network
+# docker network create myapp_net
+# docker run -d --network myapp_net --hostname rabbitmqhost \
+#  --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management
