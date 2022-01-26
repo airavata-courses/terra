@@ -8,12 +8,13 @@ from metpy.plots import add_timestamp, ctables
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import numpy as np
 import nexradaws
-import pika
 import json
 import cloudinary
 import cloudinary.uploader
 from .models import ImagePath
 from django.core.exceptions import ObjectDoesNotExist
+from .rabbitmq_producer import WeatherRpcClient
+import pandas as pd
 
 # Configuration for the cloudinary file upload
 cloudinary.config( 
@@ -22,40 +23,55 @@ cloudinary.config(
   api_secret = "I_V74DpPwtkwj1yQk-Ib5aAPQyQ" 
 )
 
+# Read station data
+station_data = pd.read_csv('radar_station.csv')
+# Download the data from S3 bucket
+s3 = boto3.resource('s3', config=Config(signature_version=botocore.UNSIGNED,
+                                        user_agent_extra='Resource'))
+
+# Connect to the nexradAWS interface
+conn = nexradaws.NexradAwsInterface()
 
 # Ref: https://nexradaws.readthedocs.io/en/latest/apidocs.html
 # https://unidata.github.io/MetPy/latest/examples/formats/NEXRAD_Level_2_File.html
 def download_file_from_s3(start_date,radar_station, end_date,download=1):
 
-    s3 = boto3.resource('s3', config=Config(signature_version=botocore.UNSIGNED,
-                                            user_agent_extra='Resource'))
-    # bucket = s3.Bucket('noaa-nexrad-level2')            
-    conn = nexradaws.NexradAwsInterface()
-    availScans = conn.get_avail_scans_in_range(start_date,end_date,radar_station)
 
+    # Get the available files within a start date and end date of a particular station
+    try:
+        availScans = conn.get_avail_scans_in_range(start_date,end_date,radar_station)
+    except:
+        return ("No data available",)            
+
+    # Consider only one scan for simplicity
     if download ==1:
         availScans = availScans[:1]
     
-    
+    # Iterate through all the scans (Only one object for now)
     for obj in availScans:    
-
+        
+        # Get the file path need to be downloaded from S3 using the scan object
         file_path = obj.awspath +'/'+ obj.filename 
         
         try:
+            # If the query is already run, simply return the cloudinary URL. 
+
+            print("Plot already exists for the data,  return the URL from the database")
             obj = ImagePath.objects.get(filename=obj.filename)
             return (obj.url,)
         except ObjectDoesNotExist:
             print("Download and start plotting")
 
+        # Store the s3 bucket into a file_obj
         file_obj = s3.Object('noaa-nexrad-level2', file_path).get()['Body']
-
+        
         # Use MetPy to read the file
         f = Level2File(file_obj)
 
         # TODO:
         # Currently only one iteration will be run.
 
-
+    # Below code just extracts the data from the .gz file and extracts relevant data information needed for the plot
     sweep = 0
     # First item in ray is header, which has azimuth angle
     az = np.array([ray[0].az_angle for ray in f.sweeps[sweep]])
@@ -82,7 +98,9 @@ def download_file_from_s3(start_date,radar_station, end_date,download=1):
 
 def do_plot(start_date,radar_station, end_date):
     
+    # Download and extract the meta data from the file
     out = download_file_from_s3(start_date,radar_station, end_date)
+    # If file already exists in the database just return the URL.
     if len(out)==1:
         print("Using existing image data")
         return out[0]
@@ -122,32 +140,44 @@ def do_plot(start_date,radar_station, end_date):
         ax.set_xlim(-100, 100)
         ax.set_ylim(-100, 100)
         add_timestamp(ax, dt, y=0.02, high_contrast=False)
-    # plt.savefig('test.png')
     
-    plt.suptitle('KVWX Level 2 Data', fontsize=20)
+    
+    plt.suptitle('KVWX Level 2 Data - {}'.format(radar_station), fontsize=20)
     plt.tight_layout()
+    # Save the figure
     fig.savefig("download_data/output_plot/test.png")
+    # Upload the data onto a free image hosting platform for easy access of the URL.
     obj = cloudinary.uploader.upload("download_data/output_plot/test.png")
 
-    # Save data into the database
-    obj1 = ImagePath(filename=filename, url=obj['url'])
-    
+    # Save data into the database, to avoid replotting the same thing again and again.
+    obj1 = ImagePath(filename=filename, url=obj['url'])    
     obj1.save()
-    # print(serializer.data)
+    
     return obj['url']
 
 
 
-def sendDataRabbitMQService():
+def sendDataRabbitMQService(start_date,radar_station):
     
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host = 'rabbitmq',port=5672))
-    channel = connection.channel()
-    channel.queue_declare(queue = 'hello')
-    
-    data = json.dumps('abc hello wassup in jsaaon')
-    channel.basic_publish(exchange='',
-                        routing_key='hello',
-                        body=data)
-    print(" [x] Sent 'Hello World!'") 
+    # TODO:
+    # Ignoring start_date. As the free open weather API doesnot have access to historical data. 
 
-    connection.close() 
+    # Connect to the rabbit MQ client
+    weather_rpc = WeatherRpcClient()
+    # get the desired radar station latitude and longitude from the csv file
+    station = station_data[station_data['id']==radar_station]
+    if station.shape[0]==0:
+        return "No data available"
+    station = station.iloc[0]
+    latitude = station['latitude']
+    longitude = station['longitude']
+
+    # Save the data in a JSON file
+    data = {"lat":latitude,"lon":longitude}    
+    data = json.dumps(data)
+
+    # Send the data using the the Rabbit MQ client over the network
+    response = weather_rpc.call(data)
+    print(" [.] Got %r" % response)
+    # Return the response to the view set.
+    return response

@@ -18,5 +18,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('data/',include('download_data.urls'))
+    path('fetch/',include('download_data.urls'))
 ]
