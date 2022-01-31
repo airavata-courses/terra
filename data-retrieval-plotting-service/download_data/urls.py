@@ -1,10 +1,13 @@
 from django.urls import path
 
-from .views import DownloadDataViewSet
+from .views import DownloadDataViewSet, WeatherViewset
 
 
 urlpatterns = [
-    path('fetch/', DownloadDataViewSet.as_view({
+    path('data/', DownloadDataViewSet.as_view({
+        'get':'list'
+    })),
+    path('weather/',WeatherViewset.as_view({
         'get':'list'
     }))
 ]
