@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: Himanshu
+Build-Jdk: 15.0.2
+Implementation-Title: team.terra.apigateway
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.ads
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/team.terra.api
+ gateway/
+Created-By: Maven Integration for Eclipse
+
