@@ -4,7 +4,6 @@ from fastapi import FastAPI, Request
 
 import json
 import requests
-import socket
 
 
 app = FastAPI()
