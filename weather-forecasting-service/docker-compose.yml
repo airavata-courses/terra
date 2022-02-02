@@ -8,4 +8,4 @@ services:
 networks:
     default:
         external:
-            name: myapp_net
+            name: terra_network
