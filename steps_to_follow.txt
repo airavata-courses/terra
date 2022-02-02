@@ -3,6 +3,7 @@
 2. Open cmd
 3. execute docker pull mysql
 4. execute: docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Team_terra125 -e MYSQL_DATABASE=db_example -e MYSQL_USER=springuser -e MYSQL_PASSWORD=ThePassword -d mysql
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Team_terra125 -d mysql
 5. ensure the container is running by: docker ps
 6. execute: docker cp generate_table.sql mysql-standalone:/tmp 
 7. execute: docker exec -it mysql-standalone bash 
