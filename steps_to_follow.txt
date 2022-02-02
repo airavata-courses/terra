@@ -3,9 +3,9 @@
 2. Open cmd
 3. execute: cd DB_docker
 4. docker build . -t sql-standalone
-5. execute: docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Team_terra125 -d sql-standalone
+5. execute: docker run --name mysql-standalone --network terra_network -e MYSQL_ROOT_PASSWORD=Team_terra125 -d sql-standalone
 5. wait for exact 5 mins . It takes time to executes the script.
 6. execute: cd ..
 7. In team.terra folder, run: docker build . -t team-terra
-8. run : docker run -p 8888:8888 --name service-sql --link mysql-standalone -d team-terra
+8. run : docker run -p 8888:8888 --name service-sql --network terra_network -d team-terra
 9. wait. It takes time to deploy the tomcat.
