@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ads.team.terra.model.UserActivityRequest;
@@ -78,9 +79,9 @@ public class UserController {
 	 * @description List of user searches which includes search tokens, search type, and outputs from python services.
 	 */
 	@GetMapping("/activity")
-	public UserActivityResponse getUserActivity(@RequestBody UserActivityRequest userActivityRequest) {
+	public UserActivityResponse getUserActivity(@RequestParam String userId) {
 		logger.info("controller : user/activity [GET]");
-		return userService.getUserActivityService(userActivityRequest);
+		return userService.getUserActivityService(userId);
 	}
 
 }

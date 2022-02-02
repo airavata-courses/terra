@@ -104,22 +104,25 @@ public class UserService {
 		userActivityEntity.searchOutput = userActivityRequest.searchOutput;
 		
 		userActivityRepository.save(userActivityEntity);
+		userActivityResponse = new UserActivityResponse();
 		userActivityResponse.userActivityId = Integer.toString(UserService.activity_id);
 		logger.info("Activity post Management: activity_id: "+ UserService.activity_id +" User Id: " + userActivityRequest.userId + " Seach_type: "+ userActivityRequest.typeOfSearch);
 		
 		return userActivityResponse;
 	}
 
-	public UserActivityResponse getUserActivityService(UserActivityRequest userActivityRequest) {
+	public UserActivityResponse getUserActivityService(String userId) {
 		
-		List<String> findSearchOutputByUserId = userActivityRepository.findSearchOutputByUserId(Integer.parseInt(userActivityRequest.userId));
-		List<String> findSearchParamByUserId = userActivityRepository.findSearchParamByUserId(Integer.parseInt(userActivityRequest.userId));
-		List<String> findTypeOfSearchByUserId = userActivityRepository.findTypeOfSearchByUserId(Integer.parseInt(userActivityRequest.userId));
+		List<String> findSearchOutputByUserId = userActivityRepository.findSearchOutputByUserId(Integer.parseInt(userId));
+		List<String> findSearchParamByUserId = userActivityRepository.findSearchParamByUserId(Integer.parseInt(userId));
+		List<String> findTypeOfSearchByUserId = userActivityRepository.findTypeOfSearchByUserId(Integer.parseInt(userId));
 		
-		userActivityResponse.userId = userActivityRequest.userId;
+		userActivityResponse = new UserActivityResponse();
+		userActivityResponse.userId = userId;
 		userActivityResponse.searchOutput = findSearchOutputByUserId;
 		userActivityResponse.searchParam = findSearchParamByUserId;
 		userActivityResponse.typeOfSearch = findTypeOfSearchByUserId;
+		userActivityResponse.userActivityId = null;
 		
 		return userActivityResponse;
 	}
