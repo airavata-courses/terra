@@ -1,35 +1,11 @@
 0. Clone the repo...
 1. Go to team.terra
 2. Open cmd
-3. execute docker pull mysql
-4. execute: docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Team_terra125 -e MYSQL_DATABASE=db_example -e MYSQL_USER=springuser -e MYSQL_PASSWORD=ThePassword -d mysql
-docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Team_terra125 -d mysql
-5. ensure the container is running by: docker ps
-6. execute: docker cp generate_table.sql mysql-standalone:/tmp 
-7. execute: docker exec -it mysql-standalone bash 
-8. execute:  mysql -u root -p
-9. It prompts for password. Enter: Team_terra125
-10. execute: source /tmp/generate_table.sql
-11. So now you're in the Data base. You can execute: show tables;
-12. verify: (See te table names at last cols.  If you get an error no database selected, then run: use team_terra)
-mysql> use team_terra;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql> show tables;
-+----------------------+
-| Tables_in_team_terra |
-+----------------------+
-| user_activity_entity |
-| user_entity          |
-| user_log_entity      |
-+----------------------+
-3 rows in set (0.00 sec)
-13. So, this was the setup for standalone DB. and its up and running
-14. Then you can type exit 2 times and you're back in your directory, "team.terra"
-15. Or you can open another terminal/cmd at tem.terra location
-16. And execute/build the docker container 
-17. run: docker build . -t team-terra
-18. run : docker run -p 8888:8888 --name service-sql --link mysql-standalone -d team-terra
-19. ensure the service is up by checking the logs by: docker logs service-sql
+3. execute: cd DB_docker
+4. docker build . -t sql-standalone
+5. execute: docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Team_terra125 -d sql-standalone
+5. wait for exact 5 mins . It takes time to executes the script.
+6. execute: cd ..
+7. In team.terra folder, run: docker build . -t team-terra
+8. run : docker run -p 8888:8888 --name service-sql --link mysql-standalone -d team-terra
+9. wait. It takes time to deploy the tomcat.
