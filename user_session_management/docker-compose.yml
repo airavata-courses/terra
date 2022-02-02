@@ -1,0 +1,27 @@
+version : '3'
+services :
+  sql-standalone :
+    # will build SQL-STANDALONE docker container
+    build : 
+        context : .
+        dockerfile : ./DB_docker/Dockerfile
+    environment :
+         MYSQL_ROOT_PASSWORD : Team_terra125
+    
+  service-sql:
+    # will build ./docker/db/Dockerfile ==services docker
+    build : 
+        context : .
+        dockerfile : ./Dockerfile
+    ports:
+        - '8888:8888'
+    links:
+        -  sql-standalone
+    depends_on :
+        - sql-standalone
+        
+#networks :
+#    default : 
+#        external :
+#           name : sql_spring_network
+        

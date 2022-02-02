@@ -8,4 +8,8 @@
 6. execute: cd ..
 7. In team.terra folder, run: docker build . -t team-terra
 8. run : docker run -p 8888:8888 --name service-sql --network terra_network -d team-terra
+<<<<<<< HEAD
 9. wait. It takes time to deploy the tomcat.
+=======
+9. wait. It takes time to deploy the tomcat.
+>>>>>>> 6a404f8fbd084325c334748e4f72674a6f2a31bb
