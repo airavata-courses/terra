@@ -1,0 +1,15 @@
+com\ads\team\terra\model\UserLogResponse.class
+com\ads\team\terra\Application.class
+com\ads\team\terra\entity\UserActivityEntity.class
+com\ads\team\terra\model\UserResponseModel.class
+com\ads\team\terra\repository\UserActivityRepository.class
+com\ads\team\terra\model\UserRequestModel.class
+com\ads\team\terra\repository\UserRepository.class
+com\ads\team\terra\model\UserLogRequest.class
+com\ads\team\terra\repository\UserLogRepository.class
+com\ads\team\terra\service\UserService.class
+com\ads\team\terra\entity\UserLogEntity.class
+com\ads\team\terra\controller\UserController.class
+com\ads\team\terra\entity\UserEntity.class
+com\ads\team\terra\model\UserActivityRequest.class
+com\ads\team\terra\model\UserActivityResponse.class
