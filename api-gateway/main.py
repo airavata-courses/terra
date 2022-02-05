@@ -74,12 +74,12 @@ async def post_user_data(request:Request):
     return data
 
 
-@app.get('/user/activity/')
+@app.get('/user/activity')
 async def read_root(userId:str):
     
-    params = {'start_date':userId}
+    params = {'userId':userId}    
     generate_url = f"http://{JAVA_HOST}:{JAVA_PORT}/user/activity"        
-    output = await requests.get(generate_url,params=params)    
+    output = requests.get(generate_url,params=params)    
     data = output.text
     data = json.loads(data)    
     return data
