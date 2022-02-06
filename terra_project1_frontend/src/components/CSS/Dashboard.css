@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700|Raleway:400,500');
+
+body {
+  background-color: #3A7CA5;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  width: 650px;
+  height: 430px;
+  padding-top: 55px;
+  margin: 10px 20px;
+  background-color: #D9DCD6;
+  box-shadow: 0 0 40px #000;
+}
+
+.service-container {
+    width: 650px;
+    height: 550px;
+    padding-top: 55px;
+    margin: 10px 20px;
+    background-color: #D9DCD6;
+    box-shadow: 0 0 40px #000;
+  }
+
+.header-container{
+  width: 650px;
+  height: 100px;
+  background-color: #D9DCD6;
+}
+
+.profile-info {
+    float: left;
+    display:flex; 
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    transition: all 0.2s ease-in-out;
+}
+
+.profile {
+    padding-left: 20px;
+}
+
+.profile p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #474949;
+}
+
+.profile-image {
+    float: left;
+    width: 30%;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 5vh;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav {
+    float: right;
+    padding-top: 20px;
+    padding-right: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidenav{   
+    width: 650px;
+    height: 330px;
+    background-color: #D9DCD6;
+    justify-content: center;
+}
+
+.menu-button {
+    background-color: #81C3D7;
+    width: 90%;
+    height: 90%;
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 20px;
+    border: 2px solid #f7f7f7;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    overflow:hidden;
+    transition: .3s;
+  }
+
+.service-page-header{
+    width: 650px;
+    height: 100px;
+    background-color: #D9DCD6;
+    align-items: center;
+}
+
+.back-btn-div{
+    vertical-align: middle;
+}
+
+.back-btn{
+    float: left;
+}
+
+.back-btn-img{
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 5vh;
+    transition: all 0.2s ease-in-out;
+}
+
+.service-page-header h4 {
+    font-family: 'Raleway', sans-serif;
+    color: #000;
+    font-size: 25px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.input-container{
+    width: 650px;
+    height: 350px;
+    background-color: #D9DCD6;
+    align-items: center;
+}
+
+.input-item{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.input-item p{
+    font-family: 'Raleway', sans-serif;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.location-selector{
+    font-family: 'Raleway', sans-serif;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.submit-btn{
+
+}
+
+.result{
+
+}
+
+.result_url{
+    
+}
