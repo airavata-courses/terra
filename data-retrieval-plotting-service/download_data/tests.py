@@ -1,9 +1,6 @@
 # Create your tests here.
-from fileinput import filename
 from django.test import TestCase
 from .models import ImagePath
-from .views import DownloadDataViewSet
-from django.test import Client
 # Create your tests here.
 
 class ImagePathTestCase(TestCase): 
