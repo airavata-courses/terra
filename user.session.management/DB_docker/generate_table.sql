@@ -24,3 +24,10 @@ CREATE TABLE IF NOT EXISTS user_activity_entity (
 	search_output		VARCHAR(80),
 	search_param		VARCHAR(50)
 );
+
+CREATE TABLE IF NOT EXISTS user_register_entity (
+	user_id				INT		PRIMARY KEY,
+	user_name			VARCHAR(100),
+	email_id			VARCHAR(100),
+	password			VARCHAR(500)
+);
