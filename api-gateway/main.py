@@ -32,14 +32,16 @@ headers={
 'Accept':'application/json'
 }
 
-
+# For testing
 @app.get('/test')
 def get():
+    return {"check":"home"}
 
-    return {"test":"ttt"}
-
+# API path for plotting 
 @app.get("/plot")
 async def read_root(start_date:Optional[str] = None, end_date:Optional[str]=None, station: Optional[str] = None):
+    
+    print("[In API gatway] - Calling Plot micro service")
         
     params = {'start_date':start_date,'end_date':end_date,'station':station}
     generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data"         
@@ -51,6 +53,8 @@ async def read_root(start_date:Optional[str] = None, end_date:Optional[str]=None
 
 @app.get("/weather")
 def read_root(start_date:Optional[str] = None, end_date:Optional[str]=None, station: Optional[str] = None):
+    
+    print("[In API gatway] - Calling Weather micro service")
     
     params = {'start_date':start_date,'end_date':end_date,'station':station}
     # PYTHON_HOST = 'localhost'
@@ -64,7 +68,7 @@ def read_root(start_date:Optional[str] = None, end_date:Optional[str]=None, stat
 @app.post('/user/data')
 async def post_user_data(request:Request):
 
-
+    print("[In API gatway] - Calling User data service")
     data = await request.json()
 
     generate_url = f"http://{JAVA_HOST}:{JAVA_PORT}/user/data"
@@ -79,6 +83,7 @@ async def post_user_data(request:Request):
 @app.post('/user/log')
 async def post_user_data(request:Request):
     
+    print("[In API gatway] - Calling User log service")
     data = await request.json()    
     generate_url = f"http://{JAVA_HOST}:{JAVA_PORT}/user/log"
     data = json.dumps(data)
@@ -90,7 +95,7 @@ async def post_user_data(request:Request):
 
 @app.get('/user/activity')
 async def read_root(userId:str):
-    
+    print("[In API gatway] - Calling User activity service")
     params = {'userId':userId}    
     generate_url = f"http://{JAVA_HOST}:{JAVA_PORT}/user/activity"        
     output = requests.get(generate_url,params=params)    
@@ -100,7 +105,7 @@ async def read_root(userId:str):
 
 @app.post('/user/activity')
 async def post_user_data(request:Request):
-    
+    print("[In API gatway] - Calling User activity service")
     data = await request.json()
     
     data = json.dumps(data)
