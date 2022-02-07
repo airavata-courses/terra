@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import team.terra.user.session.management.model.request.UserActivityRequest;
 import team.terra.user.session.management.model.request.UserLogRequest;
+import team.terra.user.session.management.model.request.UserRegisterRequest;
 import team.terra.user.session.management.model.request.UserRequestModel;
 
 public class ControllerTest extends ApplicationTest {
@@ -108,7 +109,7 @@ public class ControllerTest extends ApplicationTest {
 	}
 	
 	@Test
-	public void getProductsList() throws Exception {
+	public void getUserActivityTest() throws Exception {
 		
 		String uri = "/user/activity?userId=2";
 	   MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(uri)
@@ -118,5 +119,100 @@ public class ControllerTest extends ApplicationTest {
 	   assertEquals(200, status);
 	   String content = mvcResult.getResponse().getContentAsString();
 	   assertNotNull(content);
+	}
+	
+	@Test
+	public void postUserRegisterNotExists() throws Exception{
+		Random r = new Random();
+		char c = (char)(r.nextInt(26) + 'a');
+		
+		String uri = "/user/register";
+		UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
+		userRegisterRequest.userName = "User_tester"+c;
+		userRegisterRequest.emailId = "User_email@test.com"+c;
+		userRegisterRequest.password = "User@123";
+		
+		String inputJson = super.mapToJson(userRegisterRequest);
+	      MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(uri)
+	         .contentType(MediaType.APPLICATION_JSON_VALUE)
+	         .content(inputJson)).andReturn();
+	      
+      int status = mvcResult.getResponse().getStatus();
+      assertEquals(200, status);
+      String content = mvcResult.getResponse().getContentAsString();
+      assertNotNull(content);
+	}
+	
+	@Test
+	public void postUserRegisterExists() throws Exception{
+		String uri = "/user/register";
+		UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
+		userRegisterRequest.userName = "User_tester";
+		userRegisterRequest.emailId = "User_email@test.com";
+		userRegisterRequest.password = "User@123";
+		
+		String inputJson = super.mapToJson(userRegisterRequest);
+	      MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(uri)
+	         .contentType(MediaType.APPLICATION_JSON_VALUE)
+	         .content(inputJson)).andReturn();
+	      
+      int status = mvcResult.getResponse().getStatus();
+      assertEquals(200, status);
+      String content = mvcResult.getResponse().getContentAsString();
+      assertNotNull(content);
+	}
+	
+	@Test
+	public void postUserAuthenticationNotExists() throws Exception{
+		String uri = "/user/authentication";
+		UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
+		userRegisterRequest.emailId = "User_email@test.com_not_exists";
+		userRegisterRequest.password = "User@123";
+		
+		String inputJson = super.mapToJson(userRegisterRequest);
+	      MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(uri)
+	         .contentType(MediaType.APPLICATION_JSON_VALUE)
+	         .content(inputJson)).andReturn();
+	      
+      int status = mvcResult.getResponse().getStatus();
+      assertEquals(200, status);
+      String content = mvcResult.getResponse().getContentAsString();
+      assertNotNull(content);
+	}
+	
+	@Test
+	public void postUserAuthenticationWrongPassword() throws Exception{
+		String uri = "/user/authentication";
+		UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
+		userRegisterRequest.emailId = "User_email@test.com";
+		userRegisterRequest.password = "User@123_wrong";
+		
+		String inputJson = super.mapToJson(userRegisterRequest);
+	      MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(uri)
+	         .contentType(MediaType.APPLICATION_JSON_VALUE)
+	         .content(inputJson)).andReturn();
+	      
+      int status = mvcResult.getResponse().getStatus();
+      assertEquals(200, status);
+      String content = mvcResult.getResponse().getContentAsString();
+      assertNotNull(content);
+	}
+	
+	@Test
+	public void postUserAuthenticationCorrectPassword() throws Exception{
+		String uri = "/user/authentication";
+		UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
+		userRegisterRequest.emailId = "User_email@test.com";
+		userRegisterRequest.password = "User@123";
+		
+		String inputJson = super.mapToJson(userRegisterRequest);
+	      MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(uri)
+	         .contentType(MediaType.APPLICATION_JSON_VALUE)
+	         .content(inputJson)).andReturn();
+	      
+      int status = mvcResult.getResponse().getStatus();
+      assertEquals(200, status);
+      String content = mvcResult.getResponse().getContentAsString();
+      assertNotNull(content);
 	}
 }

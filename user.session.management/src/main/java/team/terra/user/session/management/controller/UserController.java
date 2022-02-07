@@ -16,9 +16,11 @@ import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import team.terra.user.session.management.model.request.UserActivityRequest;
 import team.terra.user.session.management.model.request.UserLogRequest;
+import team.terra.user.session.management.model.request.UserRegisterRequest;
 import team.terra.user.session.management.model.request.UserRequestModel;
 import team.terra.user.session.management.model.response.UserActivityResponse;
 import team.terra.user.session.management.model.response.UserLogResponse;
+import team.terra.user.session.management.model.response.UserRegisterResponse;
 import team.terra.user.session.management.model.response.UserResponseModel;
 import team.terra.user.session.management.service.UserService;
 
@@ -82,6 +84,22 @@ public class UserController {
 	public UserActivityResponse getUserActivity(@RequestParam String userId) {
 		logger.info("controller : user/activity [GET]");
 		return userService.getUserActivityService(userId);
+	}
+	
+	/**
+	 * @param userRegisterRequest
+	 * @return
+	 */
+	@PostMapping("/register")
+	public UserRegisterResponse postUserRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
+		logger.info("controller : user/register [POST]");
+		return userService.postUserRegisterService(userRegisterRequest);
+	}
+	
+	@PostMapping("/authentication")
+	public UserRegisterResponse postUserAuthentication(@RequestBody UserRegisterRequest userRegisterRequest) {
+		logger.info("controller : user/authentication [POST]");
+		return userService.postUserAuthenticationService(userRegisterRequest);
 	}
 
 }

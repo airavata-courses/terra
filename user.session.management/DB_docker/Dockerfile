@@ -1,4 +1,4 @@
-FROM --platform=linux/x86_64 mysql
+FROM mysql
 
 ENV MYSQL_DATABASE team_terra
 
