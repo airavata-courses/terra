@@ -17,9 +17,9 @@ function DataRetrieval (){
   const navigate = useNavigate();
   const {state} = useLocation();
 
-  const [startDate, setStartDate] = useState("2022-02-05T10:30");
-  const [location, setLocation] = useState("KABC");
-  const [endDate, setEndDate] = useState("2022-02-05T10:30");
+  const [startDate, setStartDate] = useState("2019-06-29T19:20");
+  const [location, setLocation] = useState("KCLE");
+  const [endDate, setEndDate] = useState("2019-07-27T20:21");
   const [imageURL, setImageURL] = useState("");
 
   const [minTemp, setMinTemp] = useState(0.00);
