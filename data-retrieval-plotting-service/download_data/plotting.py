@@ -47,6 +47,9 @@ def download_file_from_s3(start_date,radar_station, end_date,download=1):
     if download ==1:
         availScans = availScans[:1]
     
+    if len(availScans) == 0:
+        return ("No data available",)
+
     # Iterate through all the scans (Only one object for now)
     for obj in availScans:    
         
