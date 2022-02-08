@@ -171,7 +171,7 @@ function DataRetrieval (){
         <div class = 'input-item'>
           <p>Select Location:</p>
           <div class = 'location'>
-            <select class = 'location-selector' onChange={(event) => handleLocationChange(event)}>
+            <select class = 'location-selector' defaultValue={"KCLE"} onChange={(event) => handleLocationChange(event)}>
               {location_options.map(item => (
               <option key={item.value} value={item.value}>
                 {item.label}
