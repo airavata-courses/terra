@@ -15,6 +15,7 @@ from .models import ImagePath
 from django.core.exceptions import ObjectDoesNotExist
 from .rabbitmq_producer import WeatherRpcClient
 import pandas as pd
+import os
 
 # Configuration for the cloudinary file upload
 cloudinary.config( 
@@ -66,10 +67,20 @@ def download_file_from_s3(start_date,radar_station, end_date,download=1):
             print("Download and start plotting")
 
         # Store the s3 bucket into a file_obj
-        file_obj = s3.Object('noaa-nexrad-level2', file_path).get()['Body']
+        print("*"*20)
+        print(file_path)
+        if file_path[:-2]!='gz':
+            s3.Bucket('noaa-nexrad-level2').download_file(file_path,'out')
+            f = Level2File('out')
+        else:
+            s3.Bucket('noaa-nexrad-level2').download_file(file_path,'out.gz')
+            f = Level2File('out.gz')
+        print("*"*20)
         
+        # file_obj = s3.Object('noaa-nexrad-level2', file_path).get()['Body']
+        print("File downloaded and loaded")
         # Use MetPy to read the file
-        f = Level2File(file_obj)
+        # f = Level2File('out.gz')
 
         # TODO:
         # Currently only one iteration will be run.
@@ -94,6 +105,12 @@ def download_file_from_s3(start_date,radar_station, end_date,download=1):
     zdr_hdr = f.sweeps[sweep][0][4][b'ZDR'][0]
     zdr_range = (np.arange(zdr_hdr.num_gates ) - 0.5) * zdr_hdr.gate_width + zdr_hdr.first_gate
     zdr = np.array([ray[4][b'ZDR'][1] for ray in f.sweeps[sweep]])
+    try:
+        os.remove('out.gz')
+        os.remove('out')
+    except:
+        pass
+    print("File removed from local storage")
     return ref, rho, zdr, phi, ref_range, rho_range, zdr_range, phi_range, az, f.dt,obj.filename 
 
 
