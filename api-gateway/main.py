@@ -115,3 +115,31 @@ async def post_user_data(request:Request):
     data = output.text
     data = json.loads(data)
     return data
+
+
+@app.post('/user/register')
+async def post_user_data(request:Request):
+    print("[In API gatway] - Calling User registery service")
+    data = await request.json()
+    
+    data = json.dumps(data)
+    generate_url = f"http://{JAVA_HOST}:{JAVA_PORT}/user/register"
+    
+    output = requests.post(generate_url,data = data, headers=headers)
+    data = output.text
+    data = json.loads(data)
+    return data
+
+
+@app.post('/user/authentication')
+async def post_user_data(request:Request):
+    print("[In API gatway] - Calling User authentication service")
+    data = await request.json()
+    
+    data = json.dumps(data)
+    generate_url = f"http://{JAVA_HOST}:{JAVA_PORT}/user/authentication"
+    
+    output = requests.post(generate_url,data = data, headers=headers)
+    data = output.text
+    data = json.loads(data)
+    return data
