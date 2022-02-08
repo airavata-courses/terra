@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700|Raleway:400,500');
+
+body {
+  background-color: #3A7CA5;
+  display: flex;
+  justify-content: center;
+}
+.intro-container {
+  width: 650px;
+  height: 650px;
+  padding-top: 55px;
+  margin: 10px 20px;
+  background-color: #D9DCD6;
+	box-shadow: 0 0 40px #000;
+  flex-direction: column;
+}
+/* HEADER */
+.header {
+  color:#000;
+  height: 100px;
+}
+.header h1 {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #474949;
+}
+.header h2 {
+  font-family: 'Raleway', sans-serif;
+  color: #000;
+  font-size: 40px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.header p {
+  font-family: 'Montserrat', sans-serif;
+  color: #5B5E5E;
+  font-size: 10px;
+  line-height: 25px;
+}
+
+.login-container {
+  background-color: #D9DCD6;
+  width: 400px;
+  height: 250px;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+  justify-content: center;
+}
+
+.sign {
+  padding-top: 10px;
+  color: #8C55AA;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+.un {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+.email {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 27px;
+  font-family: 'Ubuntu', sans-serif;
+  }
+
+form.form1 {
+}
+
+.pass {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+.un:focus, .pass:focus {
+  border: 2px solid rgba(0, 0, 0, 0.18) !important;
+  
+}
+
+.btn-div{
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.sign-in-btn {
+  cursor: pointer;
+  width: 150px;
+  border-radius: 5em;
+  color: #fff;
+  background: linear-gradient(to right, #9C27B0, #E040FB);
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-right: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.register-btn {
+  cursor: pointer;
+  width: 150px;
+  border-radius: 5em;
+  color: #fff;
+  background: linear-gradient(to right, #9C27B0, #E040FB);
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-left: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.register-container {
+  background-color: #D9DCD6;
+  width: 400px;
+  height: 450px;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+  justify-content: center;
+}
+
+.google-login-div{
+
+}
+
+.google-login-div p{
+  font-family: 'Montserrat', sans-serif;
+  color: #5B5E5E;
+  font-style: italic;
+  font-size: 10px;
+  line-height: 25px;
+}
