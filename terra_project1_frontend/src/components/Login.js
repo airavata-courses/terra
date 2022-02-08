@@ -16,19 +16,45 @@ function Login() {
   const [emailId, setEmailId] = useState('');
   const [name, setName] = useState('');
   const [accessToken, setAccessToken] = useState('');
+  const [userId, setUserId] = useState('');
   
+  const API = "http://localhost:8008";
+  const API2 = "http://localhost:8888";
+
+  async function registerUserId(res){
+    const body_activity = {
+      "userName": res.profileObj.email,
+      "emailId" : res.profileObj.email,
+      "password": "asdfghjkl"
+
+    }
+    console.log(body_activity);
+    console.log("Registering user Id for Google Account");
+    
+    const response = await fetch(API + `/user/register`, 
+    {method: "POST" , 
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body_activity)});
+    
+    console.log(response);
+    const json = await response.json();
+    console.log(json);
+    if(json.response == null){
+      navigate('/')
+      //navigate(`/dashboard`, {state: {userId: json.userId, emailId: res.profileObj.email , name : res.profileObj.name}});
+    }
+    else{
+      alert(json.response)
+    }
+  }
+
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj);
     // alert(
     //   `Logged in successfully! Welcome ${res.profileObj.name}`
     // );
     refreshTokenSetup(res);
-
-    sessionStorage.setItem("access_token", res.accessToken);
-    sessionStorage.setItem("name", res.profileObj.name);
-    sessionStorage.setItem("emailId", res.profileObj.email);
-
-    navigate(`/dashboard`, {state: {emailId: res.profileObj.email , name : res.profileObj.name, accessToken: res.access_token}});
+    registerUserId(res);
   };
 
   const onFailure = (res) => {
@@ -43,7 +69,7 @@ function Login() {
       <GoogleLogin
         clientId={clientId}
         buttonText="Login"
-        onSuccess={onSuccess}
+        onSuccess={registerUserId}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
         style={{ marginTop: '100px' }}
