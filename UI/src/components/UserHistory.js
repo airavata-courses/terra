@@ -23,7 +23,7 @@ function UserHistory (){
 
   async function getUserHistory(){
     console.log("Getting User History")
-    const response = await fetch(API + `/user/activity?userId=`+state.userId, {method: "GET"});
+    const response = await fetch(API + `/user/activity?userId=`+state.userId, {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
     const json = await response.json();
     console.log(json);

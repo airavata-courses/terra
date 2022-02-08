@@ -49,7 +49,8 @@ function DataRetrieval (){
   
     console.log("Generating Radar Plot")
     setIsButtonClicked(true);
-    const response = await fetch(API + `/plot?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, {method: "GET"});
+    const response = await fetch(API + `/plot?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, 
+    {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
     const json = await response.json();
     console.log(json);
@@ -63,8 +64,7 @@ function DataRetrieval (){
     var searchType = "Radar Plot";
     var searchParam = "location:"+location;
 
-    var image_URL = json.image_url.split("/");
-    var searchOutput = "plot:"+json.image_url;
+    var searchOutput = "plot is saved in the local files";
     updateSearchHistory(searchType,searchParam,searchOutput);
 
   };
