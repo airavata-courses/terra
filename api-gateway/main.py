@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000"
+    "*"
 ]
 
 app.add_middleware(
@@ -29,7 +29,9 @@ JAVA_PORT = '8888'
 
 headers={
 'Content-type':'application/json', 
-'Accept':'application/json'
+'Accept':'application/json',
+'access-control-allow-credentials': 'true',
+'access-control-allow-headers': 'content-type'
 }
 
 # For testing
@@ -50,14 +52,14 @@ async def read_root(start_date:Optional[str] = None, end_date:Optional[str]=None
     data = json.loads(data)    
     return data
     
-
+# Calls the weather api 
 @app.get("/weather")
 def read_root(start_date:Optional[str] = None, end_date:Optional[str]=None, station: Optional[str] = None):
     
     print("[In API gatway] - Calling Weather micro service")
     
     params = {'start_date':start_date,'end_date':end_date,'station':station}
-    # PYTHON_HOST = 'localhost'
+    
     generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/weather"            
     output = requests.get(generate_url,params=params,headers=headers)    
     data = output.text    
@@ -68,11 +70,9 @@ def read_root(start_date:Optional[str] = None, end_date:Optional[str]=None, stat
 @app.post('/user/data')
 async def post_user_data(request:Request):
 
-    print("[In API gatway] - Calling User data service")
+    print("[In API gatway] - Calling User data service")    
     data = await request.json()
-
     generate_url = f"http://{JAVA_HOST}:{JAVA_PORT}/user/data"
-
     data = json.dumps(data)    
     output = requests.post(generate_url,data = data,headers=headers)
     data = output.text
@@ -106,8 +106,7 @@ async def read_root(userId:str):
 @app.post('/user/activity')
 async def post_user_data(request:Request):
     print("[In API gatway] - Calling User activity service")
-    data = await request.json()
-    
+    data = await request.json()    
     data = json.dumps(data)
     generate_url = f"http://{JAVA_HOST}:{JAVA_PORT}/user/activity"
     
