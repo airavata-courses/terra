@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: weather-forecast
+  labels:
+    app: weather-forecast
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-forecast
+  template:
+    metadata:
+      labels:
+        app: weather-forecast
+    spec: 
+      containers: 
+      - name: weather-forecast
+        image: gauti091/weather-forecast
+        ports:
+        - containerPort: 8004
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weather-forecast
+spec:
+  selector:
+    app: weather-forecast
+  type: LoadBalancer
+  ports:
+   - protocol: TCP
+     port: 8004
+     targetPort: 8004
+     nodePort: 30009
+
+
+  

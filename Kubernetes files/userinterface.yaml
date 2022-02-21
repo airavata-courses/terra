@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: user-interface
+  labels:
+    app: user-interface
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-interface
+  template:
+    metadata:
+      labels:
+        app: user-interface
+    spec: 
+      containers: 
+      - name: user-interface
+        image: gauti091/ui
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-interface-service
+spec:
+  selector:
+    app: user-interface
+  type: LoadBalancer
+  ports:
+   - protocol: TCP
+     port: 3000
+     targetPort: 3000
+     nodePort: 30022
+
+
+  

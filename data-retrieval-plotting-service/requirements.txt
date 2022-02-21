@@ -7,7 +7,7 @@ metpy
 boto3
 botocore
 matplotlib
-numpy
 nexradaws
 pika == 1.2.0
 cloudinary
+numpy

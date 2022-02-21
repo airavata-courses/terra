@@ -22,7 +22,7 @@ app.add_middleware(
 
 # app = FastAPI()
 
-PYTHON_HOST = 'dataretrievalcontainer'
+PYTHON_HOST = 'dataretrieval'
 PYTHON_PORT = '8000'
 JAVA_HOST = 'service-sql'
 JAVA_PORT = '8888'
