@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: user-interface
+  name: userinterface
   labels:
-    app: user-interface
+    app: userinterface
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-interface
+      app: userinterface
   template:
     metadata:
       labels:
-        app: user-interface
+        app: userinterface
     spec: 
       containers: 
-      - name: user-interface
+      - name: userinterface
         image: gauti091/ui
         ports:
         - containerPort: 3000
@@ -25,16 +25,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-interface-service
+  name: userinterface
 spec:
   selector:
-    app: user-interface
+    app: userinterface
   type: LoadBalancer
   ports:
-   - protocol: TCP
-     port: 3000
-     targetPort: 3000
-     nodePort: 30022
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+    nodePort: 30422
 
 
   
