@@ -52,13 +52,12 @@ kubectl apply -f MySQLService.yaml
 kubectl apply -f rabbitmq.yaml
 kubectl apply -f data-retrieval.yaml
 kubectl apply -f api-gateway.yaml
-kubectl apply -f userinterface.yaml
 
 
 kubectl apply -f weatherForecast.yaml
-
 kubectl apply -f user-managment.yaml
 
+kubectl apply -f userinterface.yaml
 
 minikube service user-interface
 
@@ -67,7 +66,9 @@ minikube service user-interface
 Go to the bin folder of the jmeter shell and run the following command:
 
 
-sh jmeter.sh -n -t "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/gateway.jmx" -l "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/reports/report.csv" -e -o "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/dashboard"
+# For weatherForecast
+sh jmeter.sh -Jjmeter.reportgenerator.overall_granularity=5000 -n -t "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/gateway.jmx" -l "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/reports/report.csv" -e -o "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/dashboard"
+sh jmeter.sh -Jjmeter.reportgenerator.overall_granularity=5000 -n -t "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/plot and download.jmx" -l "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/reports/report.csv" -e -o "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/dashboard"
 
 
 
