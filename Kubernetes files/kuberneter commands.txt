@@ -68,8 +68,10 @@ Go to the bin folder of the jmeter shell and run the following command:
 
 # For weatherForecast
 sh jmeter.sh -Jjmeter.reportgenerator.overall_granularity=5000 -n -t "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/gateway.jmx" -l "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/reports/report.csv" -e -o "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/dashboard"
-sh jmeter.sh -Jjmeter.reportgenerator.overall_granularity=5000 -n -t "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/plot and download.jmx" -l "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/reports/report.csv" -e -o "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/dashboard"
+sh jmeter.sh -Jjmeter.reportgenerator.overall_granularity=10000 -n -t "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/plot and download.jmx" -l "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/reports/report.csv" -e -o "/Users/chowtagowtham/Desktop/Spring 22/Jmeter Test Plans/dashboard"
 
 
+kubectl deployment php-apache --cpu-percent=50 --min=1 --max=5
+horizontalpodautoscaler.autoscaling/php-apache autoscaled
 
-
+kubectl autoscale deployment dataretrieval --cpu-percent=10 --min=1 --max=10

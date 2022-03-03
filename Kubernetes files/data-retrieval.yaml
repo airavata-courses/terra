@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dataretrieval
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels: 
       app: dataretrieval
@@ -19,6 +19,11 @@ spec:
         image: gauti091/data-retrieval
         ports:
         - containerPort: 8000
+        resources:
+         limits:
+           memory: "300Mi"
+         requests:
+           memory: "300Mi"
 ---
 apiVersion: v1
 kind: Service
