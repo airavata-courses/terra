@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: dataretrieval
+  labels:
+    app: dataretrieval
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: dataretrieval
+  template:
+    metadata:
+      labels:
+        app: dataretrieval
+    spec: 
+      containers: 
+      - name: dataretrieval
+        image: gauti091/data-retrieval
+        ports:
+        - containerPort: 8000
+        resources:
+         limits:
+           memory: "300Mi"
+         requests:
+           memory: "300Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dataretrieval
+spec:
+  selector:
+    app: dataretrieval
+  type: LoadBalancer
+  ports:
+   - protocol: TCP
+     port: 8000
+     targetPort: 8000
+     nodePort: 30005
+
+
+  

@@ -1,0 +1,50 @@
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 10000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 14.580200000000065,
+    "medianResTime" : 12.0,
+    "minResTime" : 3.0,
+    "maxResTime" : 204.0,
+    "pct1ResTime" : 25.0,
+    "pct2ResTime" : 27.0,
+    "pct3ResTime" : 53.0,
+    "throughput" : 100.0830689472262,
+    "receivedKBytesPerSec" : 15.93119163906042,
+    "sentKBytesPerSec" : 25.46058541089104
+  },
+  "User Registration - SSO" : {
+    "transaction" : "User Registration - SSO",
+    "sampleCount" : 5000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 17.838399999999925,
+    "medianResTime" : 19.0,
+    "minResTime" : 5.0,
+    "maxResTime" : 204.0,
+    "pct1ResTime" : 26.0,
+    "pct2ResTime" : 28.0,
+    "pct3ResTime" : 65.98999999999978,
+    "throughput" : 50.0545594698221,
+    "receivedKBytesPerSec" : 6.794515396782493,
+    "sentKBytesPerSec" : 11.829300187204051
+  },
+  "User Registration - Local" : {
+    "transaction" : "User Registration - Local",
+    "sampleCount" : 5000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 11.322000000000065,
+    "medianResTime" : 6.0,
+    "minResTime" : 3.0,
+    "maxResTime" : 82.0,
+    "pct1ResTime" : 22.0,
+    "pct2ResTime" : 24.0,
+    "pct3ResTime" : 40.97999999999956,
+    "throughput" : 50.10722947106808,
+    "receivedKBytesPerSec" : 9.150441319423566,
+    "sentKBytesPerSec" : 13.652262717214839
+  }
+}

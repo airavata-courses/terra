@@ -5,7 +5,7 @@ services:
         context: .
         dockerfile: Dockerfile
       ports:
-        - 8008:8000
+        - 8008:8008
 
 networks:
     default:

@@ -1,0 +1,34 @@
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 3000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 694.0963333333337,
+    "medianResTime" : 618.5,
+    "minResTime" : 289.0,
+    "maxResTime" : 3631.0,
+    "pct1ResTime" : 1046.9,
+    "pct2ResTime" : 1268.749999999999,
+    "pct3ResTime" : 1745.7899999999954,
+    "throughput" : 29.697677641608426,
+    "receivedKBytesPerSec" : 11.13662911560316,
+    "sentKBytesPerSec" : 4.901276876398265
+  },
+  "Plot and download" : {
+    "transaction" : "Plot and download",
+    "sampleCount" : 3000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 694.0963333333337,
+    "medianResTime" : 618.5,
+    "minResTime" : 289.0,
+    "maxResTime" : 3631.0,
+    "pct1ResTime" : 1046.9,
+    "pct2ResTime" : 1268.749999999999,
+    "pct3ResTime" : 1745.7899999999954,
+    "throughput" : 29.697677641608426,
+    "receivedKBytesPerSec" : 11.13662911560316,
+    "sentKBytesPerSec" : 4.901276876398265
+  }
+}
