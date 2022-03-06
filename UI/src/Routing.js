@@ -9,6 +9,7 @@ import DataRetrieval from "./components/DataRetrieval";
 import WeatherForecast from "./components/WeatherForecast";
 import LoginMain from "./components/LoginMain";
 import Register from "./components/Register";
+import DataRetrievalGraph from "./components/DataRetrievelGraph";
 
 export default class Routing extends Component {
     render() {
@@ -21,6 +22,7 @@ export default class Routing extends Component {
                 <Route path="/dashboard/data" element={<DataRetrieval />} />
                 <Route path="/dashboard/weather" element={<WeatherForecast />} />
                 <Route path="/dashboard/history" element={<UserHistory />} />
+                <Route path="/dashboard/data/graph" element={<DataRetrievalGraph />} />
             </Routes>
         )
     }

@@ -5,6 +5,7 @@ import SideNav from './SideNav';
 
 import { useNavigate, useLocation } from "react-router-dom";
 import Login from './Login';
+import axios from "axios";
 
 function Register (){
 
@@ -16,6 +17,7 @@ function Register (){
   const [userName, setUserName] = useState("");
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+  const [loginType, setLoginType] = useState('');
 
   const navigateIntroPage = () => {
     console.log('Intro Page');
@@ -31,20 +33,35 @@ function Register (){
     console.log(body_activity);
     console.log("Registering user Id for Normal Account");
     
-    const response = await fetch(API + `/user/register`, 
-    {method: "POST" , 
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body_activity)});
+    setLoginType('Non-Google');
+
+    const jsonobj = JSON.stringify(body_activity);
+
+    axios
+    .post(API+ `/user/register`, jsonobj)
+    .then(res => {
+        if (res.response == null){
+          navigate(`/`);
+          console.log("Registered Sucessfully!")
+        }
+        else{
+          alert(res.response)
+        }
+      })
+    // const response = await fetch(API + `/user/register`, 
+    // {method: "POST" , 
+    // headers: { 'Content-Type': 'application/json' },
+    // body: JSON.stringify(body_activity)});
     
-    console.log(response);
-    const json = await response.json();
-    console.log(json);
-    if(json.response == null){
-      navigate(`/`);
-    }
-    else{
-      alert(json.response)
-    }
+    // console.log(response);
+    // const json = await response.json();
+    // console.log(json);
+    // if(json.response == null){
+    //   navigate(`/`);
+    // }
+    // else{
+    //   alert(json.response)
+    // }
   }
 
   const showInfo = () => {
@@ -62,12 +79,11 @@ function Register (){
         <input class="pass" type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
       </form>
       <div class = 'btn-div'>
-          <button class="sign-in-btn" onClick={registerUserId}>Register</button>
-          <button class="register-btn" onClick={navigateIntroPage}>Login</button>
+          <button class="register-btn" onClick={registerUserId}>Register</button>
       </div>
-      <div class = 'google-login-div'>
+      <div class = 'btn-div'>
         <p>Or</p>
-        <Login />
+        <button class="login-btn" onClick={navigateIntroPage}>Go back to login page</button>
       </div>
     </div>
   );

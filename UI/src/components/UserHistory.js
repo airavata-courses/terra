@@ -58,12 +58,12 @@ function UserHistory (){
     
   const onClick_back = () => {
     console.log('Main Dashboard Page');
-    navigate(`/dashboard`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId}});
+    navigate(`/dashboard`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType}});
   };
   
   return (
     <div class = 'service-container'>
-      <Header name={state.name}/>
+      <Header name={state.name} loginType={state.loginType} />
       <div class = 'service-page-header'>
         <div class = 'back-btn-div'>
           <button class ='back-btn' onClick={onClick_back}>
