@@ -41,7 +41,7 @@ class DownloadDataViewSet(viewsets.ViewSet):
         out = do_plot(start_date, radar_station,end_date)
         if out == 'No data available':
             return Response("No scans available for the selected inputs",
-                status=status.HTTP_400_BAD_REQUEST)
+                status=status.HTTP_200_OK)
 
         # Image is saved
         print("image is saved ",out)

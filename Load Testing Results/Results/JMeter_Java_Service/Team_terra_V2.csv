@@ -1,0 +1,7 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1646195534314,81,User Registration - SSO,200,,Team_terra 1-1,text,true,,186,241,1,1,http://localhost:8888/user/data,77,0,37
+1646195534397,9,User Registration - Local,200,,Team_terra 1-1,text,true,,235,278,1,1,http://localhost:8888/user/register,9,0,0
+1646195534407,353,User History Log,200,,Team_terra 1-1,text,true,,269,346,1,1,http://localhost:8888/user/activity,353,0,0
+1646195534761,11,User History [Get],200,,Team_terra 1-1,text,true,,948,170,1,1,http://localhost:8888/user/activity?userId=1,11,0,0
+1646195534772,213,User Session Log,200,,Team_terra 1-1,text,true,,191,256,1,1,http://localhost:8888/user/log,213,0,0
+1646195534986,103,User Authentication,200,,Team_terra 1-1,text,true,,221,258,1,1,http://localhost:8888/user/authentication,102,0,0

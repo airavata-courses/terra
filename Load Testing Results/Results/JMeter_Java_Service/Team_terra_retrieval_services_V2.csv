@@ -1,0 +1,3 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1646200766829,7731,Data Forecasting,200,OK,Thread Group 1-1,text,true,,227,187,1,1,http://localhost:8008/plot?start_date=2019-06-26T23:23&station=KCLE&end_date=2019-07-27T20:21,7729,0,19
+1646200774564,540,Weather Forecasting,200,OK,Thread Group 1-1,text,true,,248,164,1,1,http://localhost:8008/weather?start_date=2019-06-26T23:23&station=KBIS,540,0,0

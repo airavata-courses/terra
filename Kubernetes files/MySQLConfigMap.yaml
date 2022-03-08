@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: mysql-configmap
+data: 
+  password: Team_terra125
+  database: team_terra

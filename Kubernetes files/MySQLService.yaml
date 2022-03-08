@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    app: mysqlservice
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: mysqlservice
+  template:
+    metadata:
+      labels: 
+        app: mysqlservice
+    spec: 
+      containers:
+      - name: mysql-standalone
+        image: gauti091/sql-standalone
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-configmap
+              key: password         
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-configmap
+              key: database
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: mysql-standalone
+spec:
+  selector: 
+    app: mysqlservice
+  ports: 
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+
+               

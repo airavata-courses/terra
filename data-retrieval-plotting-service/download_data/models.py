@@ -7,3 +7,6 @@ class ImagePath(models.Model):
 
     filename = models.CharField(max_length=500)
     url = models.CharField(max_length=500)
+    
+    class Meta:
+        unique_together = ('filename',)

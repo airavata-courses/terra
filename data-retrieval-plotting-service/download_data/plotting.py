@@ -69,12 +69,16 @@ def download_file_from_s3(start_date,radar_station, end_date,download=1):
         # Store the s3 bucket into a file_obj
         print("*"*20)
         print(file_path)
-        if file_path[:-2]!='gz':
-            s3.Bucket('noaa-nexrad-level2').download_file(file_path,'out')
-            f = Level2File('out')
-        else:
-            s3.Bucket('noaa-nexrad-level2').download_file(file_path,'out.gz')
-            f = Level2File('out.gz')
+        try:
+            if file_path[:-2]=='gz':
+                s3.Bucket('noaa-nexrad-level2').download_file(file_path,'out')                
+                f = Level2File('out')
+            else:
+                s3.Bucket('noaa-nexrad-level2').download_file(file_path,'out.gz')                
+                f = Level2File('out.gz')
+        except:
+            print("file not readable")
+            return ("No data available",)
         print("*"*20)
         
         # file_obj = s3.Object('noaa-nexrad-level2', file_path).get()['Body']
@@ -170,9 +174,14 @@ def do_plot(start_date,radar_station, end_date):
     obj = cloudinary.uploader.upload("download_data/output_plot/test.png")
 
     # Save data into the database, to avoid replotting the same thing again and again.
-    obj1 = ImagePath(filename=filename, url=obj['url'])    
-    obj1.save()
-    
+    try:
+        obj1 = ImagePath(filename=filename, url=obj['url'])    
+        obj1.save()
+    except:
+        print("Object already exists")    
+        obj = ImagePath.objects.get(filename=obj.filename)
+        return (obj.url,)
+            
     return obj['url']
 
 

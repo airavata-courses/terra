@@ -1,0 +1,301 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1646196691171,47,User Registration - SSO,200,,Team_terra 1-1,text,true,,186,241,2,2,http://localhost:8888/user/data,43,0,29
+1646196691182,36,User Registration - SSO,200,,Team_terra 1-2,text,true,,186,241,2,2,http://localhost:8888/user/data,32,0,18
+1646196691220,6,User Registration - Local,200,,Team_terra 1-2,text,true,,235,278,2,2,http://localhost:8888/user/register,6,0,0
+1646196691221,6,User Registration - Local,200,,Team_terra 1-1,text,true,,235,278,2,2,http://localhost:8888/user/register,6,0,0
+1646196691281,8,User Registration - SSO,200,,Team_terra 1-3,text,true,,186,241,3,3,http://localhost:8888/user/data,8,0,2
+1646196691290,5,User Registration - Local,200,,Team_terra 1-3,text,true,,235,278,3,3,http://localhost:8888/user/register,5,0,0
+1646196691380,5,User Registration - SSO,200,,Team_terra 1-4,text,true,,186,241,4,4,http://localhost:8888/user/data,5,0,1
+1646196691386,4,User Registration - Local,200,,Team_terra 1-4,text,true,,235,278,4,4,http://localhost:8888/user/register,4,0,0
+1646196691227,167,User History Log,200,,Team_terra 1-2,text,true,,271,346,4,4,http://localhost:8888/user/activity,167,0,0
+1646196691227,172,User History Log,500,,Team_terra 1-1,text,false,,258,346,4,4,http://localhost:8888/user/activity,171,0,0
+1646196691395,25,User History [Get],200,,Team_terra 1-2,text,true,,131537,170,4,4,http://localhost:8888/user/activity?userId=1,21,0,0
+1646196691400,28,User History [Get],200,,Team_terra 1-1,text,true,,131537,170,4,4,http://localhost:8888/user/activity?userId=1,25,0,2
+1646196691454,5,User Registration - SSO,200,,Team_terra 1-5,text,true,,186,241,5,5,http://localhost:8888/user/data,4,0,0
+1646196691459,4,User Registration - Local,200,,Team_terra 1-5,text,true,,235,278,5,5,http://localhost:8888/user/register,4,0,0
+1646196691296,190,User History Log,200,,Team_terra 1-3,text,true,,271,346,5,5,http://localhost:8888/user/activity,189,0,0
+1646196691486,24,User History [Get],200,,Team_terra 1-3,text,true,,131580,170,5,5,http://localhost:8888/user/activity?userId=1,21,0,0
+1646196691578,5,User Registration - SSO,200,,Team_terra 1-6,text,true,,186,241,6,6,http://localhost:8888/user/data,5,0,1
+1646196691583,4,User Registration - Local,200,,Team_terra 1-6,text,true,,235,278,6,6,http://localhost:8888/user/register,4,0,0
+1646196691390,246,User History Log,200,,Team_terra 1-4,text,true,,271,346,6,6,http://localhost:8888/user/activity,245,0,0
+1646196691636,21,User History [Get],200,,Team_terra 1-4,text,true,,131623,170,6,6,http://localhost:8888/user/activity?userId=1,18,0,0
+1646196691676,4,User Registration - SSO,200,,Team_terra 1-7,text,true,,186,241,7,7,http://localhost:8888/user/data,4,0,1
+1646196691681,3,User Registration - Local,200,,Team_terra 1-7,text,true,,235,278,7,7,http://localhost:8888/user/register,3,0,0
+1646196691775,5,User Registration - SSO,200,,Team_terra 1-8,text,true,,186,241,8,8,http://localhost:8888/user/data,5,0,1
+1646196691781,3,User Registration - Local,200,,Team_terra 1-8,text,true,,235,278,8,8,http://localhost:8888/user/register,3,0,0
+1646196691463,348,User History Log,200,,Team_terra 1-5,text,true,,271,346,8,8,http://localhost:8888/user/activity,348,0,0
+1646196691421,390,User Session Log,200,,Team_terra 1-2,text,true,,193,256,8,8,http://localhost:8888/user/log,390,0,0
+1646196691510,301,User Session Log,200,,Team_terra 1-3,text,true,,193,256,8,8,http://localhost:8888/user/log,301,0,0
+1646196691429,382,User Session Log,200,,Team_terra 1-1,text,true,,193,256,8,8,http://localhost:8888/user/log,382,0,0
+1646196691811,23,User History [Get],200,,Team_terra 1-5,text,true,,131667,170,8,8,http://localhost:8888/user/activity?userId=1,19,0,0
+1646196691875,5,User Registration - SSO,200,,Team_terra 1-9,text,true,,186,241,9,9,http://localhost:8888/user/data,5,0,1
+1646196691880,4,User Registration - Local,200,,Team_terra 1-9,text,true,,235,278,9,9,http://localhost:8888/user/register,3,0,0
+1646196691587,315,User History Log,200,,Team_terra 1-6,text,true,,271,346,9,9,http://localhost:8888/user/activity,315,0,0
+1646196691811,94,User Authentication,200,,Team_terra 1-1,text,true,,221,258,9,9,http://localhost:8888/user/authentication,94,0,0
+1646196691906,3,User Registration - SSO,200,,Team_terra 1-1,text,true,,186,241,9,9,http://localhost:8888/user/data,3,0,0
+1646196691910,3,User Registration - Local,200,,Team_terra 1-1,text,true,,235,278,9,9,http://localhost:8888/user/register,3,0,0
+1646196691811,104,User Authentication,200,,Team_terra 1-3,text,true,,221,258,9,9,http://localhost:8888/user/authentication,104,0,0
+1646196691811,108,User Authentication,200,,Team_terra 1-2,text,true,,221,258,9,9,http://localhost:8888/user/authentication,108,0,0
+1646196691916,3,User Registration - SSO,200,,Team_terra 1-3,text,true,,186,241,9,9,http://localhost:8888/user/data,3,0,0
+1646196691920,3,User Registration - SSO,200,,Team_terra 1-2,text,true,,186,241,9,9,http://localhost:8888/user/data,3,0,0
+1646196691920,3,User Registration - Local,200,,Team_terra 1-3,text,true,,235,278,9,9,http://localhost:8888/user/register,3,0,0
+1646196691923,4,User Registration - Local,200,,Team_terra 1-2,text,true,,235,278,9,9,http://localhost:8888/user/register,4,0,0
+1646196691903,26,User History [Get],200,,Team_terra 1-6,text,true,,131710,170,9,9,http://localhost:8888/user/activity?userId=1,23,0,0
+1646196691977,20,User Registration - SSO,200,,Team_terra 1-10,text,true,,186,241,10,10,http://localhost:8888/user/data,20,0,3
+1646196691658,342,User Session Log,200,,Team_terra 1-4,text,true,,193,256,10,10,http://localhost:8888/user/log,342,0,0
+1646196691998,9,User Registration - Local,200,,Team_terra 1-10,text,true,,235,278,10,10,http://localhost:8888/user/register,9,0,0
+1646196692001,86,User Authentication,200,,Team_terra 1-4,text,true,,221,258,10,10,http://localhost:8888/user/authentication,86,0,0
+1646196692088,3,User Registration - SSO,200,,Team_terra 1-4,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196692092,4,User Registration - Local,200,,Team_terra 1-4,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196691835,409,User Session Log,200,,Team_terra 1-5,text,true,,193,256,10,10,http://localhost:8888/user/log,409,0,0
+1646196692244,91,User Authentication,200,,Team_terra 1-5,text,true,,221,258,10,10,http://localhost:8888/user/authentication,91,0,0
+1646196692335,4,User Registration - SSO,200,,Team_terra 1-5,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196692339,4,User Registration - Local,200,,Team_terra 1-5,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196691927,517,User History Log,200,,Team_terra 1-2,text,true,,271,346,10,10,http://localhost:8888/user/activity,517,0,0
+1646196691884,560,User History Log,200,,Team_terra 1-9,text,true,,271,346,10,10,http://localhost:8888/user/activity,560,0,0
+1646196691923,521,User History Log,200,,Team_terra 1-3,text,true,,271,346,10,10,http://localhost:8888/user/activity,521,0,0
+1646196692096,348,User History Log,200,,Team_terra 1-4,text,true,,271,346,10,10,http://localhost:8888/user/activity,348,0,0
+1646196691785,659,User History Log,200,,Team_terra 1-8,text,true,,271,346,10,10,http://localhost:8888/user/activity,659,0,0
+1646196691687,757,User History Log,200,,Team_terra 1-7,text,true,,271,346,10,10,http://localhost:8888/user/activity,757,0,0
+1646196692007,438,User History Log,200,,Team_terra 1-10,text,true,,271,346,10,10,http://localhost:8888/user/activity,437,0,0
+1646196691913,532,User History Log,200,,Team_terra 1-1,text,true,,271,346,10,10,http://localhost:8888/user/activity,531,0,0
+1646196692445,57,User History [Get],200,,Team_terra 1-2,text,true,,132054,170,10,10,http://localhost:8888/user/activity?userId=1,46,0,0
+1646196692445,60,User History [Get],200,,Team_terra 1-9,text,true,,132054,170,10,10,http://localhost:8888/user/activity?userId=1,45,0,0
+1646196692445,62,User History [Get],200,,Team_terra 1-1,text,true,,132054,170,10,10,http://localhost:8888/user/activity?userId=1,50,0,0
+1646196692445,63,User History [Get],200,,Team_terra 1-4,text,true,,132054,170,10,10,http://localhost:8888/user/activity?userId=1,50,0,0
+1646196692445,64,User History [Get],200,,Team_terra 1-3,text,true,,132054,170,10,10,http://localhost:8888/user/activity?userId=1,50,0,0
+1646196692445,65,User History [Get],200,,Team_terra 1-10,text,true,,132054,170,10,10,http://localhost:8888/user/activity?userId=1,54,0,0
+1646196692445,65,User History [Get],200,,Team_terra 1-7,text,true,,132054,170,10,10,http://localhost:8888/user/activity?userId=1,53,0,0
+1646196692445,65,User History [Get],200,,Team_terra 1-8,text,true,,132054,170,10,10,http://localhost:8888/user/activity?userId=1,54,0,0
+1646196691930,613,User Session Log,200,,Team_terra 1-6,text,true,,193,256,10,10,http://localhost:8888/user/log,613,0,0
+1646196692344,275,User History Log,200,,Team_terra 1-5,text,true,,271,346,10,10,http://localhost:8888/user/activity,275,0,0
+1646196692543,86,User Authentication,200,,Team_terra 1-6,text,true,,221,258,10,10,http://localhost:8888/user/authentication,86,0,0
+1646196692630,4,User Registration - SSO,200,,Team_terra 1-6,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196692634,4,User Registration - Local,200,,Team_terra 1-6,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196692620,23,User History [Get],200,,Team_terra 1-5,text,true,,132097,170,10,10,http://localhost:8888/user/activity?userId=1,20,0,0
+1646196692509,244,User Session Log,200,,Team_terra 1-4,text,true,,193,256,10,10,http://localhost:8888/user/log,244,0,0
+1646196692511,242,User Session Log,200,,Team_terra 1-7,text,true,,193,256,10,10,http://localhost:8888/user/log,242,0,0
+1646196692506,247,User Session Log,200,,Team_terra 1-9,text,true,,193,256,10,10,http://localhost:8888/user/log,247,0,0
+1646196692503,250,User Session Log,200,,Team_terra 1-2,text,true,,193,256,10,10,http://localhost:8888/user/log,250,0,0
+1646196692508,245,User Session Log,200,,Team_terra 1-1,text,true,,193,256,10,10,http://localhost:8888/user/log,245,0,0
+1646196692510,248,User Session Log,500,,Team_terra 1-10,text,false,,253,256,10,10,http://localhost:8888/user/log,248,0,0
+1646196692511,247,User Session Log,500,,Team_terra 1-8,text,false,,253,256,10,10,http://localhost:8888/user/log,247,0,0
+1646196692510,253,User Session Log,500,,Team_terra 1-3,text,false,,253,256,10,10,http://localhost:8888/user/log,253,0,0
+1646196692753,135,User Authentication,200,,Team_terra 1-2,text,true,,221,258,10,10,http://localhost:8888/user/authentication,135,0,0
+1646196692753,139,User Authentication,200,,Team_terra 1-1,text,true,,221,258,10,10,http://localhost:8888/user/authentication,138,0,0
+1646196692889,6,User Registration - SSO,200,,Team_terra 1-2,text,true,,186,241,10,10,http://localhost:8888/user/data,6,0,0
+1646196692753,146,User Authentication,200,,Team_terra 1-9,text,true,,221,258,10,10,http://localhost:8888/user/authentication,146,0,0
+1646196692892,7,User Registration - SSO,200,,Team_terra 1-1,text,true,,186,241,10,10,http://localhost:8888/user/data,7,0,0
+1646196692754,145,User Authentication,200,,Team_terra 1-7,text,true,,221,258,10,10,http://localhost:8888/user/authentication,145,0,0
+1646196692896,8,User Registration - Local,200,,Team_terra 1-2,text,true,,235,278,10,10,http://localhost:8888/user/register,7,0,0
+1646196692759,147,User Authentication,200,,Team_terra 1-8,text,true,,221,258,10,10,http://localhost:8888/user/authentication,147,0,2
+1646196692900,6,User Registration - SSO,200,,Team_terra 1-7,text,true,,186,241,10,10,http://localhost:8888/user/data,6,0,0
+1646196692900,7,User Registration - Local,200,,Team_terra 1-1,text,true,,235,278,10,10,http://localhost:8888/user/register,7,0,0
+1646196692900,7,User Registration - SSO,200,,Team_terra 1-9,text,true,,186,241,10,10,http://localhost:8888/user/data,7,0,0
+1646196692907,5,User Registration - Local,200,,Team_terra 1-9,text,true,,235,278,10,10,http://localhost:8888/user/register,5,0,0
+1646196692907,5,User Registration - Local,200,,Team_terra 1-7,text,true,,235,278,10,10,http://localhost:8888/user/register,5,0,0
+1646196692753,165,User Authentication,200,,Team_terra 1-4,text,true,,221,258,10,10,http://localhost:8888/user/authentication,165,0,0
+1646196692764,156,User Authentication,200,,Team_terra 1-3,text,true,,221,258,10,10,http://localhost:8888/user/authentication,156,0,2
+1646196692918,4,User Registration - SSO,200,,Team_terra 1-4,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196692907,15,User Registration - SSO,200,,Team_terra 1-8,text,true,,186,241,10,10,http://localhost:8888/user/data,14,0,0
+1646196692920,4,User Registration - SSO,200,,Team_terra 1-3,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196692922,4,User Registration - Local,200,,Team_terra 1-4,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196692922,4,User Registration - Local,200,,Team_terra 1-8,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196692925,5,User Registration - Local,200,,Team_terra 1-3,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196692758,174,User Authentication,200,,Team_terra 1-10,text,true,,221,258,10,10,http://localhost:8888/user/authentication,174,0,1
+1646196692639,297,User History Log,200,,Team_terra 1-6,text,true,,271,346,10,10,http://localhost:8888/user/activity,297,0,0
+1646196692933,3,User Registration - SSO,200,,Team_terra 1-10,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196692937,3,User Registration - Local,200,,Team_terra 1-10,text,true,,235,278,10,10,http://localhost:8888/user/register,3,0,0
+1646196692936,18,User History [Get],200,,Team_terra 1-6,text,true,,132140,170,10,10,http://localhost:8888/user/activity?userId=1,16,0,0
+1646196692643,406,User Session Log,200,,Team_terra 1-5,text,true,,193,256,10,10,http://localhost:8888/user/log,405,0,0
+1646196693050,125,User Authentication,200,,Team_terra 1-5,text,true,,221,258,10,10,http://localhost:8888/user/authentication,125,0,0
+1646196693175,4,User Registration - SSO,200,,Team_terra 1-5,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196693179,4,User Registration - Local,200,,Team_terra 1-5,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196692930,339,User History Log,200,,Team_terra 1-3,text,true,,271,346,10,10,http://localhost:8888/user/activity,339,0,0
+1646196692907,362,User History Log,200,,Team_terra 1-1,text,true,,271,346,10,10,http://localhost:8888/user/activity,362,0,0
+1646196692904,365,User History Log,200,,Team_terra 1-2,text,true,,271,346,10,10,http://localhost:8888/user/activity,365,0,0
+1646196692927,342,User History Log,200,,Team_terra 1-8,text,true,,271,346,10,10,http://localhost:8888/user/activity,342,0,0
+1646196692913,356,User History Log,200,,Team_terra 1-7,text,true,,271,346,10,10,http://localhost:8888/user/activity,356,0,0
+1646196692926,350,User History Log,500,,Team_terra 1-4,text,false,,258,346,10,10,http://localhost:8888/user/activity,350,0,0
+1646196692912,365,User History Log,500,,Team_terra 1-9,text,false,,258,346,10,10,http://localhost:8888/user/activity,364,0,0
+1646196693270,52,User History [Get],200,,Team_terra 1-7,text,true,,132355,170,10,10,http://localhost:8888/user/activity?userId=1,33,0,0
+1646196693270,61,User History [Get],200,,Team_terra 1-2,text,true,,132355,170,10,10,http://localhost:8888/user/activity?userId=1,51,0,0
+1646196693270,61,User History [Get],200,,Team_terra 1-1,text,true,,132355,170,10,10,http://localhost:8888/user/activity?userId=1,50,0,0
+1646196693270,65,User History [Get],200,,Team_terra 1-3,text,true,,132355,170,10,10,http://localhost:8888/user/activity?userId=1,58,0,0
+1646196692940,406,User History Log,200,,Team_terra 1-10,text,true,,271,346,10,10,http://localhost:8888/user/activity,406,0,0
+1646196693279,67,User History [Get],200,,Team_terra 1-4,text,true,,132355,170,10,10,http://localhost:8888/user/activity?userId=1,63,0,1
+1646196692955,394,User Session Log,200,,Team_terra 1-6,text,true,,193,256,10,10,http://localhost:8888/user/log,394,0,0
+1646196693270,83,User History [Get],200,,Team_terra 1-8,text,true,,132355,170,10,10,http://localhost:8888/user/activity?userId=1,74,0,0
+1646196693277,89,User History [Get],200,,Team_terra 1-9,text,true,,132367,170,10,10,http://localhost:8888/user/activity?userId=1,78,0,2
+1646196693347,33,User History [Get],200,,Team_terra 1-10,text,true,,132398,170,10,10,http://localhost:8888/user/activity?userId=1,30,0,0
+1646196693350,99,User Authentication,200,,Team_terra 1-6,text,true,,221,258,10,10,http://localhost:8888/user/authentication,98,0,0
+1646196693449,3,User Registration - SSO,200,,Team_terra 1-6,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196693453,3,User Registration - Local,200,,Team_terra 1-6,text,true,,235,278,10,10,http://localhost:8888/user/register,2,0,0
+1646196693183,276,User History Log,200,,Team_terra 1-5,text,true,,271,346,10,10,http://localhost:8888/user/activity,276,0,0
+1646196693459,20,User History [Get],200,,Team_terra 1-5,text,true,,132441,170,10,10,http://localhost:8888/user/activity?userId=1,18,0,0
+1646196693336,191,User Session Log,200,,Team_terra 1-3,text,true,,193,256,10,10,http://localhost:8888/user/log,191,0,0
+1646196693332,195,User Session Log,200,,Team_terra 1-1,text,true,,193,256,10,10,http://localhost:8888/user/log,195,0,0
+1646196693323,204,User Session Log,200,,Team_terra 1-7,text,true,,193,256,10,10,http://localhost:8888/user/log,204,0,0
+1646196693332,200,User Session Log,500,,Team_terra 1-2,text,false,,253,256,10,10,http://localhost:8888/user/log,200,0,0
+1646196693528,97,User Authentication,200,,Team_terra 1-1,text,true,,221,258,10,10,http://localhost:8888/user/authentication,97,0,0
+1646196693625,4,User Registration - SSO,200,,Team_terra 1-1,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196693528,102,User Authentication,200,,Team_terra 1-3,text,true,,221,258,10,10,http://localhost:8888/user/authentication,102,0,0
+1646196693528,105,User Authentication,200,,Team_terra 1-7,text,true,,221,258,10,10,http://localhost:8888/user/authentication,105,0,0
+1646196693629,4,User Registration - Local,200,,Team_terra 1-1,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196693533,103,User Authentication,200,,Team_terra 1-2,text,true,,221,258,10,10,http://localhost:8888/user/authentication,103,0,1
+1646196693631,5,User Registration - SSO,200,,Team_terra 1-3,text,true,,186,241,10,10,http://localhost:8888/user/data,5,0,0
+1646196693633,6,User Registration - SSO,200,,Team_terra 1-7,text,true,,186,241,10,10,http://localhost:8888/user/data,5,0,0
+1646196693637,4,User Registration - SSO,200,,Team_terra 1-2,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196693637,5,User Registration - Local,200,,Team_terra 1-3,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196693639,4,User Registration - Local,200,,Team_terra 1-7,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196693642,4,User Registration - Local,200,,Team_terra 1-2,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196693399,354,User Session Log,200,,Team_terra 1-9,text,true,,193,256,10,10,http://localhost:8888/user/log,354,0,0
+1646196693347,406,User Session Log,200,,Team_terra 1-4,text,true,,193,256,10,10,http://localhost:8888/user/log,406,0,0
+1646196693399,357,User Session Log,500,,Team_terra 1-10,text,false,,253,256,10,10,http://localhost:8888/user/log,357,0,0
+1646196693399,357,User Session Log,500,,Team_terra 1-8,text,false,,253,256,10,10,http://localhost:8888/user/log,357,0,0
+1646196693479,365,User Session Log,200,,Team_terra 1-5,text,true,,193,256,10,10,http://localhost:8888/user/log,365,0,0
+1646196693456,388,User History Log,200,,Team_terra 1-6,text,true,,271,346,10,10,http://localhost:8888/user/activity,388,0,0
+1646196693753,112,User Authentication,200,,Team_terra 1-9,text,true,,221,258,10,10,http://localhost:8888/user/authentication,111,0,0
+1646196693753,115,User Authentication,200,,Team_terra 1-4,text,true,,221,258,10,10,http://localhost:8888/user/authentication,115,0,0
+1646196693865,4,User Registration - SSO,200,,Team_terra 1-9,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196693757,112,User Authentication,200,,Team_terra 1-10,text,true,,221,258,10,10,http://localhost:8888/user/authentication,111,0,2
+1646196693869,6,User Registration - SSO,200,,Team_terra 1-10,text,true,,186,241,10,10,http://localhost:8888/user/data,6,0,0
+1646196693758,117,User Authentication,200,,Team_terra 1-8,text,true,,221,258,10,10,http://localhost:8888/user/authentication,117,0,2
+1646196693844,31,User History [Get],200,,Team_terra 1-6,text,true,,132484,170,10,10,http://localhost:8888/user/activity?userId=1,26,0,0
+1646196693869,6,User Registration - Local,200,,Team_terra 1-9,text,true,,235,278,10,10,http://localhost:8888/user/register,6,0,0
+1646196693868,7,User Registration - SSO,200,,Team_terra 1-4,text,true,,186,241,10,10,http://localhost:8888/user/data,7,0,0
+1646196693875,5,User Registration - Local,200,,Team_terra 1-4,text,true,,235,278,10,10,http://localhost:8888/user/register,5,0,0
+1646196693875,5,User Registration - SSO,200,,Team_terra 1-8,text,true,,186,241,10,10,http://localhost:8888/user/data,5,0,0
+1646196693875,6,User Registration - Local,200,,Team_terra 1-10,text,true,,235,278,10,10,http://localhost:8888/user/register,5,0,0
+1646196693880,5,User Registration - Local,200,,Team_terra 1-8,text,true,,235,278,10,10,http://localhost:8888/user/register,5,0,0
+1646196693634,302,User History Log,200,,Team_terra 1-1,text,true,,271,346,10,10,http://localhost:8888/user/activity,302,0,0
+1646196693844,104,User Authentication,200,,Team_terra 1-5,text,true,,221,258,10,10,http://localhost:8888/user/authentication,104,0,0
+1646196693948,3,User Registration - SSO,200,,Team_terra 1-5,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196693952,3,User Registration - Local,200,,Team_terra 1-5,text,true,,235,278,10,10,http://localhost:8888/user/register,3,0,0
+1646196693936,25,User History [Get],200,,Team_terra 1-1,text,true,,132527,170,10,10,http://localhost:8888/user/activity?userId=1,21,0,0
+1646196693642,491,User History Log,200,,Team_terra 1-3,text,true,,271,346,10,10,http://localhost:8888/user/activity,491,0,0
+1646196693646,487,User History Log,200,,Team_terra 1-2,text,true,,271,346,10,10,http://localhost:8888/user/activity,487,0,0
+1646196693644,510,User History Log,500,,Team_terra 1-7,text,false,,258,346,10,10,http://localhost:8888/user/activity,509,0,0
+1646196694135,63,User History [Get],200,,Team_terra 1-2,text,true,,132613,170,10,10,http://localhost:8888/user/activity?userId=1,59,0,0
+1646196694135,64,User History [Get],200,,Team_terra 1-3,text,true,,132613,170,10,10,http://localhost:8888/user/activity?userId=1,59,0,0
+1646196694155,50,User History [Get],200,,Team_terra 1-7,text,true,,132613,170,10,10,http://localhost:8888/user/activity?userId=1,44,0,6
+1646196693956,330,User History Log,200,,Team_terra 1-5,text,true,,271,346,10,10,http://localhost:8888/user/activity,330,0,0
+1646196693875,411,User Session Log,200,,Team_terra 1-6,text,true,,193,256,10,10,http://localhost:8888/user/log,411,0,0
+1646196693875,411,User History Log,200,,Team_terra 1-9,text,true,,271,346,10,10,http://localhost:8888/user/activity,411,0,0
+1646196693885,401,User History Log,200,,Team_terra 1-8,text,true,,271,346,10,10,http://localhost:8888/user/activity,401,0,0
+1646196693961,326,User Session Log,200,,Team_terra 1-1,text,true,,193,256,10,10,http://localhost:8888/user/log,326,0,0
+1646196693880,407,User History Log,200,,Team_terra 1-4,text,true,,271,346,10,10,http://localhost:8888/user/activity,407,0,0
+1646196693881,409,User History Log,500,,Team_terra 1-10,text,false,,258,346,10,10,http://localhost:8888/user/activity,409,0,0
+1646196694286,34,User History [Get],200,,Team_terra 1-5,text,true,,132785,170,10,10,http://localhost:8888/user/activity?userId=1,31,0,0
+1646196694287,47,User History [Get],200,,Team_terra 1-8,text,true,,132785,170,10,10,http://localhost:8888/user/activity?userId=1,41,0,0
+1646196694287,48,User History [Get],200,,Team_terra 1-4,text,true,,132785,170,10,10,http://localhost:8888/user/activity?userId=1,41,0,0
+1646196694286,57,User History [Get],200,,Team_terra 1-9,text,true,,132785,170,10,10,http://localhost:8888/user/activity?userId=1,45,0,0
+1646196694291,52,User History [Get],200,,Team_terra 1-10,text,true,,132785,170,10,10,http://localhost:8888/user/activity?userId=1,45,0,3
+1646196694199,170,User Session Log,200,,Team_terra 1-3,text,true,,193,256,10,10,http://localhost:8888/user/log,170,0,0
+1646196694198,177,User Session Log,500,,Team_terra 1-2,text,false,,253,256,10,10,http://localhost:8888/user/log,177,0,0
+1646196694286,130,User Authentication,200,,Team_terra 1-6,text,true,,221,258,10,10,http://localhost:8888/user/authentication,130,0,0
+1646196694417,4,User Registration - SSO,200,,Team_terra 1-6,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196694287,136,User Authentication,200,,Team_terra 1-1,text,true,,221,258,10,10,http://localhost:8888/user/authentication,136,0,0
+1646196694422,3,User Registration - Local,200,,Team_terra 1-6,text,true,,235,278,10,10,http://localhost:8888/user/register,3,0,0
+1646196694424,5,User Registration - SSO,200,,Team_terra 1-1,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196694429,4,User Registration - Local,200,,Team_terra 1-1,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196694370,103,User Authentication,200,,Team_terra 1-3,text,true,,221,258,10,10,http://localhost:8888/user/authentication,103,0,0
+1646196694474,3,User Registration - SSO,200,,Team_terra 1-3,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196694477,3,User Registration - Local,200,,Team_terra 1-3,text,true,,235,278,10,10,http://localhost:8888/user/register,3,0,0
+1646196694376,106,User Authentication,200,,Team_terra 1-2,text,true,,221,258,10,10,http://localhost:8888/user/authentication,106,0,1
+1646196694482,3,User Registration - SSO,200,,Team_terra 1-2,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196694486,2,User Registration - Local,200,,Team_terra 1-2,text,true,,235,278,10,10,http://localhost:8888/user/register,2,0,0
+1646196694205,341,User Session Log,200,,Team_terra 1-7,text,true,,193,256,10,10,http://localhost:8888/user/log,341,0,0
+1646196694546,82,User Authentication,200,,Team_terra 1-7,text,true,,221,258,10,10,http://localhost:8888/user/authentication,82,0,0
+1646196694629,3,User Registration - SSO,200,,Team_terra 1-7,text,true,,186,241,10,10,http://localhost:8888/user/data,3,0,0
+1646196694633,3,User Registration - Local,200,,Team_terra 1-7,text,true,,235,278,10,10,http://localhost:8888/user/register,3,0,0
+1646196694335,320,User Session Log,200,,Team_terra 1-4,text,true,,193,256,10,10,http://localhost:8888/user/log,320,0,0
+1646196694343,312,User Session Log,200,,Team_terra 1-9,text,true,,193,256,10,10,http://localhost:8888/user/log,312,0,0
+1646196694426,229,User History Log,200,,Team_terra 1-6,text,true,,271,346,10,10,http://localhost:8888/user/activity,229,0,0
+1646196694321,334,User Session Log,200,,Team_terra 1-5,text,true,,193,256,10,10,http://localhost:8888/user/log,334,0,0
+1646196694434,221,User History Log,200,,Team_terra 1-1,text,true,,271,346,10,10,http://localhost:8888/user/activity,221,0,0
+1646196694334,325,User Session Log,500,,Team_terra 1-8,text,false,,253,256,10,10,http://localhost:8888/user/log,325,0,0
+1646196694343,316,User Session Log,500,,Team_terra 1-10,text,false,,253,256,10,10,http://localhost:8888/user/log,316,0,0
+1646196694655,106,User Authentication,200,,Team_terra 1-5,text,true,,221,258,10,10,http://localhost:8888/user/authentication,106,0,0
+1646196694762,4,User Registration - SSO,200,,Team_terra 1-5,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196694655,112,User Authentication,200,,Team_terra 1-9,text,true,,221,258,10,10,http://localhost:8888/user/authentication,111,0,0
+1646196694767,4,User Registration - SSO,200,,Team_terra 1-9,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196694655,119,User Authentication,200,,Team_terra 1-4,text,true,,221,258,10,10,http://localhost:8888/user/authentication,118,0,0
+1646196694766,8,User Registration - Local,200,,Team_terra 1-5,text,true,,235,278,10,10,http://localhost:8888/user/register,8,0,0
+1646196694772,4,User Registration - Local,200,,Team_terra 1-9,text,true,,235,278,10,10,http://localhost:8888/user/register,4,0,0
+1646196694774,4,User Registration - SSO,200,,Team_terra 1-4,text,true,,186,241,10,10,http://localhost:8888/user/data,4,0,0
+1646196694779,3,User Registration - Local,200,,Team_terra 1-4,text,true,,235,278,10,10,http://localhost:8888/user/register,3,0,0
+1646196694660,126,User Authentication,200,,Team_terra 1-10,text,true,,221,258,10,10,http://localhost:8888/user/authentication,126,0,2
+1646196694660,128,User Authentication,200,,Team_terra 1-8,text,true,,221,258,10,10,http://localhost:8888/user/authentication,128,0,2
+1646196694658,136,User History [Get],200,,Team_terra 1-1,text,true,,132871,170,10,10,http://localhost:8888/user/activity?userId=1,130,0,0
+1646196694789,7,User Registration - SSO,200,,Team_terra 1-8,text,true,,186,241,10,10,http://localhost:8888/user/data,7,0,0
+1646196694787,9,User Registration - SSO,200,,Team_terra 1-10,text,true,,186,241,10,10,http://localhost:8888/user/data,9,0,0
+1646196694655,145,User History [Get],200,,Team_terra 1-6,text,true,,132871,170,10,10,http://localhost:8888/user/activity?userId=1,139,0,0
+1646196694796,6,User Registration - Local,200,,Team_terra 1-8,text,true,,235,278,10,10,http://localhost:8888/user/register,5,0,0
+1646196694796,10,User Registration - Local,200,,Team_terra 1-10,text,true,,235,278,10,10,http://localhost:8888/user/register,10,0,0
+1646196694480,366,User History Log,200,,Team_terra 1-3,text,true,,271,346,10,10,http://localhost:8888/user/activity,366,0,0
+1646196694489,357,User History Log,200,,Team_terra 1-2,text,true,,271,346,10,10,http://localhost:8888/user/activity,357,0,0
+1646196694847,25,User History [Get],200,,Team_terra 1-3,text,true,,132957,170,10,10,http://localhost:8888/user/activity?userId=1,20,0,0
+1646196694847,26,User History [Get],200,,Team_terra 1-2,text,true,,132957,170,10,10,http://localhost:8888/user/activity?userId=1,21,0,0
+1646196694637,462,User History Log,200,,Team_terra 1-7,text,true,,271,346,10,10,http://localhost:8888/user/activity,462,0,0
+1646196695099,25,User History [Get],200,,Team_terra 1-7,text,true,,133000,170,10,10,http://localhost:8888/user/activity?userId=1,23,0,0
+1646196694806,488,User History Log,200,,Team_terra 1-10,text,true,,271,346,10,10,http://localhost:8888/user/activity,488,0,0
+1646196694774,520,User History Log,200,,Team_terra 1-5,text,true,,271,346,10,10,http://localhost:8888/user/activity,520,0,0
+1646196694800,494,User Session Log,200,,Team_terra 1-6,text,true,,193,256,10,10,http://localhost:8888/user/log,494,0,0
+1646196694873,421,User Session Log,200,,Team_terra 1-3,text,true,,193,256,10,10,http://localhost:8888/user/log,421,0,0
+1646196694776,519,User History Log,200,,Team_terra 1-9,text,true,,271,346,10,10,http://localhost:8888/user/activity,519,0,0
+1646196694802,493,User History Log,200,,Team_terra 1-8,text,true,,271,346,10,10,http://localhost:8888/user/activity,493,0,0
+1646196694783,513,User History Log,200,,Team_terra 1-4,text,true,,271,346,10,10,http://localhost:8888/user/activity,511,0,0
+1646196694794,502,User Session Log,200,,Team_terra 1-1,text,true,,193,256,10,10,http://localhost:8888/user/log,500,0,0
+1646196694873,431,User Session Log,500,,Team_terra 1-2,text,false,,253,256,10,10,http://localhost:8888/user/log,431,0,0
+1646196695295,50,User History [Get],200,,Team_terra 1-10,text,true,,133215,170,10,10,http://localhost:8888/user/activity?userId=1,29,0,0
+1646196695295,65,User History [Get],200,,Team_terra 1-9,text,true,,133215,170,10,10,http://localhost:8888/user/activity?userId=1,38,0,0
+1646196695295,69,User History [Get],200,,Team_terra 1-5,text,true,,133215,170,10,10,http://localhost:8888/user/activity?userId=1,38,0,0
+1646196695295,75,User History [Get],200,,Team_terra 1-8,text,true,,133215,170,10,10,http://localhost:8888/user/activity?userId=1,48,0,0
+1646196695297,84,User History [Get],200,,Team_terra 1-4,text,true,,133215,170,10,10,http://localhost:8888/user/activity?userId=1,64,0,0
+1646196695295,140,User Authentication,200,,Team_terra 1-3,text,true,,221,258,10,10,http://localhost:8888/user/authentication,140,0,0
+1646196695295,146,User Authentication,200,,Team_terra 1-6,text,true,,221,258,9,9,http://localhost:8888/user/authentication,146,0,0
+1646196695442,3,User Registration - SSO,200,,Team_terra 1-6,text,true,,186,241,9,9,http://localhost:8888/user/data,3,0,0
+1646196695446,3,User Registration - Local,200,,Team_terra 1-6,text,true,,235,278,9,9,http://localhost:8888/user/register,3,0,0
+1646196695304,151,User Authentication,200,,Team_terra 1-2,text,true,,221,258,9,9,http://localhost:8888/user/authentication,151,0,2
+1646196695300,166,User Authentication,200,,Team_terra 1-1,text,true,,221,258,8,8,http://localhost:8888/user/authentication,166,0,0
+1646196695124,499,User Session Log,200,,Team_terra 1-7,text,true,,193,256,7,7,http://localhost:8888/user/log,499,0,0
+1646196695623,84,User Authentication,200,,Team_terra 1-7,text,true,,221,258,7,7,http://localhost:8888/user/authentication,84,0,0
+1646196695707,4,User Registration - SSO,200,,Team_terra 1-7,text,true,,186,241,7,7,http://localhost:8888/user/data,4,0,0
+1646196695711,3,User Registration - Local,200,,Team_terra 1-7,text,true,,235,278,7,7,http://localhost:8888/user/register,3,0,0
+1646196695450,385,User History Log,200,,Team_terra 1-6,text,true,,271,346,7,7,http://localhost:8888/user/activity,385,0,0
+1646196695345,490,User Session Log,200,,Team_terra 1-10,text,true,,193,256,7,7,http://localhost:8888/user/log,490,0,0
+1646196695381,454,User Session Log,200,,Team_terra 1-4,text,true,,193,256,7,7,http://localhost:8888/user/log,454,0,0
+1646196695370,466,User Session Log,200,,Team_terra 1-8,text,true,,193,256,7,7,http://localhost:8888/user/log,465,0,0
+1646196695364,472,User Session Log,200,,Team_terra 1-5,text,true,,193,256,7,7,http://localhost:8888/user/log,471,0,0
+1646196695361,481,User Session Log,500,,Team_terra 1-9,text,false,,253,256,7,7,http://localhost:8888/user/log,481,0,0
+1646196695836,38,User History [Get],200,,Team_terra 1-6,text,true,,133258,170,7,7,http://localhost:8888/user/activity?userId=1,31,0,0
+1646196695836,118,User Authentication,200,,Team_terra 1-10,text,true,,221,258,7,7,http://localhost:8888/user/authentication,118,0,0
+1646196695836,119,User Authentication,200,,Team_terra 1-4,text,true,,221,258,7,7,http://localhost:8888/user/authentication,119,0,0
+1646196695836,122,User Authentication,200,,Team_terra 1-8,text,true,,221,258,6,6,http://localhost:8888/user/authentication,122,0,0
+1646196695955,4,User Registration - SSO,200,,Team_terra 1-10,text,true,,186,241,6,6,http://localhost:8888/user/data,4,0,0
+1646196695843,119,User Authentication,200,,Team_terra 1-9,text,true,,221,258,6,6,http://localhost:8888/user/authentication,119,0,1
+1646196695958,4,User Registration - SSO,200,,Team_terra 1-8,text,true,,186,241,6,6,http://localhost:8888/user/data,4,0,0
+1646196695959,4,User Registration - Local,200,,Team_terra 1-10,text,true,,235,278,6,6,http://localhost:8888/user/register,4,0,0
+1646196695962,4,User Registration - Local,200,,Team_terra 1-8,text,true,,235,278,6,6,http://localhost:8888/user/register,4,0,0
+1646196695962,4,User Registration - SSO,200,,Team_terra 1-9,text,true,,186,241,6,6,http://localhost:8888/user/data,4,0,0
+1646196695836,132,User Authentication,200,,Team_terra 1-5,text,true,,221,258,6,6,http://localhost:8888/user/authentication,132,0,0
+1646196695966,4,User Registration - Local,200,,Team_terra 1-9,text,true,,235,278,5,5,http://localhost:8888/user/register,4,0,0
+1646196695715,438,User History Log,200,,Team_terra 1-7,text,true,,271,346,5,5,http://localhost:8888/user/activity,438,0,0
+1646196696154,29,User History [Get],200,,Team_terra 1-7,text,true,,133301,170,5,5,http://localhost:8888/user/activity?userId=1,25,0,0
+1646196695874,504,User Session Log,200,,Team_terra 1-6,text,true,,193,256,5,5,http://localhost:8888/user/log,504,0,0
+1646196695963,415,User History Log,200,,Team_terra 1-10,text,true,,271,346,5,5,http://localhost:8888/user/activity,415,0,0
+1646196696380,23,User History [Get],200,,Team_terra 1-10,text,true,,133344,170,5,5,http://localhost:8888/user/activity?userId=1,20,0,0
+1646196696380,85,User Authentication,200,,Team_terra 1-6,text,true,,221,258,5,5,http://localhost:8888/user/authentication,85,0,0
+1646196696183,312,User Session Log,200,,Team_terra 1-7,text,true,,193,256,4,4,http://localhost:8888/user/log,312,0,0
+1646196695966,528,User History Log,200,,Team_terra 1-8,text,true,,271,346,4,4,http://localhost:8888/user/activity,528,0,0
+1646196695971,523,User History Log,200,,Team_terra 1-9,text,true,,271,346,4,4,http://localhost:8888/user/activity,523,0,0
+1646196696496,24,User History [Get],200,,Team_terra 1-8,text,true,,133430,170,4,4,http://localhost:8888/user/activity?userId=1,18,0,0
+1646196696496,25,User History [Get],200,,Team_terra 1-9,text,true,,133430,170,4,4,http://localhost:8888/user/activity?userId=1,19,0,0
+1646196696496,93,User Authentication,200,,Team_terra 1-7,text,true,,221,258,4,4,http://localhost:8888/user/authentication,93,0,0
+1646196696403,430,User Session Log,200,,Team_terra 1-10,text,true,,193,256,3,3,http://localhost:8888/user/log,430,0,0
+1646196696521,387,User Session Log,200,,Team_terra 1-9,text,true,,193,256,3,3,http://localhost:8888/user/log,387,0,0
+1646196696520,391,User Session Log,500,,Team_terra 1-8,text,false,,253,256,3,3,http://localhost:8888/user/log,391,0,0
+1646196696833,88,User Authentication,200,,Team_terra 1-10,text,true,,221,258,3,3,http://localhost:8888/user/authentication,88,0,0
+1646196696908,96,User Authentication,200,,Team_terra 1-9,text,true,,221,258,2,2,http://localhost:8888/user/authentication,96,0,0
+1646196696912,98,User Authentication,200,,Team_terra 1-8,text,true,,221,258,1,1,http://localhost:8888/user/authentication,98,0,1
