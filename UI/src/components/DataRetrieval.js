@@ -1,5 +1,7 @@
-import React,{useState, Fragment} from 'react';
+import React,{useState,useEffect, Fragment} from 'react';
 import './CSS/Dashboard.css';
+
+import ProgressBar from "./Progress";
 
 import Header from './Header';
 import WeatherForecast from './WeatherForecast';
@@ -31,6 +33,9 @@ function DataRetrieval(props){
   
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [isImageGenerated, setIsImageGenerated] = useState(false);
+  const [isProgressBarVisible, setIsProgressBarVisible] = useState(false);
+
+  var isProgressBarVisible2 = false;
 
   const location_options = [{value:'KABC',label:'KABC'},{value:'KABR',label:'KABR'},{value:'KABX',label:'KABX'},{value:'KACG',label:'KACG'},{value:'KAEC',label:'KAEC'},{value:'KAHG',label:'KAHG'},{value:'KAIH',label:'KAIH'},{value:'KAKC',label:'KAKC'},{value:'KAKQ',label:'KAKQ'},{value:'KAMA',label:'KAMA'},{value:'KAMX',label:'KAMX'},{value:'KAPD',label:'KAPD'},{value:'KAPX',label:'KAPX'},{value:'KARX',label:'KARX'},{value:'KATX',label:'KATX'},{value:'KBBX',label:'KBBX'},{value:'KBGM',label:'KBGM'},{value:'KBHX',label:'KBHX'},{value:'KBIS',label:'KBIS'},{value:'KBLX',label:'KBLX'},{value:'KBMX',label:'KBMX'},{value:'KBOX',label:'KBOX'},{value:'KBRO',label:'KBRO'},{value:'KBUF',label:'KBUF'},{value:'KBYX',label:'KBYX'},{value:'KCAE',label:'KCAE'},{value:'KCBW',label:'KCBW'},{value:'KCBX',label:'KCBX'},{value:'KCCX',label:'KCCX'},{value:'KCLE',label:'KCLE'},{value:'KCLX',label:'KCLX'},{value:'KCRI',label:'KCRI'},{value:'KCRP',label:'KCRP'},{value:'KCXX',label:'KCXX'},{value:'KCYS',label:'KCYS'},{value:'KDAX',label:'KDAX'},{value:'KDDC',label:'KDDC'},{value:'KDFX',label:'KDFX'},{value:'KDGX',label:'KDGX'},{value:'KDIX',label:'KDIX'},{value:'KDLH',label:'KDLH'},{value:'KDMX',label:'KDMX'},{value:'KDOX',label:'KDOX'},{value:'KDTX',label:'KDTX'},{value:'KDVN',label:'KDVN'},{value:'KDYX',label:'KDYX'},{value:'KEAX',label:'KEAX'},{value:'KEMX',label:'KEMX'},{value:'KENX',label:'KENX'},{value:'KEOX',label:'KEOX'},{value:'KEPZ',label:'KEPZ'},{value:'KESX',label:'KESX'},{value:'KEVX',label:'KEVX'},{value:'KEWX',label:'KEWX'},{value:'KEYX',label:'KEYX'},{value:'KFCX',label:'KFCX'},{value:'KFDR',label:'KFDR'},{value:'KFDX',label:'KFDX'},{value:'KFFC',label:'KFFC'},{value:'KFSD',label:'KFSD'},{value:'KFSX',label:'KFSX'},{value:'KFTG',label:'KFTG'},{value:'KFWS',label:'KFWS'},{value:'KGGW',label:'KGGW'},{value:'KGJX',label:'KGJX'},{value:'KGLD',label:'KGLD'},{value:'KGRB',label:'KGRB'},{value:'KGRK',label:'KGRK'},{value:'KGRR',label:'KGRR'},{value:'KGSP',label:'KGSP'},{value:'KGUA',label:'KGUA'},{value:'KGWX',label:'KGWX'},{value:'KGYX',label:'KGYX'},{value:'KHDX',label:'KHDX'},{value:'KHGX',label:'KHGX'},{value:'KHKI',label:'KHKI'},{value:'KHKM',label:'KHKM'},{value:'KHMO',label:'KHMO'},{value:'KHNX',label:'KHNX'},{value:'KHPX',label:'KHPX'},{value:'KHTX',label:'KHTX'},{value:'KHWA',label:'KHWA'},{value:'KICT',label:'KICT'},{value:'KICX',label:'KICX'},{value:'KILN',label:'KILN'},{value:'KILX',label:'KILX'},{value:'KIND',label:'KIND'},{value:'KINX',label:'KINX'},{value:'KIWA',label:'KIWA'},{value:'KIWX',label:'KIWX'},{value:'KJAN',label:'KJAN'},{value:'KJAX',label:'KJAX'},{value:'KJGX',label:'KJGX'},{value:'KJKL',label:'KJKL'},{value:'KJUA',label:'KJUA'},{value:'KLBB',label:'KLBB'},{value:'KLCH',label:'KLCH'},{value:'KLIX',label:'KLIX'},{value:'KLNX',label:'KLNX'},{value:'KLOT',label:'KLOT'},{value:'KLRX',label:'KLRX'},{value:'KLSX',label:'KLSX'},{value:'KLTX',label:'KLTX'},{value:'KLVX',label:'KLVX'},{value:'KLWX',label:'KLWX'},{value:'KLZK',label:'KLZK'},{value:'KMAF',label:'KMAF'},{value:'KMAX',label:'KMAX'},{value:'KMBX',label:'KMBX'},{value:'KMHX',label:'KMHX'},{value:'KMKX',label:'KMKX'},{value:'KMLB',label:'KMLB'},{value:'KMOB',label:'KMOB'},{value:'KMPX',label:'KMPX'},{value:'KMQT',label:'KMQT'},{value:'KMRX',label:'KMRX'},{value:'KMSX',label:'KMSX'},{value:'KMTX',label:'KMTX'},{value:'KMUX',label:'KMUX'},{value:'KMVX',label:'KMVX'},{value:'KMXX',label:'KMXX'},{value:'KNKX',label:'KNKX'},{value:'KNQA',label:'KNQA'},{value:'KOAX',label:'KOAX'},{value:'KOHX',label:'KOHX'},{value:'KOKX',label:'KOKX'},{value:'KOTX',label:'KOTX'},{value:'KPAH',label:'KPAH'},{value:'KPBZ',label:'KPBZ'},{value:'KPDT',label:'KPDT'},{value:'KPOE',label:'KPOE'},{value:'KPUX',label:'KPUX'},{value:'KRAX',label:'KRAX'},{value:'KRGX',label:'KRGX'},{value:'KRIW',label:'KRIW'},{value:'KRLX',label:'KRLX'},{value:'KRTX',label:'KRTX'},{value:'KSFX',label:'KSFX'},{value:'KSGF',label:'KSGF'},{value:'KSHV',label:'KSHV'},{value:'KSJT',label:'KSJT'},{value:'KSOX',label:'KSOX'},{value:'KSRX',label:'KSRX'},{value:'KTBW',label:'KTBW'},{value:'KTFX',label:'KTFX'},{value:'KTLH',label:'KTLH'},{value:'KTLX',label:'KTLX'},{value:'KTWX',label:'KTWX'},{value:'KTYX',label:'KTYX'},{value:'KUDX',label:'KUDX'},{value:'KUEX',label:'KUEX'},{value:'KVAX',label:'KVAX'},{value:'KVBX',label:'KVBX'},{value:'KVNX',label:'KVNX'},{value:'KVTX',label:'KVTX'},{value:'KVWX',label:'KVWX'},{value:'KYUX',label:'KYUX'},{value:'NOP3',label:'NOP3'},{value:'TJUA',label:'TJUA'}]
 
@@ -44,9 +49,21 @@ function DataRetrieval(props){
     
     console.log("Generating Radar Plot")
     setIsButtonClicked(true);
+
+    setIsProgressBarVisible(true);
+    
+    let timer = null;
+    timer = setInterval(() => {
+        setValue((value) => value + 10);
+      }, 600);
+    if (value === 100 || value>100){
+      clearInterval(timer);
+    }
+
     const response = await fetch(API + `/plot?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, 
     {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
+    
     const json = await response.json();
     console.log(json);
     if (json == 'No scans available for the selected inputs'){
@@ -64,7 +81,35 @@ function DataRetrieval(props){
 
     var searchOutput = "Plot url:"+imageURL;
     updateSearchHistory(searchType,searchParam,searchOutput);
-  };
+  }; 
+
+  // const interval = setInterval(() => {
+  //   setValue(oldValue => {
+  //     const newValue = oldValue + 10;
+
+  //     if (newValue === 100) {
+  //       clearInterval(interval);
+  //     }
+
+  //     return newValue;
+  //   });
+  // }, 1000);
+
+  // useEffect(() => {
+  //   let timer = null;
+  //   if(setIsProgressBarVisible){
+  //     timer = setInterval(() => {
+  //       setValue((value) => value + 1);
+  //     }, 100);
+
+  //     if (value === 100){
+  //       clearInterval(timer);
+  //     }
+  //   }
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // });
 
   async function updateSearchHistory(searchType,searchParam,searchOutput){
     const body_activity = {
@@ -97,6 +142,8 @@ function DataRetrieval(props){
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
   }
+
+  const [value, setValue] = useState(0);
 
   return (
     <div class = 'service-container'>
@@ -164,7 +211,14 @@ function DataRetrieval(props){
         <button class = 'submit-btn' onClick={getImageUrl}>
           <span>Generate Radar Graph</span>
         </button>
-      </div>
+        <div>
+          {
+            isProgressBarVisible == true &&
+            <ProgressBar color={"#ff7979"} width={"150px"} value={value} max={100} />
+          }
+        </div>
+        
+        </div>
       
       {/* {
         isButtonClicked == true &&
