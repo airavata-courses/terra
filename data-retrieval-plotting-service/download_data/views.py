@@ -85,5 +85,13 @@ class Meera2DataViewSet(viewsets.ViewSet):
     def list(self, request, *args, **kwargs):
         print("Meera-2 endpoint is called")
         data = request.GET
-        out = download_plot_merra2('a')
-        return Response(f"Meera 2 data downloaded, plot is {out}", status=status.HTTP_200_OK)
+        if 'start_date' not in data:
+            return Response("Invalid inputs - {} or {} missing".format('start_date'),
+                            status=status.HTTP_400_BAD_REQUEST)
+        print(data)
+        out = download_plot_merra2(data['start_date'])
+        serializer = LinkSerializer(data={'image_url': str(out)})
+        serializer.is_valid()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        # return Response(f"Meera 2 data downloaded, plot is {out}", status=status.HTTP_200_OK)

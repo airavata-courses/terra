@@ -8,6 +8,8 @@ import cloudinary
 import cloudinary.uploader
 import warnings
 from datetime import datetime
+from .models import ImagePath
+from django.core.exceptions import ObjectDoesNotExist
 
 warnings.filterwarnings("ignore")
 
@@ -18,11 +20,37 @@ cloudinary.config(
     api_secret="I_V74DpPwtkwj1yQk-Ib5aAPQyQ"
 )
 
+SERVER = 'goldsmr4.gesdisc.eosdis.nasa.gov'
+PATH = 'data/MERRA2_MONTHLY/M2TMNXSLV.5.12.4'
+FILE = 'MERRA2_400.tavgM_2d_slv_Nx'
+
 
 def download_plot_merra2(date):
 
-    print("Downloading data")
-    url = "https://goldsmr4.gesdisc.eosdis.nasa.gov/data/MERRA2_MONTHLY/M2TMNXSLV.5.12.4/2011/MERRA2_400.tavgM_2d_slv_Nx.201101.nc4"
+    dt = datetime.strptime(date, "%Y-%m-%dT%H:%M")
+    year = dt.year
+    month = str(dt.month).zfill(2)
+    assimilation = 0
+    if year > 2010:
+        assimilation = 400
+    elif 2000 < year <= 2010:
+        assimilation = 300
+    elif 1990 < year <= 2000:
+        assimilation = 200
+
+    FILE = f'MERRA2_{assimilation}.tavgM_2d_slv_Nx'
+    print("Downloading data from URL")
+    # url = "https://goldsmr4.gesdisc.eosdis.nasa.gov/data/MERRA2_MONTHLY/M2TMNXSLV.5.12.4/2011/MERRA2_400.tavgM_2d_slv_Nx.201101.nc4"
+    url = f"https://{SERVER}/{PATH}/{year}/{FILE}.{year}{month}.nc4"
+    print(url)
+    try:
+        # If the query is already run, simply return the cloudinary URL.
+        obj = ImagePath.objects.get(filename=url)
+        print("Plot already exists for the data,  return the URL from the database")
+        return (obj.url)
+    except ObjectDoesNotExist:
+        print("Download and start plotting")
+
     start = datetime.now()
     os.system(
         f"wget --quiet -O download_data/merra_data/out.nc4 --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --keep-session-cookies {url}")
@@ -52,7 +80,8 @@ def download_plot_merra2(date):
     clevs = np.arange(230, 311, 5)
     plt.contourf(lons, lats, T2M, clevs,
                  transform=ccrs.PlateCarree(), cmap=plt.cm.jet)
-    plt.title('MERRA-2 Air Temperature at 2m, January 2010', size=14)
+    plt.title(
+        f'MERRA-2 Air Temperature at 2m, { dt.strftime("%B")} {year}', size=14)
     cb = plt.colorbar(ax=ax, orientation="vertical",
                       pad=0.02, aspect=16, shrink=0.8)
     cb.set_label('K', size=12, rotation=0, labelpad=15)
@@ -61,6 +90,14 @@ def download_plot_merra2(date):
         'download_data/merra_data/output.png')
     obj = cloudinary.uploader.upload(
         "download_data/merra_data/output.png")
-    return obj['url']
 
-# download_plot_merra2('a')
+    # Save data into the database, to avoid replotting the same thing again and again.
+    try:
+        obj1 = ImagePath(filename=url, url=obj['url'])
+        obj1.save()
+    except:
+        print("Object already exists")
+        obj = ImagePath.objects.get(filename=url)
+        return obj.url
+
+    return obj['url']
