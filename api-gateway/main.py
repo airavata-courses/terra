@@ -49,14 +49,30 @@ def get():
 # API path for plotting
 
 
-@app.get("/plot")
+@app.get("/plot/v1")
 async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None):
 
-    print("[In API gatway] - Calling Plot micro service")
+    print("[In API gatway] - Calling Plot micro service - [Nexrad]")
 
     params = {'start_date': start_date,
               'end_date': end_date, 'station': station}
-    generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data"
+    generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v1"
+    output = requests.get(generate_url, params=params)
+    data = output.text
+    data = json.loads(data)
+    return data
+
+# API path for meera-2 plotting
+
+
+@app.get("/plot/v2")
+async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None):
+
+    print("[In API gatway] - Calling Plot micro service - [Merra]")
+
+    params = {'start_date': start_date,
+              'end_date': end_date, 'station': station}
+    generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v2"
     output = requests.get(generate_url, params=params)
     data = output.text
     data = json.loads(data)
