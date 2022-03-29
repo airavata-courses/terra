@@ -34,6 +34,7 @@ echo 'StrictHostKeyChecking no' &>> /etc/ssh/ssh_config &&
 cd ../terra &&
 cp ../jetstream_kubespray/inventory/$CLUSTER/hosts hosts &&
 ansible-playbook -i hosts users.yml &&
+sleep 20 &&
 ansible-playbook -i hosts install-k8s.yml &&
 sleep 30 &&
 ansible-playbook -i hosts master.yml &&
