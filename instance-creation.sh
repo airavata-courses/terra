@@ -44,7 +44,6 @@ git clone https://github.com/airavata-courses/terra.git &&
 cd terra &&
 git checkout ansible-kub-setup &&
 cd Kubernetes\ files/ &&
-
 kubectl apply -f MySQLConfigMap.yaml &&
 kubectl apply -f MySQLService.yaml &&
 sleep 30 &&

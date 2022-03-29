@@ -16,7 +16,7 @@ spec:
     spec: 
       containers: 
       - name: gateway
-        image: gauti091/api-gateway
+        image: gauti091/api-gateway:linux
         ports:
         - containerPort: 8008
 ---

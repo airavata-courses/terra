@@ -16,7 +16,7 @@ spec:
     spec: 
       containers: 
       - name: dataretrieval
-        image: gauti091/data-retrieval
+        image: gauti091/data-retrieval:linux
         ports:
         - containerPort: 8000
         resources:
