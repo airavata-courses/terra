@@ -1,3 +1,11 @@
+# Download the necessary files
+git clone https://github.com/GowthamChowta/jetstream_kubespray.git &&
+cd jetstream_kubespray &&
+git checkout -b branch_v2.15.0 origin/branch_v2.15.0 &&
+cd .. &&
+git clone https://github.com/airavata-courses/terra.git &&
+cd terra &&
+git checkout ansible-kub-setup &&
 cd .. &&
 sudo apt-get update &&
 # Install open stack 
@@ -40,20 +48,4 @@ sleep 30 &&
 ansible-playbook -i hosts master.yml &&
 sleep 30 &&
 ansible-playbook -i hosts workers.yml &&
-ssh ubuntu@$IP &&
-sudo su &&
-git clone https://github.com/airavata-courses/terra.git &&
-cd terra &&
-git checkout ansible-kub-setup &&
-cd Kubernetes\ files/ &&
-kubectl apply -f MySQLConfigMap.yaml &&
-kubectl apply -f MySQLService.yaml &&
-sleep 30 &&
-kubectl apply -f rabbitmq.yaml &&
-sleep 30 &&
-kubectl apply -f data-retrieval.yaml &&
-kubectl apply -f api-gateway.yaml &&
-kubectl apply -f weatherForecast.yaml &&
-kubectl apply -f user-managment.yaml && 
-kubectl apply -f userinterface.yaml &&
-kubectl get pods
+ssh ubuntu@$IP
