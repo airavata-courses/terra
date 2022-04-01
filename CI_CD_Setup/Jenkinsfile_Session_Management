@@ -19,7 +19,7 @@ pipeline {
                     properties([pipelineTriggers([pollSCM('')])])
                 }
                 //define scm connection for polling
-                git branch: 'main' , url: 'https://github.com/airavata-courses/terra.git'
+                git branch: 'ci-cd-setup' , url: 'https://github.com/airavata-courses/terra.git'
             }
         }
     stage('Login') {
