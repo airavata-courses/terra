@@ -49,7 +49,7 @@ public class UserController {
 	 */
 	@PostMapping("/data")
 	public UserResponseModel userData(@RequestBody UserRequestModel userRequestModel) {
-		logger.info("controller : user/data Test CI-CD1");
+		logger.info("controller : user/data Test CI-CD2");
 		return userService.userLogService(userRequestModel); 
 	}
 	
