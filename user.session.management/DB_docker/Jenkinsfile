@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t gauti091/sql-standalone .'
+        sh 'docker build -t gauti091/sql-standalone user.session.management/DB_docker/'
       }
     }
     stage('Login') {
