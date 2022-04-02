@@ -32,6 +32,15 @@ pipeline {
         sh 'docker push gauti091/user-management'
       }
     }
+    stage ('Deploy') {
+    steps{
+        sshagent(credentials : ['develop-machine']) {
+            sh 'ssh -o StrictHostKeyChecking=no develop@149.165.154.201 uptime'
+            sh 'ssh -v develop@149.165.154.201'
+            sh 'ls -a'
+        }
+    }
+}
   }
   post {
     always {
