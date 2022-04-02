@@ -41,8 +41,12 @@ function DataRetrieval(props){
 
   const API = "http://localhost:8008"
   const API2 = "http://localhost:8888"
+
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
   
-  async function getImageUrl(){
+  async function getRadarPlotImage(){
     console.log("Start Date: " + startDate);
     console.log("End Date: " + endDate);
     console.log("Location: " + location);
@@ -60,7 +64,48 @@ function DataRetrieval(props){
       clearInterval(timer);
     }
 
-    const response = await fetch(API + `/plot?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, 
+    const response = await fetch(api + `/plot/v1?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, 
+    {method: "GET", headers: { 'Content-Type': 'application/json' }});
+    console.log(response);
+    
+    const json = await response.json();
+    console.log(json);
+    if (json == 'No scans available for the selected inputs'){
+      setIsImageGenerated(false);
+      navigate(`/dashboard/data/graph`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType, 'startDate':startDate, 'endDate': endDate, 'location': location, 'image_url': imageURL}});
+    }
+    else{
+      setIsImageGenerated(true);
+      navigate(`/dashboard/data/graph`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType, 'startDate':startDate, 'endDate': endDate, 'location': location, 'image_url': json.image_url}});
+      setImageURL(json.image_url);
+    }
+    console.log(imageURL);
+    var searchType = "Radar Plot";
+    var searchParam = "location:"+location;
+
+    var searchOutput = "Plot url:"+imageURL;
+    updateSearchHistory(searchType,searchParam,searchOutput);
+  }; 
+
+  async function getMeeraDataPlot(){
+    console.log("Start Date: " + startDate);
+    console.log("End Date: " + endDate);
+    console.log("Location: " + location);
+    
+    console.log("Generating Meera Plot")
+    setIsButtonClicked(true);
+
+    setIsProgressBarVisible(true);
+    
+    let timer = null;
+    timer = setInterval(() => {
+        setValue((value) => value + 10);
+      }, 600);
+    if (value === 100 || value>100){
+      clearInterval(timer);
+    }
+
+    const response = await fetch(api + `/plot/v2?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, 
     {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
     
@@ -121,7 +166,7 @@ function DataRetrieval(props){
     }
     console.log(body_activity);
     console.log("Saving Search History");
-    const response = await fetch(API + `/user/activity`, 
+    const response = await fetch(api + `/user/activity`, 
     {method: "POST" , 
     headers: {
       'Access-Control-Allow-Origin':'true',
@@ -208,8 +253,11 @@ function DataRetrieval(props){
             options={location_options}/> */}
           </div>
         </div>
-        <button class = 'submit-btn' onClick={getImageUrl}>
+        <button class = 'submit-btn' onClick={getRadarPlotImage}>
           <span>Generate Radar Graph</span>
+        </button>
+        <button class = 'submit-btn' onClick={getMeeraDataPlot}>
+          <span>Generate Meera Plot</span>
         </button>
         <div>
           {

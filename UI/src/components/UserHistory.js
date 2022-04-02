@@ -18,12 +18,16 @@ function UserHistory (){
   const [userHistory, setUserHistory] = useState("");
 
   const API = "http://localhost:8008";
+  
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
 
   const [isHistoryNull, setIsHistoryNull] = useState(true);
 
   async function getUserHistory(){
     console.log("Getting User History")
-    const response = await fetch(API + `/user/activity?userId=`+state.userId, {method: "GET", headers: { 'Content-Type': 'application/json' }});
+    const response = await fetch(api + `/user/activity?userId=`+state.userId, {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
     const json = await response.json();
     console.log(json);

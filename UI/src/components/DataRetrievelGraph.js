@@ -43,9 +43,13 @@ function DataRetrievalGraph(props){
   const API = "http://localhost:8008"
   const API2 = "http://localhost:8888"
 
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
+
   async function generateWeatherForecast(){
     console.log("Getting Weather Forecast");
-    const response = await fetch(API + `/weather?start_date=`+startDate+`&station=`+location, {method: "GET"});
+    const response = await fetch(api + `/weather?start_date=`+startDate+`&station=`+location, {method: "GET"});
     console.log(response);
     const json = await response.json();
     console.log(json);

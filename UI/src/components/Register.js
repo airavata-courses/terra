@@ -14,6 +14,10 @@ function Register (){
   const API = "http://localhost:8008";
   const API2 = "http://localhost:8888";
 
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
+
   const [userName, setUserName] = useState("");
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +42,7 @@ function Register (){
     const jsonobj = JSON.stringify(body_activity);
 
     axios
-    .post(API+ `/user/register`, jsonobj)
+    .post(api+ `/user/register`, jsonobj)
     .then(res => {
         if (res.response == null){
           navigate(`/`);

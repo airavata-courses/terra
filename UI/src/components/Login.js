@@ -23,6 +23,10 @@ function Login() {
   const API = "http://localhost:8008";
   const API2 = "http://localhost:8888";
 
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
+
   async function loginUserId(res){
     console.log("Logging using Google SSO");
     
@@ -34,7 +38,7 @@ function Login() {
     
     setLoginType('Google');
 
-    const response = await fetch(API + `/user/authentication`, 
+    const response = await fetch(api + `/user/authentication`, 
     {method: "POST" , 
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body_activity)});
@@ -63,7 +67,7 @@ function Login() {
 
     console.log("Registering user Id for Google Account");
     
-    const response = await fetch(API + `/user/register`, 
+    const response = await fetch(api + `/user/register`, 
     {method: "POST" , 
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body_activity)});

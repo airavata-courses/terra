@@ -26,6 +26,10 @@ function WeatherForecast (props){
 
   const API = "http://localhost:8008"
   const API2 = "http://localhost:8888"
+  
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
 
   const onClick_back = () => {
     console.log('Data Retrieval Page');
