@@ -64,7 +64,7 @@ function DataRetrieval(props){
       clearInterval(timer);
     }
 
-    const response = await fetch(api + `/plot/v1?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, 
+    const response = await fetch(api + `/plot/v1?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate+`&userId=`+state.userId+`&tokenId=`+state.emailId, 
     {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
     
@@ -105,7 +105,7 @@ function DataRetrieval(props){
       clearInterval(timer);
     }
 
-    const response = await fetch(api + `/plot/v2?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, 
+    const response = await fetch(api + `/plot/v2?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate+`&userId=`+state.userId+`&tokenId=`+state.emailId, 
     {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
     
@@ -121,7 +121,7 @@ function DataRetrieval(props){
       setImageURL(json.image_url);
     }
     console.log(imageURL);
-    var searchType = "Radar Plot";
+    var searchType = "Meera Data Plot";
     var searchParam = "location:"+location;
 
     var searchOutput = "Plot url:"+imageURL;

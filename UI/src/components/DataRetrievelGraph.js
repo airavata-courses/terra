@@ -49,7 +49,7 @@ function DataRetrievalGraph(props){
 
   async function generateWeatherForecast(){
     console.log("Getting Weather Forecast");
-    const response = await fetch(api + `/weather?start_date=`+startDate+`&station=`+location, {method: "GET"});
+    const response = await fetch(api + `/weather?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate+`&userId=`+state.userId+`&tokenId=`+state.emailId, {method: "GET"});
     console.log(response);
     const json = await response.json();
     console.log(json);
