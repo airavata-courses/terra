@@ -35,8 +35,8 @@ pipeline {
     stage ('Deploy') {
     steps{
         sshagent(credentials : ['develop-machine']) {
-            sh 'ssh -o StrictHostKeyChecking=no develop@149.165.154.201 uptime'
-            sh 'ssh -v develop@149.165.154.201'
+            sh 'sudo ssh -o StrictHostKeyChecking=no develop@149.165.154.201 uptime'
+            sh 'sudo ssh -v develop@149.165.154.201'
             sh 'ls -a'
         }
     }
