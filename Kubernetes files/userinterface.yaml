@@ -26,6 +26,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: userinterface
+  annotations:
+  service.beta.kubernetes.io/openstack-internal-load-balancer: "false"
+  loadbalancer.openstack.org/floating-network-id: "3fe22c05-6206-4db2-9a13-44f04b6796e6"
 spec:
   selector:
     app: userinterface
