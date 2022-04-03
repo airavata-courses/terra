@@ -38,8 +38,7 @@ pipeline {
                sh 'ssh  -o StrictHostKeyChecking=no  ubuntu@149.165.153.12 uptime "whoami"'
                sh 'ls -a'
                sh 'cd "Kubernetes files"'
-               sh 'sudo su'
-               sh 'kubectl rollout restart deployment data-retrieval'
+               sh 'sudo su kubectl rollout restart deployment data-retrieval'
           }
         echo "success lgoin"
          }
