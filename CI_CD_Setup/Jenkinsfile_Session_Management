@@ -35,11 +35,11 @@ pipeline {
     stage('login server'){
          steps{
             sshagent(credentials:['kuber']){
-               sh 'ssh  -o StrictHostKeyChecking=no  ubuntu@149.165.153.12 uptime "whoami"
-               ls -a
-               cd "Kubernetes files"
-               sudo -u 
-               kubectl rollout restart deployment/dataretrieval'
+               sh 'ssh  -o StrictHostKeyChecking=no  ubuntu@149.165.153.12 uptime "whoami"'
+               sh 'ls -a'
+               sh 'cd "Kubernetes files"'
+               sh 'sudo -u'
+               sh 'kubectl rollout restart deployment/dataretrieval'
           }
         echo "success lgoin"
          }
