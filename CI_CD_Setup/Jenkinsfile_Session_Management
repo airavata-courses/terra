@@ -32,15 +32,14 @@ pipeline {
         sh 'docker push gauti091/user-management'
       }
     }
-    stage ('Deploy') {
-    steps{
-        sshagent(credentials : ['develop-machine']) {
-            // sh 'sudo ssh -o StrictHostKeyChecking=no develop@149.165.154.201 uptime'
-            sh 'sudo ssh -v develop@149.165.154.201'
-            sh 'ls -a'
-        }
-    }
-}
+    stage('login server'){
+         steps{
+            sshagent(credentials:['kuber']){
+               sh 'ssh  -o StrictHostKeyChecking=no  ubuntu@149.165.153.12 uptime "whoami"'
+          }
+        echo "success lgoin"
+         }
+       }
   }
   post {
     always {
