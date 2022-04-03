@@ -29,7 +29,7 @@ spec:
     app: gateway
   type: LoadBalancer
   externalIPs:
-  - 192.168.0.10
+  - 149.165.152.117
   ports:
    - protocol: TCP
      port: 8008

@@ -29,13 +29,15 @@ metadata:
 spec:
   selector:
     app: userinterface
+  
   type: LoadBalancer
+  externalIPs:
+  - 149.165.152.94
   ports:
   - protocol: TCP
     port: 3000
     targetPort: 3000
     nodePort: 30422
-  loadBalancerIP: 149.165.152.94
 
 
   
