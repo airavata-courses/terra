@@ -16,7 +16,7 @@ spec:
     spec: 
       containers: 
       - name: userinterface
-        image: gauti091/ui:linux
+        image: gauti091/ui
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
@@ -26,9 +26,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: userinterface
-  annotations:
-    service.beta.kubernetes.io/openstack-internal-load-balancer: "false"
-    loadbalancer.openstack.org/floating-network-id: "3fe22c05-6206-4db2-9a13-44f04b6796e6"
 spec:
   selector:
     app: userinterface
@@ -38,6 +35,7 @@ spec:
     port: 3000
     targetPort: 3000
     nodePort: 30422
+  loadBalancerIP: 149.165.152.94
 
 
   
