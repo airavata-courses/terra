@@ -61,7 +61,7 @@ async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = 
                     userId: Optional[str] = None, tokenId: Optional[str] = None):
 
     print("[In API gatway] - Calling Plot micro service - [Nexrad]")
-
+    print(" [RabbitMQ] Sent log details to user-activity queue'")
     params = {'start_date': start_date,
               'end_date': end_date, 'station': station}
     generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v1"
@@ -88,7 +88,7 @@ async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = 
                     userId: Optional[str] = None, tokenId: Optional[str] = None):
 
     print("[In API gatway] - Calling Plot micro service - [Merra]")
-
+    print(" [RabbitMQ] Sent log details to user-activity queue'")
     params = {'start_date': start_date,
               'end_date': end_date, 'station': station}
     generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v2"
