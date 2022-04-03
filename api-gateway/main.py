@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 import json
 import requests
 from fastapi.middleware.cors import CORSMiddleware
-
+import pika
 
 app = FastAPI()
 
@@ -49,8 +49,16 @@ def get():
 # API path for plotting
 
 
+connection = pika.BlockingConnection(
+    pika.ConnectionParameters(host='rabbitmq'))
+channel = connection.channel()
+channel.queue_declare(queue='user-activity')
+channel.queue_declare(queue='user-log')
+
+
 @app.get("/plot/v1")
-async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None):
+async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None,
+                    userId: Optional[str] = None, tokenId: Optional[str] = None):
 
     print("[In API gatway] - Calling Plot micro service - [Nexrad]")
 
@@ -60,13 +68,24 @@ async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = 
     output = requests.get(generate_url, params=params)
     data = output.text
     data = json.loads(data)
+    body = {
+        "userId": userId, "tokenId": tokenId, "typeOfSearch": "nex-rad-plot",
+        "searchParam": f"start_date - {start_date} end_date - {end_date} station - {station}", "searchOutput": output.text
+    }
+    print(body)
+    channel.basic_publish(exchange='',
+                          routing_key='user-activity',
+                          body=body)
+    print(" [RabbitMQ] Sent log details to user-activity queue'")
+
     return data
 
 # API path for meera-2 plotting
 
 
 @app.get("/plot/v2")
-async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None):
+async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None,
+                    userId: Optional[str] = None, tokenId: Optional[str] = None):
 
     print("[In API gatway] - Calling Plot micro service - [Merra]")
 
@@ -76,6 +95,17 @@ async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = 
     output = requests.get(generate_url, params=params)
     data = output.text
     data = json.loads(data)
+
+    body = {
+        "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
+        "searchParam": f"start_date - {start_date} end_date - {end_date} station - {station}", "searchOutput": output.text
+    }
+    print(body)
+    channel.basic_publish(exchange='',
+                          routing_key='user-activity',
+                          body=body)
+    print(" [RabbitMQ] Sent log details to user-activity queue'")
+
     return data
 
 # Calls the weather api
