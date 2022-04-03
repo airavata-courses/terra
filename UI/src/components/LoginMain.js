@@ -13,6 +13,10 @@ function LoginMain (){
   const API = "http://localhost:8008";
   const API2 = "http://localhost:8888";
 
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
+
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,7 +32,7 @@ function LoginMain (){
     
     setLoginType('Non-Google');
 
-    const response = await fetch(API + `/user/authentication`, 
+    const response = await fetch(api + `/user/authentication`, 
     {method: "POST" , 
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body_activity)});
