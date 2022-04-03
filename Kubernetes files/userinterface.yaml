@@ -16,7 +16,7 @@ spec:
     spec: 
       containers: 
       - name: userinterface
-        image: gauti091/ui
+        image: gauti091/ui:linux
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
