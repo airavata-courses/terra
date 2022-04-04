@@ -38,6 +38,7 @@ pipeline {
               sh '''#!/bin/bash
                     date
                     ssh ubuntu@149.165.153.12 >> ENDSSH
+                    whoami
                     java -version
                     date
                     cd /tmp
