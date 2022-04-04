@@ -39,8 +39,8 @@ pipeline {
                sh 'whoami'
                sh 'ls -a'
                sh 'cd "Kubernetes files"'
-               sh 'sudo su'
-               sh 'kubectl rollout restart deployment/dataretrieval'
+              //  sh 'sudo su'
+               sh 'sudo kubectl rollout restart deployment/dataretrieval'
 
               //  sh 'sudo -S kubectl rollout restart deployment/dataretrieval'
           }
