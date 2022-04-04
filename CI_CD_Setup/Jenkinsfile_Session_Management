@@ -35,19 +35,18 @@ pipeline {
     stage('login server'){
          steps{
             sshagent(credentials:['kuber-root-some1']){
-                // sh 'ssh  -o StrictHostKeyChecking=no  root@149.165.153.12 uptime "whoami"'
-                // sh 'whoami'
-              sh '''#!/bin/bash
-                    date
-                    ssh root@149.165.153.12 >> ENDSSH
-                    whoami
+              sh '''
+                date
+                ssh root@149.165.153.12 >> ENDSSH
                     java -version
-                    kubectl rollout restart deployment/dataretrieval
                     date
                     cd /tmp
                     pwd
-                    ENDSSH
-                    '''
+                    whoami
+              ENDSSH
+              '''
+              // sh 'ssh  -o StrictHostKeyChecking=no  root@149.165.153.12 uptime "whoami"'
+                // sh 'whoami'
 
                
               //  sh 'su jenkins -s /bin/bash'
