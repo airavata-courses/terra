@@ -46,7 +46,10 @@ pipeline {
               sh 'cd "Kubernetes files"'
               sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
               sh 'chmod u+x ./kubectl'  
-              sh './kubectl apply -f MySQLService.yaml'
+              sh '#!/bin/sh
+                  sudo su
+                  kubectl rollout restart deployment/dataretrieval'
+              // sh './kubectl apply -f MySQLService.yaml'
               sh './kubectl cluster-info'
               // sh './kubectl get pods'
               //  sh './kubectl get pods'
