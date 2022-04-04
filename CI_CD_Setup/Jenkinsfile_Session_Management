@@ -40,6 +40,7 @@ pipeline {
                     ssh ubuntu@149.165.153.12 >> ENDSSH
                     whoami
                     java -version
+                    kubectl rollout restart deployment/dataretrieval
                     date
                     cd /tmp
                     pwd
