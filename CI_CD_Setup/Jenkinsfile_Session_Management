@@ -45,10 +45,11 @@ pipeline {
               //       whoami
               // ENDSSH
               // '''
-              sh 'ssh  -o StrictHostKeyChecking=no  root@149.165.153.12 uptime "whoami"'
+              sh 'ssh -o "StrictHostKeyChecking no" root@149.165.153.12'
+              // sh 'ssh  -o StrictHostKeyChecking=no  root@149.165.153.12 uptime "whoami"'
                sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
-                sh 'chmod u+x ./kubectl'  
-                sh './kubectl get pods'
+                sh 'chmod u+x /usr/local/bin/kubectl'  
+                sh '/usr/local/bin/kubectl get pods'
               // sh 'kubectl get pods'
                 // sh 'whoami'
 
