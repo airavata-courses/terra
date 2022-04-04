@@ -46,6 +46,7 @@ pipeline {
               // ENDSSH
               // '''
               sh 'ssh  -o StrictHostKeyChecking=no  root@149.165.153.12 uptime "whoami"'
+              sh 'kubectl get pods'
                 // sh 'whoami'
 
                
