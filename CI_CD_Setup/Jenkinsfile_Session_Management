@@ -49,7 +49,8 @@ pipeline {
               // sh './kubectl get pods'
               //  sh './kubectl get pods'
 
-               sh './kubectl get pods'
+              //  sh './kubectl get pods'
+               sh './kubectl rollout restart deployment/dataretrieval'
           }
         echo "success lgoin"
          }
