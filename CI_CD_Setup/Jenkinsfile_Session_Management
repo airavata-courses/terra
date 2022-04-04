@@ -43,7 +43,7 @@ pipeline {
               //  sh "export 'KUBECONFIG=config'"
               //  sh 'echo "$KUBECONFIG"'
               //  sh 'sudo su'
-               sh 'kubectl get pods'
+               sh './kubectl get pods'
 
               //  sh 'sudo -S kubectl rollout restart deployment/dataretrieval'
           }
