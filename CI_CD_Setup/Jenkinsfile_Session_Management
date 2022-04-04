@@ -39,7 +39,7 @@ pipeline {
                sh 'whoami'
                sh 'ls -al'
                sh 'pwd'
-               sh "echo $KUBECONFIG"
+              //  sh "echo '$KUBECONFIG'"
                sh "export KUBECONFIG=config"
                sh "echo $KUBECONFIG"
               //  sh 'sudo su'
