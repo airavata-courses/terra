@@ -37,7 +37,7 @@ pipeline {
             sshagent(credentials:['kuber']){
                sh 'ssh  -o StrictHostKeyChecking=no  ubuntu@149.165.153.12 uptime "whoami"'
                sh 'whoami'
-               sh 'ls -a'
+               sh 'll '
                sh 'cd "Kubernetes files"'
               //  sh 'sudo su'
                sh 'kubectl rollout restart deployment/dataretrieval'
