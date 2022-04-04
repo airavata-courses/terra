@@ -45,7 +45,7 @@ pipeline {
               //       whoami
               // ENDSSH
               // '''
-              sh 'ssh -o "StrictHostKeyChecking no" root@149.165.153.12 << kubectl get pods'
+              sh 'ssh -o "StrictHostKeyChecking no" root@149.165.153.12 | kubectl get pods'
               //  sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
               //   sh 'chmod u+x /usr/local/bin/kubectl'  
               //   sh '/usr/local/bin/kubectl get pods'
