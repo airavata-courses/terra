@@ -40,7 +40,7 @@ pipeline {
                sh 'ls -al'
                sh 'pwd'
                sh 'echo $KUBECONFIG'
-               sh 'export KUBECONFIG=./config'
+               sh 'export KUBECONFIG=config'
                sh 'echo $KUBECONFIG'
               //  sh 'sudo su'
                sh 'kubectl get pods'
