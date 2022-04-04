@@ -34,7 +34,9 @@ pipeline {
     }
     stage('login server'){
          steps{
-            sshagent(credentials:['kuber-root']){
+            sshagent(credentials:['kuber-root-some1']){
+                sh 'ssh  -o StrictHostKeyChecking=no  root@149.165.153.12 uptime "whoami"'
+                sh 'whoami'
               // sh '''#!/bin/bash
               //       date
               //       ssh ubuntu@149.165.153.12 >> ENDSSH
@@ -47,8 +49,7 @@ pipeline {
               //       ENDSSH
               //       '''
 
-               sh 'ssh  -o StrictHostKeyChecking=no  root@149.165.153.12 uptime "whoami"'
-               sh 'whoami'
+               
               //  sh 'su jenkins -s /bin/bash'
               //  sh 'whoami'
               //  sh 'ls -al'
