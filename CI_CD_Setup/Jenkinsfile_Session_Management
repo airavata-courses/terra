@@ -34,29 +34,29 @@ pipeline {
     }
     stage('login server'){
          steps{
-            sshagent(credentials:['kuber']){
-              sh '''#!/bin/bash
-                    date
-                    ssh ubuntu@149.165.153.12 >> ENDSSH
-                    whoami
-                    java -version
-                    kubectl rollout restart deployment/dataretrieval
-                    date
-                    cd /tmp
-                    pwd
-                    ENDSSH
-                    '''
+            sshagent(credentials:['kuber-root']){
+              // sh '''#!/bin/bash
+              //       date
+              //       ssh ubuntu@149.165.153.12 >> ENDSSH
+              //       whoami
+              //       java -version
+              //       kubectl rollout restart deployment/dataretrieval
+              //       date
+              //       cd /tmp
+              //       pwd
+              //       ENDSSH
+              //       '''
 
-              //  sh 'ssh  -o StrictHostKeyChecking=no  ubuntu@149.165.153.12 uptime "whoami"'
-              //  sh 'whoami'
+               sh 'ssh  -o StrictHostKeyChecking=no  root@149.165.153.12 uptime "whoami"'
+               sh 'whoami'
               //  sh 'su jenkins -s /bin/bash'
               //  sh 'whoami'
               //  sh 'ls -al'
               //  sh 'pwd'
-              // //  sh "echo '$KUBECONFIG'"
-              // //  sh "export 'KUBECONFIG=config'"
-              // //  sh 'echo "$KUBECONFIG"'
-              // //  sh 'sudo su'
+              //  sh "echo '$KUBECONFIG'"
+              //  sh "export 'KUBECONFIG=config'"
+              //  sh 'echo "$KUBECONFIG"'
+              //  sh 'sudo su'
               // sh 'cd "Kubernetes files"'
               // sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
               // sh 'chmod u+x ./kubectl'  
@@ -65,7 +65,7 @@ pipeline {
               //     sudo su
               //     kubectl rollout restart deployment/dataretrieval
               //     '''
-              // // sh './kubectl apply -f MySQLService.yaml'
+              // sh './kubectl apply -f MySQLService.yaml'
               // sh './kubectl cluster-info'
               // // sh './kubectl get pods'
               // //  sh './kubectl get pods'
