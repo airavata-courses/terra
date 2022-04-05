@@ -38,6 +38,7 @@ pipeline {
                    kubectl get pods
                    kubectl rollout restart deployment/mysql-deployment
                    pwd
+                   ls -a
                    exit
                    EOF"""
           }
