@@ -16,7 +16,7 @@ pipeline {
             steps {
                 //enable remote triggers
                 script {
-                    properties([pipelineTriggers([pollSCM('H/1 * * * *')])])
+                    properties([pipelineTriggers([pollSCM('* * * * *')])])
                 }
                 //define scm connection for polling
                 git branch: 'ci-cd-setup' , url: 'https://github.com/airavata-courses/terra.git'
