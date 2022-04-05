@@ -15,5 +15,6 @@ team\terra\user\session\management\model\request\UserLogRequest.class
 team\terra\user\session\management\model\response\UserLogResponse.class
 team\terra\user\session\management\model\request\UserRegisterRequest.class
 team\terra\user\session\management\model\response\UserActivityResponse.class
+team\terra\user\session\management\service\Receiver.class
 team\terra\user\session\management\repository\UserRepository.class
 team\terra\user\session\management\entity\UserEntity.class

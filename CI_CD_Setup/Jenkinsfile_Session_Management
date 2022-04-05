@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t gauti091/user-management user.session.management/'
+        sh 'docker build -t gauti091/user-management:linux user.session.management/'
       }
     }
     stage('Initialize') {
@@ -29,63 +29,19 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push gauti091/user-management'
+        sh 'docker push gauti091/user-management:linux'
       }
     }
     stage('login server'){
          steps{
             sshagent(credentials:['kuber-root-some1']){
-              // sh '''
-              //   date
-              //   ssh root@149.165.153.12 >> ENDSSH
-              //       java -version
-              //       date
-              //       cd /tmp
-              //       pwd
-              //       whoami
-              // ENDSSH
-              // '''
               sh """ssh -tt root@149.165.153.12 -o "StrictHostKeyChecking no"  << EOF
                    kubectl get pods
                    kubectl rollout restart deployment/dataretrieval
                    whoami
                    pwd
-                   ls -a
-                   whoami
-                   ls -a
-                   pwd
                    exit
                    EOF"""
-              //  sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
-              //   sh 'chmod u+x /usr/local/bin/kubectl'  
-              //   sh '/usr/local/bin/kubectl get pods'
-              // sh 'kubectl get pods'
-                // sh 'whoami'
-
-               
-              //  sh 'su jenkins -s /bin/bash'
-              //  sh 'whoami'
-              //  sh 'ls -al'
-              //  sh 'pwd'
-              //  sh "echo '$KUBECONFIG'"
-              //  sh "export 'KUBECONFIG=config'"
-              //  sh 'echo "$KUBECONFIG"'
-              //  sh 'sudo su'
-              // sh 'cd "Kubernetes files"'
-              // sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
-              // sh 'chmod u+x ./kubectl'  
-              // sh '''
-              //     #!/bin/sh
-              //     sudo su
-              //     kubectl rollout restart deployment/dataretrieval
-              //     '''
-              // sh './kubectl apply -f MySQLService.yaml'
-              // sh './kubectl cluster-info'
-              // // sh './kubectl get pods'
-              // //  sh './kubectl get pods'
-
-              // //  sh './kubectl get pods'
-              //  sh './kubectl rollout restart deployment/dataretrieval'
           }
         echo "success lgoin"
          }
