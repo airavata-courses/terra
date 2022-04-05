@@ -1,9 +1,9 @@
 package team.terra.user.session.management.service;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.nio.charset.StandardCharsets;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -33,27 +33,27 @@ public class Receiver implements CommandLineRunner {
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 		DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-			byte[] byteArray = delivery.getBody();
+            String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
+            JSONParser jsonParser = new  JSONParser();
+            try {
+                JSONObject userObject = (JSONObject) jsonParser.parse(message);
+                System.out.println(userObject);
+                userActivityRequest.userId =  userObject.get("userId").toString();
+                userActivityRequest.typeOfSearch =  userObject.get("typeOfSearch").toString();
+                userActivityRequest.searchOutput =  userObject.get("searchOutput").toString();
+                userActivityRequest.tokenId =  userObject.get("tokenId").toString();
+                userActivityRequest.searchParam =  userObject.get("searchParam").toString();
+                userService.postUserActivityService(userActivityRequest);
+                
+               
+               
+            }catch (Exception err){
+                System.out.println(" [x] Error Occurred" + err.toString() );
+            }
 
-			try {
-				UserActivityRequest userActivityRequest = (UserActivityRequest) deserialize(byteArray);
-				System.out.println(" [x] Received '" + userActivityRequest.tokenId + "'");
-				userService.postUserActivityService(userActivityRequest);
-
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-
-		};
-		channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
-		});
+        };
+        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
+    		});
 
 	}
-
-	private Object deserialize(byte[] byteArray) throws IOException, ClassNotFoundException {
-		ByteArrayInputStream in = new ByteArrayInputStream(byteArray);
-		ObjectInputStream is = new ObjectInputStream(in);
-		return is.readObject();
-	}
-
 }
