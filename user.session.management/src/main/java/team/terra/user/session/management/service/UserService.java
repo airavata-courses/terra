@@ -30,6 +30,8 @@ import team.terra.user.session.management.repository.UserLogRepository;
 import team.terra.user.session.management.repository.UserRegisterRepository;
 import team.terra.user.session.management.repository.UserRepository;
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Log4j2
@@ -203,5 +205,6 @@ public class UserService {
 	private String hashPassword(String plainTextPassword){
 		return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
 	}
+	
 
 }
