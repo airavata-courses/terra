@@ -7,21 +7,43 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('gautham-dockerhub')
   }
   stages {
-    stage('Build') {
+    stage('Initialize') {
+            steps {
+                script {
+                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                }
+                git branch: 'ci-cd-setup' , url: 'https://github.com/airavata-courses/terra.git'
+            }
+        }
+    stage('Image Build') {
       steps {
-        sh 'docker build -t gauti091/data-retrieval data-retrieval-plotting-service/'
+        sh 'docker build -t gauti091/data-retrieval:linux data-retrieval-plotting-service/'
       }
     }
-    stage('Login') {
+    stage('Docker Login') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
-    stage('Push') {
+    stage('Docker Push') {
       steps {
-        sh 'docker push gauti091/data-retrieval'
+        sh 'docker push gauti091/data-retrieval:linux'
       }
     }
+    stage('Deploy image'){
+         steps{
+            sshagent(credentials:['kuber-root-some1']){
+              sh """ssh -tt root@149.165.153.12 -o "StrictHostKeyChecking no"  << EOF
+                   whoami
+                   kubectl get pods
+                   kubectl rollout restart deployment/dataretrieval
+                   pwd
+                   exit
+                   EOF"""
+          }
+        echo "success deploy"
+         }
+       }
   }
   post {
     always {
