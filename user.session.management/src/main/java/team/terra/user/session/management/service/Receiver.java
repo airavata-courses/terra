@@ -25,7 +25,7 @@ public class Receiver implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("localhost");
+		factory.setHost("rabbitmq");
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 
