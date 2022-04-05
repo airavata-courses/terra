@@ -7,43 +7,41 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('gautham-dockerhub')
   }
   stages {
-    stage('Build') {
+    stage('Initialize') {
+            steps {
+                script {
+                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                }
+                git branch: 'ci-cd-setup' , url: 'https://github.com/airavata-courses/terra.git'
+            }
+        }
+    stage('Image Build') {
       steps {
         sh 'docker build -t gauti091/user-management:linux user.session.management/'
       }
     }
-    stage('Initialize') {
-            steps {
-                //enable remote triggers
-                script {
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
-                }
-                //define scm connection for polling
-                git branch: 'ci-cd-setup' , url: 'https://github.com/airavata-courses/terra.git'
-            }
-        }
-    stage('Login') {
+    stage('Docker Login') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
-    stage('Push') {
+    stage('Docker Push') {
       steps {
         sh 'docker push gauti091/user-management:linux'
       }
     }
-    stage('login server'){
+    stage('Deploy image'){
          steps{
             sshagent(credentials:['kuber-root-some1']){
               sh """ssh -tt root@149.165.153.12 -o "StrictHostKeyChecking no"  << EOF
-                   kubectl get pods
-                   kubectl rollout restart deployment/dataretrieval
                    whoami
+                   kubectl get pods
+                   kubectl rollout restart deployment/service-sql
                    pwd
                    exit
                    EOF"""
           }
-        echo "success lgoin"
+        echo "success deploy"
          }
        }
   }
