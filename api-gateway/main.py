@@ -53,7 +53,6 @@ connection = pika.BlockingConnection(
     pika.ConnectionParameters(host='rabbitmq'))
 channel = connection.channel()
 channel.queue_declare(queue='user-activity')
-channel.queue_declare(queue='user-log')
 
 
 @app.get("/plot/v1")
@@ -61,7 +60,6 @@ async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = 
                     userId: Optional[str] = None, tokenId: Optional[str] = None):
 
     print("[In API gatway] - Calling Plot micro service - [Nexrad]")
-    print(" [RabbitMQ] Sent log details to user-activity queue'")
     params = {'start_date': start_date,
               'end_date': end_date, 'station': station}
     generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v1"
@@ -70,7 +68,7 @@ async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = 
     data = json.loads(data)
     body = {
         "userId": userId, "tokenId": tokenId, "typeOfSearch": "nex-rad-plot",
-        "searchParam": f"start_date - {start_date} end_date - {end_date} station - {station}", "searchOutput": output.text
+        "searchParam": f"{station}"[:10], "searchOutput": data['image_url'][:10]
     }
     print(body)
     channel.basic_publish(exchange='',
@@ -88,18 +86,18 @@ async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = 
                     userId: Optional[str] = None, tokenId: Optional[str] = None):
 
     print("[In API gatway] - Calling Plot micro service - [Merra]")
-    print(" [RabbitMQ] Sent log details to user-activity queue'")
+    # print(" [RabbitMQ] Sent log details to user-activity queue'")
     params = {'start_date': start_date,
               'end_date': end_date, 'station': station}
     generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v2"
     output = requests.get(generate_url, params=params)
     data = output.text
     data = json.loads(data)
-
     body = {
         "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
-        "searchParam": f"start_date - {start_date} end_date - {end_date} station - {station}", "searchOutput": output.text
+        "searchParam": f"{station}"[:10], "searchOutput": data['image_url'][:10]
     }
+    body = json.dumps(body)
     print(body)
     channel.basic_publish(exchange='',
                           routing_key='user-activity',
