@@ -93,6 +93,13 @@ def download_plot_merra2(date):
 
     # Save data into the database, to avoid replotting the same thing again and again.
     try:
+        os.remove('out.nc4')
+        os.remove('output.png')
+    except:
+        pass
+    print("File removed from local storage")
+
+    try:
         obj1 = ImagePath(filename=url, url=obj['url'])
         obj1.save()
     except:
