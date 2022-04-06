@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: my-redis
+  labels:
+    app: my-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-redis
+  template:
+    metadata:
+      labels:
+        app: my-redis
+    spec: 
+      containers: 
+      - name: my-redis
+        image: redis
+        ports:
+        - containerPort: 6379
+                
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-redis
+spec:
+  selector:
+    app: my-redis
+  type: LoadBalancer
+  ports:
+   - name: http
+     protocol: TCP
+     port: 6379
+     targetPort: 6379
+     nodePort: 30999
+
+
+  

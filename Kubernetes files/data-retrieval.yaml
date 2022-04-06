@@ -24,6 +24,17 @@ spec:
            memory: "300Mi"
          requests:
            memory: "300Mi"
+        env:
+        - name: api_key
+          valueFrom:
+            configMapKeyRef:
+              name: secrets
+              key: api_key         
+        - name: api_secret
+          valueFrom:
+            configMapKeyRef:
+              name: secrets
+              key: api_secret            
 ---
 apiVersion: v1
 kind: Service
