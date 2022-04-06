@@ -83,7 +83,7 @@ function DataRetrievalGraph(props){
             <img src = {backButton} class ='back-btn-img'></img>
           </button>
         </div>
-        <h4>Radar Data Visualization Graph </h4>
+        <h4>Radar/Meera Plot Visualization</h4>
       </div>
       <div class = 'output-image-div'>
           <img class = 'output-image' src = {state.image_url}></img>

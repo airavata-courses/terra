@@ -10,6 +10,7 @@ import DataRetrievalGraph from './DataRetrievelGraph';
 import DatePicker from "react-datepicker";
 import Select from "react-dropdown-select";
 
+import noScans from "./Assets/noScans.png";
 import backButton from "./Assets/backButton.png";
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -25,7 +26,7 @@ function DataRetrieval(props){
   const [startDate, setStartDate] = useState("2019-06-29T19:20");
   const [location, setLocation] = useState("KCLE");
   const [endDate, setEndDate] = useState("2019-07-27T20:21");
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(noScans);
 
   const [searchType, setSearchType] = useState("Data Retrieval");
   const [searchParam, setSearchParam] = useState("");
@@ -58,9 +59,9 @@ function DataRetrieval(props){
     
     let timer = null;
     timer = setInterval(() => {
-        setValue((value) => value + 10);
-      }, 600);
-    if (value === 100 || value>100){
+        setValue((value) => value + 5);
+      }, 400);
+    if (value >= 100){
       clearInterval(timer);
     }
 
@@ -84,7 +85,7 @@ function DataRetrieval(props){
     var searchParam = "location:"+location;
 
     var searchOutput = "Plot url:"+imageURL;
-    updateSearchHistory(searchType,searchParam,searchOutput);
+    //updateSearchHistory(searchType,searchParam,searchOutput);
   }; 
 
   async function getMeeraDataPlot(){
@@ -99,9 +100,9 @@ function DataRetrieval(props){
     
     let timer = null;
     timer = setInterval(() => {
-        setValue((value) => value + 10);
-      }, 600);
-    if (value === 100 || value>100){
+        setValue((value) => value + 5);
+      }, 400);
+    if (value >= 100){
       clearInterval(timer);
     }
 
@@ -125,7 +126,7 @@ function DataRetrieval(props){
     var searchParam = "location:"+location;
 
     var searchOutput = "Plot url:"+imageURL;
-    updateSearchHistory(searchType,searchParam,searchOutput);
+    //updateSearchHistory(searchType,searchParam,searchOutput);
   }; 
 
   // const interval = setInterval(() => {

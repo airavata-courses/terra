@@ -49,7 +49,7 @@ function UserHistory (){
     for(var i = 0; i < array[0].length; i++) 
     {
       result.push(
-        <tr>
+        <tr class = "table-row">
           <td>{array[0][i]}</td>
           <td>{array[1][i]}</td>
           <td>{array[2][i]}</td>
@@ -80,12 +80,14 @@ function UserHistory (){
         </div>
       </div>
       <div class ='user-history-body'>
-        <table>
-          <tr>
-            <th>Type of Search</th>
-            <th>Search Parameters</th>
-            <th>Search Output</th>
-          </tr>
+        <table class = "user-history-table">
+          <thead class = "table-header">
+            <tr class = "table-header-row">
+              <th>Type of Search</th>
+              <th>Search Parameters</th>
+              <th>Search Output</th>
+            </tr>
+          </thead>
           {renderTableRows()}
         </table>
       </div>
