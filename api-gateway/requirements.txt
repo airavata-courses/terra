@@ -3,3 +3,4 @@ uvicorn>=0.15.0,<0.16.0
 requests
 pytest
 pika == 1.1.0
+redis

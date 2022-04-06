@@ -14,11 +14,23 @@ from django.core.exceptions import ObjectDoesNotExist
 warnings.filterwarnings("ignore")
 
 # Configuration for the cloudinary file upload
+print(os.environ)
+api_key = os.environ.get('api_key')
+api_secret = os.environ.get('api_secret')
+
+# Configuration for the cloudinary file upload
+# cloudinary.config(
+#     cloud_name="dekapnfya",
+#     api_key="693518538948276",
+#     api_secret="I_V74DpPwtkwj1yQk-Ib5aAPQyQ"
+# )
+
 cloudinary.config(
     cloud_name="dekapnfya",
-    api_key="693518538948276",
-    api_secret="I_V74DpPwtkwj1yQk-Ib5aAPQyQ"
+    api_key=api_key,
+    api_secret=api_secret
 )
+
 
 SERVER = 'goldsmr4.gesdisc.eosdis.nasa.gov'
 PATH = 'data/MERRA2_MONTHLY/M2TMNXSLV.5.12.4'
@@ -101,7 +113,7 @@ def download_plot_merra2(date):
 
     try:
         obj1 = ImagePath(filename=url, url=obj['url'])
-        obj1.save()
+        # obj1.save()
     except:
         print("Object already exists")
         obj = ImagePath.objects.get(filename=url)

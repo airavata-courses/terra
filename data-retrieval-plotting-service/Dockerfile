@@ -67,6 +67,8 @@ WORKDIR /app
 COPY requirements.txt /app/requirements.txt
 # Download latest listing of available packages:
 RUN apt-get -y update
+ARG login=na
+ARG password=na
 # Upgrade already installed packages:
 RUN apt-get -y upgrade
 RUN apt-get install -y libproj-dev proj-bin proj-data
@@ -76,7 +78,8 @@ RUN pip install --no-binary shapely shapely
 RUN pip install cartopy==0.19.0.post1
 RUN pip install -r requirements.txt
 RUN touch $HOME/.netrc 
-RUN echo "machine urs.earthdata.nasa.gov login terraB649 password Gowthamch@091" >> $HOME/.netrc
+RUN echo "machine urs.earthdata.nasa.gov login $login password $password" >> $HOME/.netrc
+# RUN echo "machine urs.earthdata.nasa.gov login $login password $password" >> $HOME/.netrc
 RUN chmod 0600 $HOME/.netrc
 RUN touch $HOME/.urs_cookies
 RUN apt-get install -y wget
