@@ -93,8 +93,8 @@ def download_plot_merra2(date):
 
     # Save data into the database, to avoid replotting the same thing again and again.
     try:
-        os.remove('out.nc4')
-        os.remove('output.png')
+        os.remove('download_data/merra_data/out.nc4')
+        os.remove('download_data/merra_data/output.png')
     except:
         pass
     print("File removed from local storage")
