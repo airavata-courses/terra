@@ -29,8 +29,6 @@ spec:
   selector:
     app: gateway
   type: LoadBalancer
-  externalIPs:
-  - 127.0.0.1
   ports:
    - protocol: TCP
      port: 8008
