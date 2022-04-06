@@ -12,7 +12,7 @@ pipeline {
                 script {
                     properties([pipelineTriggers([pollSCM('* * * * *')])])
                 }
-                git branch: 'ci-cd-setup' , url: 'https://github.com/airavata-courses/terra.git'
+                git branch: 'react-front-end' , url: 'https://github.com/airavata-courses/terra.git'
             }
         }
     stage('Image Build') {
