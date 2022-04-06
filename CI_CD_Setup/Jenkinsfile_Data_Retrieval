@@ -17,7 +17,8 @@ pipeline {
         }
     stage('Image Build') {
       steps {
-        sh 'docker build -t gauti091/data-retrieval:linux data-retrieval-plotting-service/'
+        // sh 'docker build -t gauti091/data-retrieval:linux data-retrieval-plotting-service/'
+        sh 'docker build  --build-arg login=terraB649 --build-arg password=Gowthamch@091 -t gauti091/data-retrieval:linux data-retrieval-plotting-service/'
       }
     }
     stage('Docker Login') {
