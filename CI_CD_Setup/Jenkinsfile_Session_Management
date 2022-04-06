@@ -38,6 +38,7 @@ pipeline {
                    kubectl get pods
                    kubectl rollout restart deployment/service-sql
                    pwd
+                   ls -a
                    ls
                    exit
                    EOF"""
