@@ -26,12 +26,12 @@ spec:
          requests:
            memory: "300Mi"
         env:
-        - name: api_key
+        - name: API_KEY
           valueFrom:
             configMapKeyRef:
               name: secrets
               key: api_key         
-        - name: api_secret
+        - name: API_SECRET
           valueFrom:
             configMapKeyRef:
               name: secrets
