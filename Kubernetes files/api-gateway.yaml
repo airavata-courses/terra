@@ -17,6 +17,7 @@ spec:
       containers: 
       - name: gateway
         image: gauti091/api-gateway:linux
+        imagePullPolicy: Always
         ports:
         - containerPort: 8008
 ---

@@ -17,6 +17,7 @@ spec:
       containers: 
       - name: weather-forecast
         image: gauti091/weather-forecast:linux
+        imagePullPolicy: Always
         ports:
         - containerPort: 8004
         resources:

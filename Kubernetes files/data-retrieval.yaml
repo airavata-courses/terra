@@ -17,6 +17,7 @@ spec:
       containers: 
       - name: dataretrieval
         image: gauti091/data-retrieval:linux
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         resources:
