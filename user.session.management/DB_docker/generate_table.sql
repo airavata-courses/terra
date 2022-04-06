@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS user_activity_entity (
 	user_id				INT,
 	token_id 			VARCHAR(100),
 	type_of_search 		VARCHAR(20),
-	search_output		VARCHAR(200),
+	search_output		VARCHAR(500),
 	search_param		VARCHAR(80)
 );
 
