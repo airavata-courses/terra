@@ -14,10 +14,11 @@ from django.core.exceptions import ObjectDoesNotExist
 warnings.filterwarnings("ignore")
 
 # Configuration for the cloudinary file upload
-print(os.environ)
+# print(os.environ)
 api_key = os.environ.get('api_key')
 api_secret = os.environ.get('api_secret')
-
+print(api_key)
+print(api_secret)
 # Configuration for the cloudinary file upload
 # cloudinary.config(
 #     cloud_name="dekapnfya",
