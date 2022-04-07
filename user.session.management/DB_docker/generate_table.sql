@@ -5,7 +5,7 @@ USE team_terra;
 DROP TABLE IF EXISTS user_entity;
 DROP TABLE IF EXISTS user_log_entity;
 DROP TABLE IF EXISTS user_activity_entity;
-DROP TABLE IF EXISTS user_register_entity
+DROP TABLE IF EXISTS user_register_entity;
 
 
 CREATE TABLE IF NOT EXISTS user_entity (
