@@ -133,7 +133,7 @@ def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, 
         channel.basic_publish(exchange='',
                               routing_key='user-activity',
                               body=out)
-        print(" [RabbitMQ] Sent log details to user-activity queue'")
+        print(" [RabbitMQ] Sent log details to user-actvity queue'")
 
     out = json.loads(out)
     return out

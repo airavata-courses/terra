@@ -1,0 +1,21 @@
+backend_1  | Acquiring lock
+backend_1  | Time taken to acquire lock is  0.0015933513641357422
+backend_1  | Acquiring lock
+backend_1  | Acquiring lock
+backend_1  | Acquiring lock
+backend_1  | doing work
+backend_1  | [In API gatway] - Calling Plot micro service - [Nexrad]
+backend_1  | Acquiring lock
+backend_1  | INFO:     172.18.0.1:59620 - "GET /plot/v1?start_date=2015-01-20T19:20&station=KCLE&end_date=2017-01-21T19:20&userId=100001&tokenId=test HTTP/1.1" 200 OK
+backend_1  | Time taken to acquire lock is  21.80249309539795
+backend_1  | present in redis cache
+backend_1  | INFO:     172.18.0.1:59622 - "GET /plot/v1?start_date=2015-01-20T19:20&station=KCLE&end_date=2017-01-21T19:20&userId=100001&tokenId=test HTTP/1.1" 200 OK
+backend_1  | Time taken to acquire lock is  21.803356170654297
+backend_1  | present in redis cache
+backend_1  | INFO:     172.18.0.1:59624 - "GET /plot/v1?start_date=2015-01-20T19:20&station=KCLE&end_date=2017-01-21T19:20&userId=100001&tokenId=test HTTP/1.1" 200 OK
+backend_1  | Time taken to acquire lock is  21.846606254577637
+backend_1  | present in redis cache
+backend_1  | INFO:     172.18.0.1:59630 - "GET /plot/v1?start_date=2015-01-20T19:20&station=KCLE&end_date=2017-01-21T19:20&userId=100001&tokenId=test HTTP/1.1" 200 OK
+backend_1  | Time taken to acquire lock is  21.904634952545166
+backend_1  | present in redis cache
+backend_1  | INFO:     172.18.0.1:59628 - "GET /plot/v1?start_date=2015-01-20T19:20&station=KCLE&end_date=2017-01-21T19:20&userId=100001&tokenId=test HTTP/1.1" 200 OK
