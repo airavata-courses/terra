@@ -10,7 +10,7 @@ function Intro (){
     <div class="intro-container">
       <div class="header">
         <h1> Welcome to Team Terra </h1>
-          <h2> Project 1 </h2>
+          <h2> NASA Data Anlysis Portal </h2>
       </div>
       <LoginMain />
     </div>

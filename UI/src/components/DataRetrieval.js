@@ -80,12 +80,11 @@ function DataRetrieval(props){
       navigate(`/dashboard/data/graph`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType, 'startDate':startDate, 'endDate': endDate, 'location': location, 'image_url': json.image_url}});
       setImageURL(json.image_url);
     }
-    console.log(imageURL);
+    console.log(json.image_url);
     var searchType = "Radar Plot";
-    var searchParam = "location:"+location;
-
-    var searchOutput = "Plot url:"+imageURL;
-    //updateSearchHistory(searchType,searchParam,searchOutput);
+    var searchParam = `start_date=`+startDate+`&station=`+location+`&end_date=`
+    var searchOutput = "Plot url:"+json.image_url;
+    updateSearchHistory(searchType,searchParam,searchOutput);
   }; 
 
   async function getMeeraDataPlot(){
@@ -121,12 +120,11 @@ function DataRetrieval(props){
       navigate(`/dashboard/data/graph`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType, 'startDate':startDate, 'endDate': endDate, 'location': location, 'image_url': json.image_url}});
       setImageURL(json.image_url);
     }
-    console.log(imageURL);
-    var searchType = "Meera Data Plot";
-    var searchParam = "location:"+location;
-
-    var searchOutput = "Plot url:"+imageURL;
-    //updateSearchHistory(searchType,searchParam,searchOutput);
+    console.log(json.image_url);
+    var searchType = "Meera Plot";
+    var searchParam = `start_date=`+startDate+`&station=`+location+`&end_date=`+endDate;
+    var searchOutput = "Plot url:"+json.image_url;
+    updateSearchHistory(searchType,searchParam,searchOutput);
   }; 
 
   // const interval = setInterval(() => {
