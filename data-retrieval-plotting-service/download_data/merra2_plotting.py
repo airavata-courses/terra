@@ -114,7 +114,7 @@ def download_plot_merra2(date):
 
     try:
         obj1 = ImagePath(filename=url, url=obj['url'])
-        # obj1.save()
+        obj1.save()
     except:
         print("Object already exists")
         obj = ImagePath.objects.get(filename=url)

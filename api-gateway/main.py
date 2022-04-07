@@ -68,75 +68,40 @@ channel = connect_rabbitmq()
 def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None,
               userId: Optional[str] = None, tokenId: Optional[str] = None):
 
-    def do_work():
+    print("[In API gatway] - Calling Plot micro service - [Nex-Rad]")
+    # print(" [RabbitMQ] Sent log details to user-activity queue'")
+    params = {'start_date': start_date,
+              'end_date': end_date, 'station': station}
+    generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v1"
+    output = requests.get(generate_url, params=params)
+    data = output.text
 
-        print("[In API gatway] - Calling Plot micro service - [Nexrad]")
-        params = {'start_date': start_date,
-                  'end_date': end_date, 'station': station}
-        generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v1"
-        print(generate_url)
-        output = requests.get(generate_url, params=params)
-        data = output.text
-        data = json.loads(data)
-        if data == 'No scans available for the selected inputs':
-            searchOutput = data
-        else:
-            searchOutput = data['image_url']
-
-        body = {
-            "userId": userId, "tokenId": tokenId, "typeOfSearch": "nex-rad-plot",
-            "searchParam": f"{station}"[:10], "searchOutput": searchOutput[:10]
-        }
-        print(body)
-        body = json.dumps(body)
-
-        return data
-
-    redis_key = f"radar-{start_date}-{end_date}-{station}"
-    redis_lock = f"radar-{start_date}-{end_date}-{station} - lock"
-
-    if r.get(redis_key) == None:
-        print("Acquiring lock")
-        lock = redis.lock.Lock(r, name=redis_lock, timeout=10)
-        isAcquired = lock.acquire(blocking=True, blocking_timeout=100)
-        if isAcquired == True:
-            # Need to double check again, if the current process was waiting for the lock and the other process has completed the work
-            # And put that in the queue
-
-            if r.get(redis_key) == None:
-                print("doing work")
-                out = do_work()
-                out = json.dumps(out)
-                r.set(redis_key, out)
-            else:
-                print("present in redis cache")
-                out = r.get(redis_key)
-            try:
-                lock.release()
-            except:
-                print("Lock released")
-        else:
-            out = do_work()
-            print("Lock is not acquired")
+    data = json.loads(data)
+    if data == 'No scans available for the selected inputs':
+        searchOutput = data
     else:
-        print("present in redis cache")
-        out = r.get(redis_key)
-
+        searchOutput = data['image_url']
+    # data = json.loads(data)
+    body = {
+        "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
+        "searchParam": f"{station}"[:10], "searchOutput": searchOutput
+    }
+    body = json.dumps(body)
+    print(body)
     time.sleep(0.2)
     try:
         channel.basic_publish(exchange='',
                               routing_key='user-activity',
-                              body=out)
+                              body=body)
         print(" [RabbitMQ] Sent log details to user-activity queue'")
     except:
         channel = connect_rabbitmq()
         channel.basic_publish(exchange='',
                               routing_key='user-activity',
-                              body=out)
+                              body=body)
         print(" [RabbitMQ] Sent log details to user-activity queue'")
 
-    out = json.loads(out)
-    return out
+    return data
 
 
 # API path for meera-2 plotting

@@ -196,7 +196,7 @@ def do_plot(start_date, radar_station, end_date):
     # Save data into the database, to avoid replotting the same thing again and again.
     try:
         obj1 = ImagePath(filename=filename, url=obj['url'])
-        # obj1.save()
+        obj1.save()
     except:
         print("Object already exists")
         obj = ImagePath.objects.get(filename=obj.filename)
