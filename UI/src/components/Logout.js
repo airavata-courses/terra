@@ -1,13 +1,16 @@
 import React from 'react';
 import { GoogleLogout } from 'react-google-login';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
+import './CSS/Intro.css';
 
 const clientId =
-  '569132373426-7489nb9994vo9hpirmvff5e6vhh447d6.apps.googleusercontent.com';
+  '569132373426-sjt4hee4cptno1r7up7ulqup9senjn4d.apps.googleusercontent.com';
 
-function Logout() {
-  
+function Logout(props) {
   const navigate = useNavigate();
+
+  const loginType = props.loginType;
 
   const onSuccess = () => {
     console.log('Logout made successfully');
@@ -16,12 +19,23 @@ function Logout() {
   };
 
   return (
-    <div class = 'logout-btn'>
-      <GoogleLogout
-        clientId={clientId}
-        buttonText="Logout"
-        onLogoutSuccess={onSuccess}
-      ></GoogleLogout>
+    <div>
+    {
+      loginType == "Google" &&
+      <div class = 'google-logout-btn'>
+        <GoogleLogout
+          clientId={clientId}
+          buttonText="Logout"
+          onLogoutSuccess={onSuccess}
+        ></GoogleLogout>
+      </div>
+    }
+    {
+      loginType == "Non-Google" &&
+      <div class = 'logout-btn-container'>
+        <button class = 'logout-btn' onClick={onSuccess}>Logout</button>
+      </div>
+    }
     </div>
   );
 }

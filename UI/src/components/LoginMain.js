@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './CSS/Intro.css';
 import Header from './Header';
 import SideNav from './SideNav';
+import Login from './Login';
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -12,8 +13,14 @@ function LoginMain (){
   const API = "http://localhost:8008";
   const API2 = "http://localhost:8888";
 
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
+
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+
+  const [loginType, setLoginType] = useState('');
   
   async function loginUser(){
     const body_activity = {
@@ -23,7 +30,9 @@ function LoginMain (){
     console.log(body_activity);
     console.log("Logging in user");
     
-    const response = await fetch(API + `/user/authentication`, 
+    setLoginType('Non-Google');
+
+    const response = await fetch(api + `/user/authentication`, 
     {method: "POST" , 
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body_activity)});
@@ -32,7 +41,7 @@ function LoginMain (){
     const json = await response.json();
     console.log(json);
     if(json.response == "Correct password!"){
-      navigate(`/dashboard`, {state: {userId: json.userId, emailId: emailId , name : emailId}});
+      navigate(`/dashboard`, {state: {userId: json.userId, emailId: emailId , name : emailId, loginType: 'Non-Google'}});
     }
     else{
       alert(json.response)
@@ -64,8 +73,15 @@ function LoginMain (){
         <input class="pass" type="password" placeholder="Password" onChange={(event) => updatePassword(event)}/>
       </form>
       <div class = 'btn-div'>
-        <button class="sign-in-btn" onClick={loginUser}>Sign in</button>
-        <button class="register-btn" onClick={navigateRegisterPage}>Register?</button>
+          <button class="login-btn" onClick={loginUser}>Sign in</button>
+      </div>
+      <div class = 'btn-div'>
+        <p>Or</p>
+        <button class="register-btn" onClick={navigateRegisterPage}>Click here to Register</button>
+      </div>
+      <div class = 'google-login-div'>
+        <p>Or</p>
+        <Login />  
       </div>
     </div>
   );

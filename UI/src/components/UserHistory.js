@@ -18,12 +18,16 @@ function UserHistory (){
   const [userHistory, setUserHistory] = useState("");
 
   const API = "http://localhost:8008";
+  
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
 
   const [isHistoryNull, setIsHistoryNull] = useState(true);
 
   async function getUserHistory(){
     console.log("Getting User History")
-    const response = await fetch(API + `/user/activity?userId=`+state.userId, {method: "GET", headers: { 'Content-Type': 'application/json' }});
+    const response = await fetch(api + `/user/activity?userId=`+state.userId, {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
     const json = await response.json();
     console.log(json);
@@ -45,7 +49,7 @@ function UserHistory (){
     for(var i = 0; i < array[0].length; i++) 
     {
       result.push(
-        <tr>
+        <tr class = "table-row">
           <td>{array[0][i]}</td>
           <td>{array[1][i]}</td>
           <td>{array[2][i]}</td>
@@ -58,12 +62,12 @@ function UserHistory (){
     
   const onClick_back = () => {
     console.log('Main Dashboard Page');
-    navigate(`/dashboard`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId}});
+    navigate(`/dashboard`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType}});
   };
   
   return (
     <div class = 'service-container'>
-      <Header name={state.name}/>
+      <Header name={state.name} loginType={state.loginType} />
       <div class = 'service-page-header'>
         <div class = 'back-btn-div'>
           <button class ='back-btn' onClick={onClick_back}>
@@ -76,12 +80,14 @@ function UserHistory (){
         </div>
       </div>
       <div class ='user-history-body'>
-        <table>
-          <tr>
-            <th>Type of Search</th>
-            <th>Search Parameters</th>
-            <th>Search Output</th>
-          </tr>
+        <table class = "user-history-table">
+          <thead class = "table-header">
+            <tr class = "table-header-row">
+              <th>Type of Search</th>
+              <th>Search Parameters</th>
+              <th>Search Output</th>
+            </tr>
+          </thead>
           {renderTableRows()}
         </table>
       </div>

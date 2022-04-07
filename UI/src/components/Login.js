@@ -1,5 +1,5 @@
 import React,{Component, useState} from 'react';
-
+import './CSS/Intro.css';
 import { GoogleLogin } from 'react-google-login';
 // refresh token
 import { refreshTokenSetup } from '../utils/refreshToken';
@@ -7,7 +7,7 @@ import { useNavigate, useHistory } from "react-router-dom";
 import { render } from '@testing-library/react';
 
 const clientId =
-  '569132373426-7489nb9994vo9hpirmvff5e6vhh447d6.apps.googleusercontent.com';
+  '569132373426-sjt4hee4cptno1r7up7ulqup9senjn4d.apps.googleusercontent.com';
 
 function Login() {
 
@@ -17,21 +17,57 @@ function Login() {
   const [name, setName] = useState('');
   const [accessToken, setAccessToken] = useState('');
   const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('asdfghjkl');
+  const [loginType, setLoginType] = useState('');
   
   const API = "http://localhost:8008";
   const API2 = "http://localhost:8888";
+
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
+
+  async function loginUserId(res){
+    console.log("Logging using Google SSO");
+    
+    const body_activity = {
+      "emailId" : res.profileObj.email,
+      "password": password
+    }
+    console.log(body_activity);
+    
+    setLoginType('Google');
+
+    const response = await fetch(api + `/user/authentication`, 
+    {method: "POST" , 
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body_activity)});
+    
+    console.log(response);
+    const json = await response.json();
+    console.log(json);
+    if(json.response == "Correct password!" || json.response == "User Exists with same emailId"){
+      navigate(`/dashboard`, {state: {userId: json.userId, emailId: res.profileObj.email , name :  res.profileObj.email, loginType: 'Google'}});
+    }
+    else{
+      console.log(json.response);
+      registerUserId(res)
+    }
+  }
 
   async function registerUserId(res){
     const body_activity = {
       "userName": res.profileObj.email,
       "emailId" : res.profileObj.email,
       "password": "asdfghjkl"
-
     }
     console.log(body_activity);
+
+    setLoginType('Google')
+
     console.log("Registering user Id for Google Account");
     
-    const response = await fetch(API + `/user/register`, 
+    const response = await fetch(api + `/user/register`, 
     {method: "POST" , 
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body_activity)});
@@ -40,8 +76,7 @@ function Login() {
     const json = await response.json();
     console.log(json);
     if(json.response == null){
-      navigate('/')
-      //navigate(`/dashboard`, {state: {userId: json.userId, emailId: res.profileObj.email , name : res.profileObj.name}});
+      navigate(`/dashboard`, {state: {userId: json.userId, emailId: emailId , name : emailId, loginType: 'Google'}});
     }
     else{
       alert(json.response)
@@ -54,7 +89,7 @@ function Login() {
     //   `Logged in successfully! Welcome ${res.profileObj.name}`
     // );
     refreshTokenSetup(res);
-    registerUserId(res);
+    loginUserId(res);
   };
 
   const onFailure = (res) => {
@@ -65,11 +100,11 @@ function Login() {
   };
   
   return (
-    <div class = 'login-btn'>
+    <div class = 'google-login-btn'>
       <GoogleLogin
         clientId={clientId}
-        buttonText="Login"
-        onSuccess={registerUserId}
+        buttonText="Google"
+        onSuccess={loginUserId}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
         style={{ marginTop: '100px' }}

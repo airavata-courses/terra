@@ -11,8 +11,8 @@ function Dashboard (){
 
   return (
     <div class ='container'>
-        <Header name={state.name} />
-        <SideNav name={state.name} emailId={state.emailId} userId={state.userId} />
+        <Header name={state.name} loginType={state.loginType} />
+        <SideNav name={state.name} emailId={state.emailId} userId={state.userId} loginType={state.loginType}/>
     </div>
   );
 }

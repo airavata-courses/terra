@@ -8,20 +8,21 @@ function SideNav (props){
   const userId = props.userId;
   const emailId = props.emailId;
   const name = props.name;
+  const loginType = props.loginType;
 
   const onClick_DataRetrieval = () => {
     console.log('Data Retrieval Page');
-    navigate(`/dashboard/data`, {state: {'name': name,'userId':userId, 'emailId':emailId}});
+    navigate(`/dashboard/data`, {state: {'name': name,'userId':userId, 'emailId':emailId, 'loginType':loginType}});
   };
 
   const onClick_WeatherForecasting = () => {
     console.log('Weather Forecasting Page');
-    navigate(`/dashboard/weather`, {state: {'name': name, 'userId':userId, 'emailId':emailId}});
+    navigate(`/dashboard/weather`, {state: {'name': name, 'userId':userId, 'emailId':emailId, 'loginType':loginType}});
   };
 
   const onClick_UserHistory = () => {
     console.log('User History Page');
-    navigate(`/dashboard/history`, {state: {'name': name, 'userId':userId, 'emailId':emailId}});
+    navigate(`/dashboard/history`, {state: {'name': name, 'userId':userId, 'emailId':emailId, 'loginType':loginType}});
   };
 
   return (

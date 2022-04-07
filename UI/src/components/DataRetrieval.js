@@ -1,18 +1,24 @@
-import React,{useState, Fragment} from 'react';
+import React,{useState,useEffect, Fragment} from 'react';
 import './CSS/Dashboard.css';
 
+import ProgressBar from "./Progress";
+
 import Header from './Header';
+import WeatherForecast from './WeatherForecast';
+import DataRetrievalGraph from './DataRetrievelGraph';
+
 import DatePicker from "react-datepicker";
 import Select from "react-dropdown-select";
 
-import backButton from "./Assets/backButton.png"
+import noScans from "./Assets/noScans.png";
+import backButton from "./Assets/backButton.png";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { render } from '@testing-library/react';
 import TextField from '@material-ui/core/TextField';
 
 
-function DataRetrieval (){
+function DataRetrieval(props){
 
   const navigate = useNavigate();
   const {state} = useLocation();
@@ -20,76 +26,134 @@ function DataRetrieval (){
   const [startDate, setStartDate] = useState("2019-06-29T19:20");
   const [location, setLocation] = useState("KCLE");
   const [endDate, setEndDate] = useState("2019-07-27T20:21");
-  const [imageURL, setImageURL] = useState("");
+  const [imageURL, setImageURL] = useState(noScans);
 
-  const [minTemp, setMinTemp] = useState(0.00);
-  const [maxTemp, setMaxTemp] = useState(0.00);
-  const [humidity, setHumidity] = useState(0);
-  const [pressure, setPressure] = useState(0);
-  const [weather, setWeatherState] = useState("");
-  const [weather_desc, setWeatherDesc] = useState("");
-  
-  const [searchType, setSearchType] = useState("Radar Plot");
+  const [searchType, setSearchType] = useState("Data Retrieval");
   const [searchParam, setSearchParam] = useState("");
   const [searchOutput, setSearchOutput] = useState("")
   
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [isImageGenerated, setIsImageGenerated] = useState(false);
-  const [isForecast, setIsForecast] = useState(false);
+  const [isProgressBarVisible, setIsProgressBarVisible] = useState(false);
+
+  var isProgressBarVisible2 = false;
 
   const location_options = [{value:'KABC',label:'KABC'},{value:'KABR',label:'KABR'},{value:'KABX',label:'KABX'},{value:'KACG',label:'KACG'},{value:'KAEC',label:'KAEC'},{value:'KAHG',label:'KAHG'},{value:'KAIH',label:'KAIH'},{value:'KAKC',label:'KAKC'},{value:'KAKQ',label:'KAKQ'},{value:'KAMA',label:'KAMA'},{value:'KAMX',label:'KAMX'},{value:'KAPD',label:'KAPD'},{value:'KAPX',label:'KAPX'},{value:'KARX',label:'KARX'},{value:'KATX',label:'KATX'},{value:'KBBX',label:'KBBX'},{value:'KBGM',label:'KBGM'},{value:'KBHX',label:'KBHX'},{value:'KBIS',label:'KBIS'},{value:'KBLX',label:'KBLX'},{value:'KBMX',label:'KBMX'},{value:'KBOX',label:'KBOX'},{value:'KBRO',label:'KBRO'},{value:'KBUF',label:'KBUF'},{value:'KBYX',label:'KBYX'},{value:'KCAE',label:'KCAE'},{value:'KCBW',label:'KCBW'},{value:'KCBX',label:'KCBX'},{value:'KCCX',label:'KCCX'},{value:'KCLE',label:'KCLE'},{value:'KCLX',label:'KCLX'},{value:'KCRI',label:'KCRI'},{value:'KCRP',label:'KCRP'},{value:'KCXX',label:'KCXX'},{value:'KCYS',label:'KCYS'},{value:'KDAX',label:'KDAX'},{value:'KDDC',label:'KDDC'},{value:'KDFX',label:'KDFX'},{value:'KDGX',label:'KDGX'},{value:'KDIX',label:'KDIX'},{value:'KDLH',label:'KDLH'},{value:'KDMX',label:'KDMX'},{value:'KDOX',label:'KDOX'},{value:'KDTX',label:'KDTX'},{value:'KDVN',label:'KDVN'},{value:'KDYX',label:'KDYX'},{value:'KEAX',label:'KEAX'},{value:'KEMX',label:'KEMX'},{value:'KENX',label:'KENX'},{value:'KEOX',label:'KEOX'},{value:'KEPZ',label:'KEPZ'},{value:'KESX',label:'KESX'},{value:'KEVX',label:'KEVX'},{value:'KEWX',label:'KEWX'},{value:'KEYX',label:'KEYX'},{value:'KFCX',label:'KFCX'},{value:'KFDR',label:'KFDR'},{value:'KFDX',label:'KFDX'},{value:'KFFC',label:'KFFC'},{value:'KFSD',label:'KFSD'},{value:'KFSX',label:'KFSX'},{value:'KFTG',label:'KFTG'},{value:'KFWS',label:'KFWS'},{value:'KGGW',label:'KGGW'},{value:'KGJX',label:'KGJX'},{value:'KGLD',label:'KGLD'},{value:'KGRB',label:'KGRB'},{value:'KGRK',label:'KGRK'},{value:'KGRR',label:'KGRR'},{value:'KGSP',label:'KGSP'},{value:'KGUA',label:'KGUA'},{value:'KGWX',label:'KGWX'},{value:'KGYX',label:'KGYX'},{value:'KHDX',label:'KHDX'},{value:'KHGX',label:'KHGX'},{value:'KHKI',label:'KHKI'},{value:'KHKM',label:'KHKM'},{value:'KHMO',label:'KHMO'},{value:'KHNX',label:'KHNX'},{value:'KHPX',label:'KHPX'},{value:'KHTX',label:'KHTX'},{value:'KHWA',label:'KHWA'},{value:'KICT',label:'KICT'},{value:'KICX',label:'KICX'},{value:'KILN',label:'KILN'},{value:'KILX',label:'KILX'},{value:'KIND',label:'KIND'},{value:'KINX',label:'KINX'},{value:'KIWA',label:'KIWA'},{value:'KIWX',label:'KIWX'},{value:'KJAN',label:'KJAN'},{value:'KJAX',label:'KJAX'},{value:'KJGX',label:'KJGX'},{value:'KJKL',label:'KJKL'},{value:'KJUA',label:'KJUA'},{value:'KLBB',label:'KLBB'},{value:'KLCH',label:'KLCH'},{value:'KLIX',label:'KLIX'},{value:'KLNX',label:'KLNX'},{value:'KLOT',label:'KLOT'},{value:'KLRX',label:'KLRX'},{value:'KLSX',label:'KLSX'},{value:'KLTX',label:'KLTX'},{value:'KLVX',label:'KLVX'},{value:'KLWX',label:'KLWX'},{value:'KLZK',label:'KLZK'},{value:'KMAF',label:'KMAF'},{value:'KMAX',label:'KMAX'},{value:'KMBX',label:'KMBX'},{value:'KMHX',label:'KMHX'},{value:'KMKX',label:'KMKX'},{value:'KMLB',label:'KMLB'},{value:'KMOB',label:'KMOB'},{value:'KMPX',label:'KMPX'},{value:'KMQT',label:'KMQT'},{value:'KMRX',label:'KMRX'},{value:'KMSX',label:'KMSX'},{value:'KMTX',label:'KMTX'},{value:'KMUX',label:'KMUX'},{value:'KMVX',label:'KMVX'},{value:'KMXX',label:'KMXX'},{value:'KNKX',label:'KNKX'},{value:'KNQA',label:'KNQA'},{value:'KOAX',label:'KOAX'},{value:'KOHX',label:'KOHX'},{value:'KOKX',label:'KOKX'},{value:'KOTX',label:'KOTX'},{value:'KPAH',label:'KPAH'},{value:'KPBZ',label:'KPBZ'},{value:'KPDT',label:'KPDT'},{value:'KPOE',label:'KPOE'},{value:'KPUX',label:'KPUX'},{value:'KRAX',label:'KRAX'},{value:'KRGX',label:'KRGX'},{value:'KRIW',label:'KRIW'},{value:'KRLX',label:'KRLX'},{value:'KRTX',label:'KRTX'},{value:'KSFX',label:'KSFX'},{value:'KSGF',label:'KSGF'},{value:'KSHV',label:'KSHV'},{value:'KSJT',label:'KSJT'},{value:'KSOX',label:'KSOX'},{value:'KSRX',label:'KSRX'},{value:'KTBW',label:'KTBW'},{value:'KTFX',label:'KTFX'},{value:'KTLH',label:'KTLH'},{value:'KTLX',label:'KTLX'},{value:'KTWX',label:'KTWX'},{value:'KTYX',label:'KTYX'},{value:'KUDX',label:'KUDX'},{value:'KUEX',label:'KUEX'},{value:'KVAX',label:'KVAX'},{value:'KVBX',label:'KVBX'},{value:'KVNX',label:'KVNX'},{value:'KVTX',label:'KVTX'},{value:'KVWX',label:'KVWX'},{value:'KYUX',label:'KYUX'},{value:'NOP3',label:'NOP3'},{value:'TJUA',label:'TJUA'}]
 
   const API = "http://localhost:8008"
   const API2 = "http://localhost:8888"
+
+  require('dotenv').config()
+  const api = process.env.REACT_APP_API;
+  console.log(api)
   
-  async function getImageUrl(){
+  async function getRadarPlotImage(){
     console.log("Start Date: " + startDate);
     console.log("End Date: " + endDate);
     console.log("Location: " + location);
-  
+    
     console.log("Generating Radar Plot")
     setIsButtonClicked(true);
-    const response = await fetch(API + `/plot?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate, 
+
+    setIsProgressBarVisible(true);
+    
+    let timer = null;
+    timer = setInterval(() => {
+        setValue((value) => value + 5);
+      }, 400);
+    if (value >= 100){
+      clearInterval(timer);
+    }
+
+    const response = await fetch(api + `/plot/v1?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate+`&userId=`+state.userId+`&tokenId=`+state.emailId, 
     {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
+    
     const json = await response.json();
     console.log(json);
     if (json == 'No scans available for the selected inputs'){
       setIsImageGenerated(false);
+      navigate(`/dashboard/data/graph`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType, 'startDate':startDate, 'endDate': endDate, 'location': location, 'image_url': imageURL}});
     }
-    setIsImageGenerated(true);
-    setImageURL(json.image_url);
-    setIsForecast(false);
-
+    else{
+      setIsImageGenerated(true);
+      navigate(`/dashboard/data/graph`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType, 'startDate':startDate, 'endDate': endDate, 'location': location, 'image_url': json.image_url}});
+      setImageURL(json.image_url);
+    }
+    console.log(json.image_url);
     var searchType = "Radar Plot";
-    var searchParam = "location:"+location;
-
-    var searchOutput = "plot is saved in the local files";
+    var searchParam = `start_date=`+startDate+`&station=`+location+`&end_date=`
+    var searchOutput = "Plot url:"+json.image_url;
     updateSearchHistory(searchType,searchParam,searchOutput);
+  }; 
 
-  };
+  async function getMeeraDataPlot(){
+    console.log("Start Date: " + startDate);
+    console.log("End Date: " + endDate);
+    console.log("Location: " + location);
+    
+    console.log("Generating Meera Plot")
+    setIsButtonClicked(true);
 
-  async function generateWeatherForecast(){
-    console.log("Getting Weather Forecast");
-    const response = await fetch(API + `/weather?start_date=`+startDate+`&station=`+location, {method: "GET"});
+    setIsProgressBarVisible(true);
+    
+    let timer = null;
+    timer = setInterval(() => {
+        setValue((value) => value + 5);
+      }, 400);
+    if (value >= 100){
+      clearInterval(timer);
+    }
+
+    const response = await fetch(api + `/plot/v2?start_date=`+startDate+`&station=`+location+`&end_date=`+endDate+`&userId=`+state.userId+`&tokenId=`+state.emailId, 
+    {method: "GET", headers: { 'Content-Type': 'application/json' }});
     console.log(response);
+    
     const json = await response.json();
     console.log(json);
-
-    setMinTemp(json.temp_min);
-    setMaxTemp(json.temp_max);
-    setHumidity(json.humidity);
-    setPressure(json.pressure);
-    setWeatherState(json.weather);
-    setWeatherDesc(json.weather_description);
-    setIsForecast(true);
-
-    var searchType = "Weather Forecast";
-    var searchParam = "location:"+location;
-    var searchOutput = "weather:"+json.weather;
+    if (json == 'No scans available for the selected inputs'){
+      setIsImageGenerated(false);
+      navigate(`/dashboard/data/graph`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType, 'startDate':startDate, 'endDate': endDate, 'location': location, 'image_url': imageURL}});
+    }
+    else{
+      setIsImageGenerated(true);
+      navigate(`/dashboard/data/graph`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType, 'startDate':startDate, 'endDate': endDate, 'location': location, 'image_url': json.image_url}});
+      setImageURL(json.image_url);
+    }
+    console.log(json.image_url);
+    var searchType = "Meera Plot";
+    var searchParam = `start_date=`+startDate+`&station=`+location+`&end_date=`+endDate;
+    var searchOutput = "Plot url:"+json.image_url;
     updateSearchHistory(searchType,searchParam,searchOutput);
+  }; 
 
-  }
+  // const interval = setInterval(() => {
+  //   setValue(oldValue => {
+  //     const newValue = oldValue + 10;
+
+  //     if (newValue === 100) {
+  //       clearInterval(interval);
+  //     }
+
+  //     return newValue;
+  //   });
+  // }, 1000);
+
+  // useEffect(() => {
+  //   let timer = null;
+  //   if(setIsProgressBarVisible){
+  //     timer = setInterval(() => {
+  //       setValue((value) => value + 1);
+  //     }, 100);
+
+  //     if (value === 100){
+  //       clearInterval(timer);
+  //     }
+  //   }
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // });
 
   async function updateSearchHistory(searchType,searchParam,searchOutput){
     const body_activity = {
@@ -101,7 +165,7 @@ function DataRetrieval (){
     }
     console.log(body_activity);
     console.log("Saving Search History");
-    const response = await fetch(API + `/user/activity`, 
+    const response = await fetch(api + `/user/activity`, 
     {method: "POST" , 
     headers: {
       'Access-Control-Allow-Origin':'true',
@@ -116,16 +180,18 @@ function DataRetrieval (){
 
   const onClick_back = () => {
     console.log('Main Dashboard Page');
-    navigate(`/dashboard`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId}});
+    navigate(`/dashboard`, {state: {'name': state.name,'userId':state.userId, 'emailId':state.emailId, 'loginType':state.loginType}});
   };
 
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
   }
 
+  const [value, setValue] = useState(0);
+
   return (
     <div class = 'service-container'>
-      <Header name={state.name} />
+      <Header name={state.name} loginType= {state.loginType}/>
       <div class = 'service-page-header'>
         <div class = 'back-btn-div'>
           <button class ='back-btn' onClick={onClick_back}>
@@ -186,12 +252,22 @@ function DataRetrieval (){
             options={location_options}/> */}
           </div>
         </div>
-        <button class = 'submit-btn' onClick={getImageUrl}>
+        <button class = 'submit-btn' onClick={getRadarPlotImage}>
           <span>Generate Radar Graph</span>
         </button>
-      </div>
+        <button class = 'submit-btn' onClick={getMeeraDataPlot}>
+          <span>Generate Meera Plot</span>
+        </button>
+        <div>
+          {
+            isProgressBarVisible == true &&
+            <ProgressBar color={"#ff7979"} width={"150px"} value={value} max={100} />
+          }
+        </div>
+        
+        </div>
       
-      {
+      {/* {
         isButtonClicked == true &&
         <div class = 'result'>
           {isImageGenerated == false &&
@@ -240,7 +316,7 @@ function DataRetrieval (){
             </div>  
           </div>
         </div>
-      }
+      } */}
     </div>
   );
 }

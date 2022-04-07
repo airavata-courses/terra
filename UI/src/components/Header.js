@@ -22,7 +22,7 @@ function Header(props) {
               </div>
           </div>
           <div class = 'nav'>
-            <Logout />
+            <Logout loginType={props.loginType} />
           </div>    
         </div>
     )
