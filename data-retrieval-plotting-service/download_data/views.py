@@ -91,7 +91,8 @@ class Meera2DataViewSet(viewsets.ViewSet):
         print(data)
         try:
             out = download_plot_merra2(data['start_date'])
-        except:
+        except Exception as e:
+            print(e)
             return Response("No scans available for the selected inputs",
                             status=status.HTTP_200_OK)
         serializer = LinkSerializer(data={'image_url': str(out)})
