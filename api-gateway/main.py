@@ -77,29 +77,29 @@ def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, 
     data = output.text
 
     data = json.loads(data)
-    if data == 'No scans available for the selected inputs':
-        searchOutput = data
-    else:
-        searchOutput = data['image_url']
-    # data = json.loads(data)
-    body = {
-        "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
-        "searchParam": f"{station}"[:10], "searchOutput": searchOutput
-    }
-    body = json.dumps(body)
-    print(body)
-    time.sleep(0.2)
-    try:
-        channel.basic_publish(exchange='',
-                              routing_key='user-activity',
-                              body=body)
-        print(" [RabbitMQ] Sent log details to user-activity queue'")
-    except:
-        channel = connect_rabbitmq()
-        channel.basic_publish(exchange='',
-                              routing_key='user-activity',
-                              body=body)
-        print(" [RabbitMQ] Sent log details to user-activity queue'")
+    # if data == 'No scans available for the selected inputs':
+    #     searchOutput = data
+    # else:
+    #     searchOutput = data['image_url']
+    # # data = json.loads(data)
+    # body = {
+    #     "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
+    #     "searchParam": f"{station}"[:10], "searchOutput": searchOutput
+    # }
+    # body = json.dumps(body)
+    # print(body)
+    # time.sleep(0.2)
+    # try:
+    #     channel.basic_publish(exchange='',
+    #                           routing_key='user-activity',
+    #                           body=body)
+    #     print(" [RabbitMQ] Sent log details to user-activity queue'")
+    # except:
+    #     channel = connect_rabbitmq()
+    #     channel.basic_publish(exchange='',
+    #                           routing_key='user-activity',
+    #                           body=body)
+    #     print(" [RabbitMQ] Sent log details to user-activity queue'")
 
     return data
 
@@ -121,29 +121,29 @@ def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, 
     print(data)
     print(type(data))
     data = json.loads(data)
-    if data == 'No scans available for the selected inputs':
-        searchOutput = data
-    else:
-        searchOutput = data['image_url']
-    # data = json.loads(data)
-    body = {
-        "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
-        "searchParam": f"{station}"[:10], "searchOutput": searchOutput
-    }
-    body = json.dumps(body)
-    print(body)
-    time.sleep(0.2)
-    try:
-        channel.basic_publish(exchange='',
-                              routing_key='user-activity',
-                              body=body)
-        print(" [RabbitMQ] Sent log details to user-activity queue'")
-    except:
-        channel = connect_rabbitmq()
-        channel.basic_publish(exchange='',
-                              routing_key='user-activity',
-                              body=body)
-        print(" [RabbitMQ] Sent log details to user-activity queue'")
+    # if data == 'No scans available for the selected inputs':
+    #     searchOutput = data
+    # else:
+    #     searchOutput = data['image_url']
+    # # data = json.loads(data)
+    # body = {
+    #     "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
+    #     "searchParam": f"{station}"[:10], "searchOutput": searchOutput
+    # }
+    # body = json.dumps(body)
+    # print(body)
+    # time.sleep(0.2)
+    # try:
+    #     channel.basic_publish(exchange='',
+    #                           routing_key='user-activity',
+    #                           body=body)
+    #     print(" [RabbitMQ] Sent log details to user-activity queue'")
+    # except:
+    #     channel = connect_rabbitmq()
+    #     channel.basic_publish(exchange='',
+    #                           routing_key='user-activity',
+    #                           body=body)
+    #     print(" [RabbitMQ] Sent log details to user-activity queue'")
 
     return data
 
