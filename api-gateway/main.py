@@ -74,21 +74,10 @@ def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, 
         params = {'start_date': start_date,
                   'end_date': end_date, 'station': station}
         generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v1"
-        print(generate_url)
+
         output = requests.get(generate_url, params=params)
         data = output.text
         data = json.loads(data)
-        if data == 'No scans available for the selected inputs':
-            searchOutput = data
-        else:
-            searchOutput = data['image_url']
-
-        body = {
-            "userId": userId, "tokenId": tokenId, "typeOfSearch": "nex-rad-plot",
-            "searchParam": f"{station}"[:10], "searchOutput": searchOutput[:10]
-        }
-        print(body)
-        body = json.dumps(body)
 
         return data
 
@@ -97,8 +86,11 @@ def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, 
 
     if r.get(redis_key) == None:
         print("Acquiring lock")
-        lock = redis.lock.Lock(r, name=redis_lock, timeout=10)
-        isAcquired = lock.acquire(blocking=True, blocking_timeout=100)
+        lock = redis.lock.Lock(r, name=redis_lock, timeout=30)
+        start = time.time()
+        isAcquired = lock.acquire(blocking=True, blocking_timeout=50)
+        end = time.time()
+        print("Time taken to acquire lock is ", end-start)
         if isAcquired == True:
             # Need to double check again, if the current process was waiting for the lock and the other process has completed the work
             # And put that in the queue
@@ -122,20 +114,6 @@ def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, 
         print("present in redis cache")
         out = r.get(redis_key)
 
-    time.sleep(0.2)
-    try:
-        channel.basic_publish(exchange='',
-                              routing_key='user-activity',
-                              body=out)
-        print(" [RabbitMQ] Sent log details to user-activity queue'")
-    except:
-        channel = connect_rabbitmq()
-        channel.basic_publish(exchange='',
-                              routing_key='user-activity',
-                              body=out)
-        print(" [RabbitMQ] Sent log details to user-actvity queue'")
-
-    out = json.loads(out)
     return out
 
 
