@@ -24,6 +24,8 @@ cd jetstream_kubespray &&
 # export CLUSTER=terraclu &&
 cp -r inventory/kubejetstream inventory/$CLUSTER &&
 cd inventory/$CLUSTER &&
+# Update the number of worker nodes to 2
+sed -i '/number_of_k8s_nodes /c\number_of_k8s_nodes = 2' cluster.tfvars
 # Update the IP address you have provided
 sed -i '/k8s_master_fips/c\k8s_master_fips =["'$IP'"]'  cluster.tfvars &&
 
