@@ -47,7 +47,7 @@ cp ../jetstream_kubespray/inventory/$CLUSTER/hosts hosts &&
 sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-node-1\,$CLUSTER-k8s-node-2,$CLUSTER-k8s-master-1' " users.yml &&
 sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-node-1\,$CLUSTER-k8s-node-2,$CLUSTER-k8s-master-1' " install-k8s.yml &&
 sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-master-1' " master.yml &&
-sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-node-1\,$CLUSTER-k8s-node-2,$CLUSTER-k8s-master-1' " workers.yml &&
+sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-node-1\,$CLUSTER-k8s-node-2' " workers.yml &&
 
 ansible-playbook -i hosts users.yml &&
 sleep 20 &&
