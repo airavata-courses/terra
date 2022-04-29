@@ -21,7 +21,7 @@ rm -rf terraform_0.14.4_linux_amd64.zip &&
 # Change the directory
 cd jetstream_kubespray &&
 # Export cluser name
-export CLUSTER=terraclu &&
+# export CLUSTER=terraclu &&
 cp -r inventory/kubejetstream inventory/$CLUSTER &&
 cd inventory/$CLUSTER &&
 # Update the IP address you have provided
@@ -41,6 +41,12 @@ echo 'StrictHostKeyChecking no' &>> /etc/ssh/ssh_config &&
 # Run the ansible playbooks to install kubernetes
 cd ../terra &&
 cp ../jetstream_kubespray/inventory/$CLUSTER/hosts hosts &&
+
+sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-node-1\,$CLUSTER-k8s-node-2,$CLUSTER-k8s-master-1' " users.yml &&
+sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-node-1\,$CLUSTER-k8s-node-2,$CLUSTER-k8s-master-1' " install-k8s.yml &&
+sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-master-1' " master.yml &&
+sed -i "/hosts:/c\- hosts: \'$CLUSTER-k8s-node-1\,$CLUSTER-k8s-node-2,$CLUSTER-k8s-master-1' " workers.yml &&
+
 ansible-playbook -i hosts users.yml &&
 sleep 20 &&
 ansible-playbook -i hosts install-k8s.yml &&
