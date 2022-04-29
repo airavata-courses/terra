@@ -20,11 +20,17 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
-        resources:
-         limits:
-           memory: "300Mi"
-         requests:
-           memory: "300Mi"
+        env:
+        - name: API_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: secrets
+              key: api_key         
+        - name: API_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: secrets
+              key: api_secret            
 ---
 apiVersion: v1
 kind: Service
