@@ -50,9 +50,9 @@ function UserHistory (){
     {
       result.push(
         <tr class = "table-row">
-          <td>{array[0][i]}</td>
-          <td>{array[1][i]}</td>
-          <td>{array[2][i]}</td>
+          <td class = "table-column">{array[0][i]}</td>
+          <td class = "table-column">{array[1][i]}</td>
+          <td class = "table-column"><a href={array[2][i]}>Click Here</a></td>
         </tr>
       )
     }

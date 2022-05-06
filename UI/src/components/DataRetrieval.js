@@ -83,7 +83,7 @@ function DataRetrieval(props){
     console.log(json.image_url);
     var searchType = "Radar Plot";
     var searchParam = `start_date=`+startDate+`&station=`+location+`&end_date=`
-    var searchOutput = "Plot url:"+json.image_url;
+    var searchOutput = ""+json.image_url;
     updateSearchHistory(searchType,searchParam,searchOutput);
   }; 
 
@@ -123,7 +123,7 @@ function DataRetrieval(props){
     console.log(json.image_url);
     var searchType = "Meera Plot";
     var searchParam = `start_date=`+startDate+`&station=`+location+`&end_date=`+endDate;
-    var searchOutput = "Plot url:"+json.image_url;
+    var searchOutput = ""+json.image_url;;
     updateSearchHistory(searchType,searchParam,searchOutput);
   }; 
 

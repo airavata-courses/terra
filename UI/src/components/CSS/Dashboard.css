@@ -342,7 +342,6 @@ body {
 }
 
 .user-history-table {
-    
 }
 
 .table-header{
@@ -350,14 +349,18 @@ body {
 }
 
 .table-header-row {
-    width: max-content;
+    width: 600px;
     height: auto;
     border: 1px solid black;
 }
 
 .table-row {
-    width: max-content;
+    width: 600px;
     height: auto;
+}
+
+.table-column{
+    width: 200px;
 }
 
 th {
