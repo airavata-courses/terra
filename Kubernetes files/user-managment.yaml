@@ -16,7 +16,7 @@ spec:
     spec: 
       containers: 
       - name: service-sql
-        image: gauti091/user-management
+        image: gauti091/user-management:linux
         ports: 
         - containerPort: 8888
 ---

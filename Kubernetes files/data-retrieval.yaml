@@ -16,14 +16,9 @@ spec:
     spec: 
       containers: 
       - name: dataretrieval
-        image: gauti091/data-retrieval
+        image: gauti091/data-retrieval:linux
         ports:
         - containerPort: 8000
-        resources:
-         limits:
-           memory: "300Mi"
-         requests:
-           memory: "300Mi"
         env:
         - name: api_key
           valueFrom:

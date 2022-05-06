@@ -16,14 +16,9 @@ spec:
     spec: 
       containers: 
       - name: weather-forecast
-        image: gauti091/weather-forecast
+        image: gauti091/weather-forecast:linux
         ports:
         - containerPort: 8004
-        resources:
-         limits:
-           memory: "100Mi"
-         requests:
-           memory: "100Mi"        
 ---
 apiVersion: v1
 kind: Service

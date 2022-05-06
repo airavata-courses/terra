@@ -16,7 +16,7 @@ spec:
     spec: 
       containers:
       - name: mysql-standalone
-        image: gauti091/sql-standalone
+        image: gauti091/sql-standalone:linux
         ports:
         - containerPort: 3306
         env:
