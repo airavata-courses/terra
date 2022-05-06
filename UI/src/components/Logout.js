@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import './CSS/Intro.css';
 
 const clientId =
-  '569132373426-sjt4hee4cptno1r7up7ulqup9senjn4d.apps.googleusercontent.com';
+  '569132373426-k5fbiibcgfm0ejj0lqv3esftucdanbco.apps.googleusercontent.com';
 
 function Logout(props) {
   const navigate = useNavigate();
