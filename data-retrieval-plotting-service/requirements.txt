@@ -11,3 +11,4 @@ nexradaws
 pika == 1.2.0
 cloudinary
 numpy
+netCDF4

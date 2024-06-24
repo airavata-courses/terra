@@ -11,6 +11,10 @@ services:
         - 5673:5672
       volumes:
         - .:/app
+      environment:
+        # ENVIRONMET_VARIABLE_NAME: "environment variable value" 
+        API_KEY: "693518538948276"
+        API_SECRET: "I_V74DpPwtkwj1yQk-Ib5aAPQyQ"        
 
 networks:
     default:

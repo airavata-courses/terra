@@ -4,7 +4,9 @@ from fastapi import FastAPI, Request
 import json
 import requests
 from fastapi.middleware.cors import CORSMiddleware
-
+import pika
+import redis
+import time
 
 app = FastAPI()
 
@@ -33,6 +35,7 @@ headers = {
     'access-control-allow-credentials': 'true',
     'access-control-allow-headers': 'content-type'
 }
+r = redis.Redis(host='my-redis')
 
 # For testing
 
@@ -49,17 +52,99 @@ def get():
 # API path for plotting
 
 
-@app.get("/plot")
-async def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None):
+def connect_rabbitmq():
 
-    print("[In API gatway] - Calling Plot micro service")
+    connection = pika.BlockingConnection(
+        pika.ConnectionParameters(host='rabbitmq'))
+    channel = connection.channel()
+    channel.queue_declare(queue='user-activity')
+    return channel
 
+
+channel = connect_rabbitmq()
+
+
+@app.get("/plot/v1")
+def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None,
+              userId: Optional[str] = None, tokenId: Optional[str] = None):
+
+    print("[In API gatway] - Calling Plot micro service - [Nex-Rad]")
+    # print(" [RabbitMQ] Sent log details to user-activity queue'")
     params = {'start_date': start_date,
               'end_date': end_date, 'station': station}
-    generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data"
+    generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v1"
     output = requests.get(generate_url, params=params)
     data = output.text
+
     data = json.loads(data)
+    # if data == 'No scans available for the selected inputs':
+    #     searchOutput = data
+    # else:
+    #     searchOutput = data['image_url']
+    # # data = json.loads(data)
+    # body = {
+    #     "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
+    #     "searchParam": f"{station}"[:10], "searchOutput": searchOutput
+    # }
+    # body = json.dumps(body)
+    # print(body)
+    # time.sleep(0.2)
+    # try:
+    #     channel.basic_publish(exchange='',
+    #                           routing_key='user-activity',
+    #                           body=body)
+    #     print(" [RabbitMQ] Sent log details to user-activity queue'")
+    # except:
+    #     channel = connect_rabbitmq()
+    #     channel.basic_publish(exchange='',
+    #                           routing_key='user-activity',
+    #                           body=body)
+    #     print(" [RabbitMQ] Sent log details to user-activity queue'")
+
+    return data
+
+
+# API path for meera-2 plotting
+
+
+@app.get("/plot/v2")
+def read_root(start_date: Optional[str] = None, end_date: Optional[str] = None, station: Optional[str] = None,
+              userId: Optional[str] = None, tokenId: Optional[str] = None):
+
+    print("[In API gatway] - Calling Plot micro service - [Merra]")
+    # print(" [RabbitMQ] Sent log details to user-activity queue'")
+    params = {'start_date': start_date,
+              'end_date': end_date, 'station': station}
+    generate_url = f"http://{PYTHON_HOST}:{PYTHON_PORT}/fetch/data/v2"
+    output = requests.get(generate_url, params=params)
+    data = output.text
+    print(data)
+    print(type(data))
+    data = json.loads(data)
+    # if data == 'No scans available for the selected inputs':
+    #     searchOutput = data
+    # else:
+    #     searchOutput = data['image_url']
+    # # data = json.loads(data)
+    # body = {
+    #     "userId": userId, "tokenId": tokenId, "typeOfSearch": "Meera-2-plot",
+    #     "searchParam": f"{station}"[:10], "searchOutput": searchOutput
+    # }
+    # body = json.dumps(body)
+    # print(body)
+    # time.sleep(0.2)
+    # try:
+    #     channel.basic_publish(exchange='',
+    #                           routing_key='user-activity',
+    #                           body=body)
+    #     print(" [RabbitMQ] Sent log details to user-activity queue'")
+    # except:
+    #     channel = connect_rabbitmq()
+    #     channel.basic_publish(exchange='',
+    #                           routing_key='user-activity',
+    #                           body=body)
+    #     print(" [RabbitMQ] Sent log details to user-activity queue'")
+
     return data
 
 # Calls the weather api

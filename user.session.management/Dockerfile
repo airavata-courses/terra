@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM --platform=linux/x86_64 openjdk:11
 
 ADD target/team-terra.jar team-terra.jar
 

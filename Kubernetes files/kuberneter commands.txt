@@ -48,6 +48,7 @@ minikube start
 minikube start --cpus 4 --memory 5000
 
 kubectl apply -f MySQLConfigMap.yaml
+kubectl apply -f SecretsConfigMap.yaml
 kubectl apply -f MySQLService.yaml
 kubectl apply -f rabbitmq.yaml
 kubectl apply -f data-retrieval.yaml
